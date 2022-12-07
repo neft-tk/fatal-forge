@@ -8,7 +8,7 @@ import Settings from './components/lobby/Lobby'
 import {BrowserRouter as Router, Routes, Route, BrowserRouter} from 'react-router-dom'
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(()=>{
     //let loggedin = checkIfLoggedIn();
