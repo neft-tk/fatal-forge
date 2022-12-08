@@ -3,9 +3,14 @@
 // The Nav will contain: Lobby (lobby component), Deckbuilding (deckbuilding component), Play (assembly component)
 
 import React from 'react'
+import {Link} from 'react-router-dom'
 
-export default function Nav() {
+export default function Nav(props) {
   return (
-    <div>Nav</div>
+    <div className='nav-container'>
+        <Link to="/gameview">Play</Link>
+        <Link to="/deckbulder">Decks</Link>
+        <Link to="/lobby">Friends</Link>
+    </div>
   )
 }
