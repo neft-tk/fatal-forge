@@ -10,8 +10,15 @@ function Assembly() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    // We will want to emit the room that this player wants to join/create
-    console.log(e.target)
+    // Based on which button was clicked.
+    switch (e.target.className) {
+      case "join-room":
+        console.log(`You have joined room ${joinRoom}!`)
+        break;
+      case "create-room":
+        console.log(`You have created room ${createRoom}!`)
+        break;
+    }
     setCreateRoom("")
     setJoinRoom("")
   }
@@ -21,7 +28,7 @@ function Assembly() {
       <form action="">
         <label htmlFor="joinRoomInput">Room ID: </label>
         <input type="text" id='joinRoomInput' placeholder='Room ID' value={joinRoom} onChange={e => setJoinRoom(e.target.value)}/>
-        <button onClick={handleFormSubmit}>Join Room</button>
+        <button className='join-room' onClick={handleFormSubmit}>Join Room</button>
         <br />
         <label htmlFor="createRoomInput">New Room ID: </label>
         <input type='text' id='createRoomInput' placeholder="New Room ID" value={createRoom} onChange={e => setCreateRoom(e.target.value)}/>
