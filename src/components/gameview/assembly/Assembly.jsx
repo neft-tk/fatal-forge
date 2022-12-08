@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Socket from '../../../utils/socket';
 
 // The assembly component will handle players joining and creating rooms to play with others.
 
@@ -13,10 +14,12 @@ function Assembly() {
     // Based on which button was clicked.
     switch (e.target.className) {
       case "join-room":
-        console.log(`You have joined room ${joinRoom}!`)
+        console.log(`You have joined room ${joinRoom}`)
+        Socket.Game.JoinGame(joinRoom)
         break;
       case "create-room":
-        console.log(`You have created room ${createRoom}!`)
+        console.log(`You have created room ${createRoom}`)
+        Socket.Game.CreateGame(createRoom)
         break;
     }
     setCreateRoom("")
