@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import Socket from '../../../utils/socket';
-
 // The assembly component will handle players joining and creating rooms to play with others.
 
 // Once a player has joined a room, they will be taken to that room, in the initialize component.
+
+import React, { useState } from 'react'
+import Socket from '../../../utils/socket';
+
 
 function Assembly() {
   const [joinRoom, setJoinRoom] = useState("");
