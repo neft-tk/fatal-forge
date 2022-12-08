@@ -14,12 +14,10 @@ function Assembly() {
     // Based on which button was clicked.
     switch (e.target.className) {
       case "join-room":
-        console.log(`You have joined room ${joinRoom}`)
-        Socket.Game.JoinGame(joinRoom)
+        Socket.Game.JoinGame(joinRoom);
         break;
       case "create-room":
-        console.log(`You have created room ${createRoom}`)
-        Socket.Game.CreateGame(createRoom)
+        Socket.Game.CreateGame(createRoom);
         break;
     }
     setCreateRoom("")
