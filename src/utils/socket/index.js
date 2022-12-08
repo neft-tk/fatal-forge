@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 import * as handlers from './handlers'
 
 const ClientSocket = ()=>{
-    const socket = io();
+    const socket = io('http://localhost:3001');
     //const lobby = handlers.Lobby(socket);
     const game = handlers.Game(socket);
     //const authentication = handlers.Auth(socket);

@@ -18,22 +18,22 @@ export default function Login(props) {
   const [loginEmail, setLoginEmail] = useState("")
   const [loginPassword, setLoginPassword] = useState("")
 
-  // useEffect(()=>{
-  //   const storedToken = localStorage.getItem("token")
-  //   if(storedToken){
-  //     console.log(storedToken)
-  //     API.getUserFromToken(storedToken).then(data=>{
-  //       if(data.user){
-  //         console.log(data)
-  //         setToken(storedToken)
-  //         props.setIsLoggedIn(true)
-  //         setUserId(data.user.id)
-  //       }
-  //     })
-  //   } else {
-  //     console.log('no stored token')
-  //   }
-  // },[])
+  useEffect(()=>{
+    // const storedToken = localStorage.getItem("token")
+    // if(storedToken){
+    //   console.log(storedToken)
+    //   API.getUserFromToken(storedToken).then(data=>{
+    //     if(data.user){
+    //       console.log(data)
+    //       setToken(storedToken)
+    //       props.setIsLoggedIn(true)
+    //       setUserId(data.user.id)
+    //     }
+    //   })
+    // } else {
+    //   console.log('no stored token')
+    // }
+  },[])
 
   const handleLoginSubmit = e=>{
     e.preventDefault();
