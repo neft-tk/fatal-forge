@@ -6,6 +6,7 @@ import Lobby from './components/lobby/Lobby'
 import Gameview from './components/gameview/Gameview'
 import Settings from './components/lobby/Lobby'
 import {BrowserRouter as Router, Routes, Route, BrowserRouter} from 'react-router-dom'
+import Assembly from './components/gameview/assembly/Assembly'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)

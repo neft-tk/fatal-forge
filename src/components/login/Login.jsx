@@ -1,3 +1,5 @@
+// The Login component provides a form and handler for users logging in.
+
 import {useEffect, useState} from "react";
 // import API from "./utils/API.js";
 
