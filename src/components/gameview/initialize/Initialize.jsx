@@ -3,8 +3,10 @@
 // Players will join the initialize component from the assembly component and leave for the game component once both player indicate they are ready.
 
 import React from 'react'
+import Socket from '../../../utils/socket';
 
 export default function Initialize() {
+
   return (
     <div>Initialize</div>
   )

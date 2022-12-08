@@ -9,7 +9,7 @@ export default function Nav(props) {
   return (
     <div className='nav-container'>
         <Link to="/gameview">Play</Link>
-        <Link to="/deckbulder">Decks</Link>
+        <Link to="/deckbuilder">Decks</Link>
         <Link to="/lobby">Friends</Link>
     </div>
   )
