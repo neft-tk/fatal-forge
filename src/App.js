@@ -8,6 +8,7 @@ import Settings from './components/lobby/Lobby'
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom'
 import Assembly from './components/gameview/assembly/Assembly'
 import Deckbuilder from "./components/deckbuilder/Deckbuilder";
+import './styles.css'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true)
