@@ -1,13 +1,16 @@
+/* Darkmode */
 body {
     background-color: #222;
     color: white;
 }
 
+/* Pretty Links */
 a {
     text-decoration: none;
     color: white
 }
 
+/* Space things out for vis */
 body * {
     margin: 1vw;
 }
