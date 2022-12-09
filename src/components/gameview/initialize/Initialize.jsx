@@ -5,9 +5,12 @@
 import React from 'react'
 import Socket from '../../../utils/socket';
 
-export default function Initialize() {
+export default function Initialize(props) {
 
   return (
-    <div>Initialize</div>
+    <div>
+      <h1>Game Id: {props.gameId}</h1>
+      Initialize
+    </div>
   )
 }

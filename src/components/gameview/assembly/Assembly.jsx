@@ -6,21 +6,51 @@ import React, { useState } from 'react'
 import Socket from '../../../utils/socket';
 
 
-function Assembly() {
+function Assembly({setView, setGameId}) {
   const [joinRoom, setJoinRoom] = useState("");
   const [createRoom, setCreateRoom] = useState("");
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async(e) => {
     e.preventDefault()
     // Based on which button was clicked.
     switch (e.target.className) {
-      case "join-room":
-        Socket.Game.JoinGame(joinRoom);
-        break;
-      case "create-room":
-        Socket.Game.CreateGame(createRoom);
-        break;
+      case "join-room":{
+          // Going to hit our api for a response to see if that room exists
+          const resp = await fetch(`http://localhost:3001/api/socket/game/${joinRoom}`);
+          const data = await resp.json();
+
+          // The return data for that route is currently just an object with a single key 'exists' which will be a boolean
+          if (data.exists){
+            // Join the game room on the server with socket, and set the states in the gameview to render the initialize component
+            Socket.Game.JoinGame(joinRoom);
+            setGameId(joinRoom);
+            setView('initialize');
+          }else{
+            //todo: change the alert to a modal when we get deeper in styling
+            alert('Room with that name already exists. Try another')
+        }
+      }
+      break;
+
+      case "create-room":{
+        // Going to hit our api for a response to see if that room already exists
+        const resp = await fetch(`http://localhost:3001/api/socket/game/${createRoom}`);
+        const data = await resp.json();
+
+        // The return data for that route is currently just an object with a single key 'exists' which will be a boolean
+        if (data.exists){
+          //todo: change the alert to a modal when we get deeper in styling
+          alert('Room with that name already exists. Try another')
+        }else{ 
+          // Create the game room on the server with socket, and set the states in the gameview to render the initialize component
+          Socket.Game.CreateGame(createRoom);
+          setGameId(createRoom);
+          setView('initialize')
+        }
+      }
+      break;
     }
+
     setCreateRoom("")
     setJoinRoom("")
   }
