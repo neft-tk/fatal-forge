@@ -11,7 +11,7 @@ import Deckbuilder from "./components/deckbuilder/Deckbuilder";
 import './styles.css'
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
 
   const [view, setView] = useState("");
 

@@ -50,7 +50,6 @@ function Assembly({setView, setGameId}) {
       }
       break;
     }
-
     setCreateRoom("")
     setJoinRoom("")
   }

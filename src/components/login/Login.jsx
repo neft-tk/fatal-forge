@@ -63,7 +63,7 @@ export default function Login(props) {
       <input type="password" name="password" value={loginPassword} onChange={e => setLoginPassword(e.target.value)} />
       <button>Log in!</button>
     </form>
-    <img src={blacksmith} alt="" />
+    <img src={blacksmith} alt="A blacksmith hard at work." />
     </div>
   )
 }
