@@ -1,18 +1,15 @@
+import blacksmith from '../../assets/blacksmith_nobg.gif'
 // The Login component provides a form and handler for users logging in.
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 // import API from "./utils/API.js";
 
-
 /*
-
 this was all copy pasted stuff that erik pulled from joes example
 
 i passed the setlogin state function through the props from the app component..
 that's the only change i made.
-
 */
-
 
 export default function Login(props) {
   const [userId, setUserId] = useState(0)
@@ -20,7 +17,7 @@ export default function Login(props) {
   const [loginEmail, setLoginEmail] = useState("")
   const [loginPassword, setLoginPassword] = useState("")
 
-  useEffect(()=>{
+  useEffect(() => {
     // const storedToken = localStorage.getItem("token")
     // if(storedToken){
     //   console.log(storedToken)
@@ -35,9 +32,9 @@ export default function Login(props) {
     // } else {
     //   console.log('no stored token')
     // }
-  },[])
+  }, [])
 
-  const handleLoginSubmit = e=>{
+  const handleLoginSubmit = e => {
     e.preventDefault();
     // API.login({
     //   email:loginEmail,
@@ -47,23 +44,26 @@ export default function Login(props) {
     //   if(data.token){
     //     setUserId(data.user.id)
     //     setToken(data.token)
-        props.setIsLoggedIn(true)
+    props.setIsLoggedIn(true)
     //     localStorage.setItem("token",data.token)
     //   }
     // })
   }
-  const handleLogout = ()=>{
+  const handleLogout = () => {
     // localStorage.removeItem("token");
     props.setIsLoggedIn(false);
     // setUserId(0);
     // setToken("");
   }
-    return (
-      <form onSubmit={handleLoginSubmit}>
+  return (
+    <div>
+    <form onSubmit={handleLoginSubmit}>
       <h3>Login</h3>
-      <input name="email"  value={loginEmail} onChange={e=>setLoginEmail(e.target.value)}/>
-      <input type="password" name="password" value={loginPassword} onChange={e=>setLoginPassword(e.target.value)}/>
+      <input name="email" value={loginEmail} onChange={e => setLoginEmail(e.target.value)} />
+      <input type="password" name="password" value={loginPassword} onChange={e => setLoginPassword(e.target.value)} />
       <button>Log in!</button>
     </form>
+    <img src={blacksmith} alt="" />
+    </div>
   )
 }
