@@ -24,14 +24,14 @@ export default function Initialize(props) {
       <h2>Users:</h2>
       <form action="">
         <label htmlFor="deckChoice">Pick Your Deck:</label>
-        <select name="deck-choice" id="deckChoice" onChange={e => console.log(e)}>
+        <select name="deck-choice" id="deckChoice" required onChange={e => console.log(e)}>
           {/*TODO: Populate with user's deck options */}
           <option value="1">1</option>
           <option value="2">2</option>
         </select>
         <br />
         <label htmlFor="colorChoice">Pick Your Color</label>
-        <select name="color-choice" id="colorChoice" onChange={e => console.log(e)}>
+        <select name="color-choice" id="colorChoice" required onChange={e => console.log(e)}>
           <option value="red">Red</option>
           <option value="blue">Blue</option>
         </select>
