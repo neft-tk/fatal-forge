@@ -1,4 +1,7 @@
-/* Darkmode */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
     background-color: #222;
     color: white;

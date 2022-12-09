@@ -1,57 +1,86 @@
-import { useEffect, useState } from "react";
-import React from "react";
-import Login from "./components/login/Login";
-import Nav from "./components/Nav";
-import Lobby from './components/lobby/Lobby'
-import Gameview from './components/gameview/Gameview'
-import Settings from './components/lobby/Lobby'
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom'
-import Assembly from './components/gameview/assembly/Assembly'
-import Deckbuilder from "./components/deckbuilder/Deckbuilder";
-import Game from './components/gameview/game/Game'
-import './styles.css'
+import React, { useEffect, useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  BrowserRouter,
+} from 'react-router-dom';
+import API from './utils/API';
+import Nav from './components/Nav';
+import Login from './components/login/Login';
+import Lobby from './components/lobby/Lobby';
+import Gameview from './components/gameview/Gameview';
+import Assembly from './components/gameview/assembly/Assembly';
+import Settings from './components/settings/Settings';
+import Deckbuilder from './components/deckbuilder/Deckbuilder';
+import './style.css';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userId, setUserId] = useState(0);
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState('');
 
-  const [view, setView] = useState("");
+  const [view, setView] = useState('');
 
-  useEffect(() => {
-    //let loggedin = checkIfLoggedIn();
-    /*
-      if (isLoggedIn != loggedin){
-        setIsLoggedIn(loggedin);
-      }
-    */
-    // basically just hit local storage and validate if we are logged in and set the
-    // state if its different than the current state
-  })
+  useEffect(()=>{
+    const storedToken = localStorage.getItem("token");
+    if(storedToken){
+      console.log(storedToken);
+      API.getUserFromToken(storedToken).then(data=>{
+        if(data.user){
+          console.log(data);
+          setToken(storedToken);
+          setIsLoggedIn(true);
+          setUserId(data.user.id);
+          setUserName(data.user.username);
+          setUserEmail(data.user.email);
+        }
+      })
+    } else {
+      console.log('no stored token');
+    };
+  },[])
+
+  const handleLogin = userObj => {
+    // console.log("APP Client side:");
+    // console.log(userObj);
+    API.login(userObj).then(data=>{
+      // console.log(data);
+      if(data.token){
+        setUserId(data.user.id);
+        setToken(data.token);
+        setIsLoggedIn(true);
+        setUserName(data.user.username);
+        setUserEmail(data.user.email);
+        localStorage.setItem("token", data.token);
+      };
+    });
+  };
 
   const renderRoutes = () => {
-
     return (
       <>
         <Router>
           <Nav view={view} setView={setView} />
           <div id="routeContainer">
             <Routes>
-              <Route path='/' element={<Lobby />} />
-              <Route path='/lobby' element={<Lobby />} />
-              <Route path='/gameview' element={<Gameview />} />
-              <Route path='/settings' element={<Settings />} />
-              <Route path='/deckbuilder' element={<Deckbuilder />} />
+              <Route path="/" element={<Lobby />} />
+              <Route path="/lobby" element={<Lobby />} />
+              <Route path="/gameview" element={<Gameview />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/deckbuilder" element={<Deckbuilder />} />
             </Routes>
           </div>
         </Router>
       </>
-    )
-  }
+    );
+  };
 
   return (
     <div className="App">
-
-      {isLoggedIn ? renderRoutes() : <Login setLogin={setIsLoggedIn} />}
-
+      {isLoggedIn ? renderRoutes() : <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} />}
     </div>
   );
 }
