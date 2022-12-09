@@ -63,7 +63,7 @@ function Assembly({setView, setGameId}) {
         <br />
         <label htmlFor="createRoomInput">New Room ID: </label>
         <input type='text' id='createRoomInput' placeholder="New Room ID" value={createRoom} onChange={e => setCreateRoom(e.target.value)}/>
-        <button className='create-room' onClick={handleFormSubmit}>Create Room</button>
+        <button className='create-room' onClick={handleFormSubmit}>Create Room</button>  
       </form>
     </div>
   )

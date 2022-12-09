@@ -8,10 +8,11 @@ import Settings from './components/lobby/Lobby'
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom'
 import Assembly from './components/gameview/assembly/Assembly'
 import Deckbuilder from "./components/deckbuilder/Deckbuilder";
+import Game from './components/gameview/game/Game'
 import './styles.css'
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const [view, setView] = useState("");
 
@@ -21,7 +22,6 @@ function App() {
       if (isLoggedIn != loggedin){
         setIsLoggedIn(loggedin);
       }
-
     */
     // basically just hit local storage and validate if we are logged in and set the
     // state if its different than the current state
