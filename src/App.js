@@ -31,9 +31,7 @@ function App() {
       if(storedToken){
         console.log(storedToken);
         API.getUserFromToken(storedToken).then(data=>{
-          console.log('effect', data);
           if(data.user){
-            console.log(data);
             setToken(storedToken);
             setIsLoggedIn(true);
             setUserId(data.user.id);
