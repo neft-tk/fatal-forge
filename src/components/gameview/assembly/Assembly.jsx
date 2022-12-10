@@ -2,7 +2,7 @@
 
 // Once a player has joined a room, they will be taken to that room, in the initialize component.
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Socket from '../../../utils/socket';
 
 
@@ -10,35 +10,45 @@ function Assembly({setView, setGameId}) {
   const [joinRoom, setJoinRoom] = useState("");
   const [createRoom, setCreateRoom] = useState("");
 
+  useEffect(()=>{
+    Socket.IO.off('game');
+  })
+
   const handleFormSubmit = async(e) => {
     e.preventDefault()
+
     // Based on which button was clicked.
     switch (e.target.className) {
       case "join-room":{
           // Going to hit our api for a response to see if that room exists
           const resp = await fetch(`http://localhost:3001/api/socket/game/${joinRoom}`);
-          const data = await resp.json();
 
-          // The return data for that route is currently just an object with a single key 'exists' which will be a boolean
-          if (data.exists){
-            // Join the game room on the server with socket, and set the states in the gameview to render the initialize component
-            Socket.Game.JoinGame(joinRoom);
-            setGameId(joinRoom);
-            setView('initialize');
+          if (resp.ok){
+            const data = await resp.json();
+
+            // Make sure the room isn't full
+            if (data.players.length < 2){
+              // Join the game room on the server with socket, and set the states in the gameview to render the initialize component
+              Socket.Game.JoinGame(joinRoom);
+              setGameId(joinRoom);
+              setView('initialize');
+            }else{
+              //todo: change the alert to a modal when we get deeper in styling
+              alert('That room is full.')
+            }
           }else{
-            //todo: change the alert to a modal when we get deeper in styling
-            alert('Room with that name already exists. Try another')
-        }
+            alert(`That room doesn't exist`);
+          }
+
       }
       break;
 
       case "create-room":{
         // Going to hit our api for a response to see if that room already exists
         const resp = await fetch(`http://localhost:3001/api/socket/game/${createRoom}`);
-        const data = await resp.json();
 
-        // The return data for that route is currently just an object with a single key 'exists' which will be a boolean
-        if (data.exists){
+        // if the response is ok then that room already exists
+        if (resp.ok){
           //todo: change the alert to a modal when we get deeper in styling
           alert('Room with that name already exists. Try another')
         }else{ 

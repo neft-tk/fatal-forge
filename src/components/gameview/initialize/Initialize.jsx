@@ -10,18 +10,44 @@ export default function Initialize(props) {
   const [deckChoice, setDeckChoice] = useState("");
   // Assign colors to ids and set here?
   const [colorChoice, serColorChoice] = useState("");
+  const [connectedUsers, setConnectedUsers] = useState([]);
+
+  const renderUsers = (users)=>{
+    console.log('render', users)
+    return(
+      <div id='usersContainer'>
+        <h2>Players:</h2>
+            {users.map((x,i)=>{
+              return (
+              <div className='flex' key={i}>
+              <h3 style={{color:x.color || 'white'}}>{x.userData.username}</h3>
+              <h3>{x.isReady ? 'Ready' : 'Preparing'}</h3>
+              </div>
+            )
+
+      })}
+      </div>
+
+    )
+  }
+
+  Socket.Game.OnPlayerUpdate((players)=>{
+    setConnectedUsers(players);
+    console.log('players', players)
+  })
 
   const handleFormSubmit = async(e) => {
     e.preventDefault()
     // TODO: Check that values are valid
     // TODO: Ping socket to indicate player is ready and present unready button.
+    Socket.Game.SetReady();
   }
 
   return (
     <div>
       <h1>Game Id: {props.gameId}</h1>
       {/* TODO: Ping server for all sockets connected to this gameId and populate users. */}
-      <h2>Users:</h2>
+      {renderUsers(connectedUsers)}
       <form action="">
         <label htmlFor="deckChoice">Pick Your Deck:</label>
         <select name="deck-choice" id="deckChoice" required onChange={e => console.log(e)}>
