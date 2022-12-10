@@ -2,15 +2,20 @@
 
 // Players will join the initialize component from the assembly component and leave for the game component once both player indicate they are ready.
 
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Socket from '../../../utils/socket';
+import {CirclePicker} from 'react-color';
 
 export default function Initialize(props) {
   // Use the DeckID as values for the options
   const [deckChoice, setDeckChoice] = useState("");
-  // Assign colors to ids and set here?
-  const [colorChoice, serColorChoice] = useState("");
   const [connectedUsers, setConnectedUsers] = useState([]);
+
+  useEffect(async ()=>{
+    const resp = await fetch(`http://localhost:3001/api/socket/game/${props.gameId}`);
+    const data = await resp.json();
+    setConnectedUsers(data.players);
+  }, [])
 
   const renderUsers = (users)=>{
     console.log('render', users)
@@ -19,8 +24,9 @@ export default function Initialize(props) {
         <h2>Players:</h2>
             {users.map((x,i)=>{
               return (
-              <div className='flex' key={i}>
-              <h3 style={{color:x.color || 'white'}}>{x.userData.username}</h3>
+              <div className='flex items-center' key={i}>
+              <h3>{x.userData.username}</h3>
+              <h3 className='border p-1' style={{backgroundColor: x.color}}>Color</h3>
               <h3>{x.isReady ? 'Ready' : 'Preparing'}</h3>
               </div>
             )
@@ -39,8 +45,15 @@ export default function Initialize(props) {
   const handleFormSubmit = async(e) => {
     e.preventDefault()
     // TODO: Check that values are valid
-    // TODO: Ping socket to indicate player is ready and present unready button.
-    Socket.Game.SetReady();
+    
+    // this is ensuring users pick different colors
+    const set = new Set(connectedUsers.map(x=>x.color));
+    if (set.size != connectedUsers.length){
+      alert('Must pick a unique color');
+    }else{
+      Socket.Game.SetReady();
+    }
+    
   }
 
   return (
@@ -56,12 +69,9 @@ export default function Initialize(props) {
           <option value="2">2</option>
         </select>
         <br />
-        <label htmlFor="colorChoice">Pick Your Color</label>
-        <select name="color-choice" id="colorChoice" required onChange={e => console.log(e)}>
-          <option value="red">Red</option>
-          <option value="blue">Blue</option>
-        </select>
-        <br />
+        <label> Pick Your Color:</label>
+        <CirclePicker className='border'  onChange={(c,e)=>{Socket.Game.PickColor(c.hex)}}/>
+        <br/>
         <button type='submit' onClick={handleFormSubmit}>Ready</button>
       </form>
     </div>

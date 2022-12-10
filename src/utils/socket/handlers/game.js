@@ -26,6 +26,15 @@ export const Game = (socket)=>{
                 gameId: id
             })
         },
+        PickColor(color){
+            console.log('emitting color pick');
+            socket.emit('game', {
+                type:"pickColor",
+                gameId: id,
+                data: color
+                }
+            )
+        },
         OnPlayerUpdate(callback){
             socket.on('game', data=>{
                 if (data.type == 'playerUpdate'){
