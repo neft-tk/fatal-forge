@@ -14,6 +14,7 @@ import Assembly from './components/gameview/assembly/Assembly';
 import Settings from './components/settings/Settings';
 import Deckbuilder from './components/deckbuilder/Deckbuilder';
 import './style.css';
+import Socket from './utils/socket'
 
 function App() {
   const [userId, setUserId] = useState(0);
@@ -25,29 +26,33 @@ function App() {
   const [view, setView] = useState('');
 
   useEffect(()=>{
-    const storedToken = localStorage.getItem("token");
-    if(storedToken){
-      console.log(storedToken);
-      API.getUserFromToken(storedToken).then(data=>{
-        if(data.user){
-          console.log(data);
-          setToken(storedToken);
-          setIsLoggedIn(true);
-          setUserId(data.user.id);
-          setUserName(data.user.username);
-          setUserEmail(data.user.email);
-        }
-      })
-    } else {
-      console.log('no stored token');
-    };
-  },[])
+    if (!isLoggedIn){
+      const storedToken = localStorage.getItem("token");
+      if(storedToken){
+        console.log(storedToken);
+        API.getUserFromToken(storedToken).then(data=>{
+          console.log('effect', data);
+          if(data.user){
+            console.log(data);
+            setToken(storedToken);
+            setIsLoggedIn(true);
+            setUserId(data.user.id);
+            setUserName(data.user.username);
+            setUserEmail(data.user.email);
+            Socket.Auth.RegisterSocket(data.user)
+          }
+        })
+      } else {
+        console.log('no stored token');
+      };
+    }
+  })
 
   const handleLogin = userObj => {
     // console.log("APP Client side:");
     // console.log(userObj);
     API.login(userObj).then(data=>{
-      // console.log(data);
+      console.log("data:",data);
       if(data.token){
         setUserId(data.user.id);
         setToken(data.token);
@@ -55,6 +60,7 @@ function App() {
         setUserName(data.user.username);
         setUserEmail(data.user.email);
         localStorage.setItem("token", data.token);
+        Socket.Auth.RegisterSocket(data.user)
       };
     });
   };
