@@ -39,7 +39,7 @@ function App() {
             setUserId(data.user.id);
             setUserName(data.user.username);
             setUserEmail(data.user.email);
-            Socket.Auth.RegisterSocket(data.user.username)
+            Socket.Auth.RegisterSocket(data.user)
           }
         })
       } else {
@@ -60,7 +60,7 @@ function App() {
         setUserName(data.user.username);
         setUserEmail(data.user.email);
         localStorage.setItem("token", data.token);
-        Socket.Auth.RegisterSocket(data.user.username)
+        Socket.Auth.RegisterSocket(data.user)
       };
     });
   };
