@@ -65,6 +65,22 @@ function App() {
     });
   };
 
+  // TODO: handle sign up
+  const handleSignUp = userObj => {
+    API.signUp(userObj).then(data => {
+      console.log("data", data);
+      if(data.token){
+        setUserId(data.user.id);
+        setToken(data.token);
+        setIsLoggedIn(true);
+        setUserName(data.user.username);
+        setUserEmail(data.user.email);
+        localStorage.setItem("token", data.token);
+        Socket.Auth.RegisterSocket(data.user)
+      };
+    });
+  };
+
   const renderRoutes = () => {
     return (
       <>

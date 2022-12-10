@@ -12,53 +12,40 @@ i passed the setlogin state function through the props from the app component..
 that's the only change i made.
 */
 
-export default function Login({setIsLoggedIn, handleLogin}) {
+export default function Login({setIsLoggedIn, handleLogin, handleSignUp}) {
   const [userId, setUserId] = useState(0);
   const [token, setToken] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-
-  // useEffect(() => {
-  //   // const storedToken = localStorage.getItem("token")
-  //   // if(storedToken){
-  //   //   console.log(storedToken)
-  //   //   API.getUserFromToken(storedToken).then(data=>{
-  //   //     if(data.user){
-  //   //       console.log(data)
-  //   //       setToken(storedToken)
-  //   //       props.setIsLoggedIn(true)
-  //   //       setUserId(data.user.id)
-  //   //     }
-  //   //   })
-  //   // } else {
-  //   //   console.log('no stored token')
-  //   // }
-  // }, []);
-
+  const [signUpUsername, setSignUpUsername] = useState('');
+  const [signUpEmail, setSignUpEmail] = useState('');
+  const [signUpPassword, setSignUpPassword] = useState('');
+  
   const onEmailChange = (e) => {
     setLoginEmail(e.target.value);
   };
-
+  
   const onPasswordChange = (e) => {
     setLoginPassword(e.target.value);
   };
-
+  
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    // console.log("Button has been clicked!");
     handleLogin({
       email: loginEmail,
       password: loginPassword
     });
   };
 
-  // const handleLogout = () => {
-  //   // localStorage.removeItem("token");
-  //   setIsLoggedIn(false);
-  //   // setUserId(0);
-  //   // setToken("");
-  // };
+  const handleSignUpSubmit = (e) => {
+    e.preventDefault();
+    handleSignUp({
+      username: signUpUsername,
+      email: signUpEmail,
+      password: signUpPassword
+    });
+  };
 
   return (
     <div className="flex sm:flex-row flex-col">
