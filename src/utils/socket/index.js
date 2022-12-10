@@ -5,11 +5,11 @@ const ClientSocket = ()=>{
     const socket = io('http://localhost:3001');
     //const lobby = handlers.Lobby(socket);
     const game = handlers.Game(socket);
-    //const authentication = handlers.Auth(socket);
+    const auth = handlers.Auth(socket);
 
     return {
         //Lobby: lobby,
-        //Authentication: authentication,
+        Auth: auth,
         Game: game,
         Emit: function(eventType, ...args){
             socket.emit(eventType, ...args)

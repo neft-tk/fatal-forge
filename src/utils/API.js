@@ -14,7 +14,7 @@ const API = {
         }).then(res=>res.json())
     },
     getUserFromToken:(token)=>{
-        return fetch(`${URL_PREFIX}/api/users/getuserfromtoken`,{
+        return fetch(`${URL_PREFIX}/api/users/readtoken`,{
             method:"GET",
             headers:{
                 "Authorization":`Bearer ${token}`

@@ -1,4 +1,4 @@
-const Auth = (socket)=>{
+export const Auth = (socket)=>{
     return {
         RegisterSocket(userInfo){
             socket.emit('register', userInfo);
