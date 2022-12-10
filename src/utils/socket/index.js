@@ -13,7 +13,8 @@ const ClientSocket = ()=>{
         Game: game,
         Emit: function(eventType, ...args){
             socket.emit(eventType, ...args)
-        }
+        },
+        IO : socket
     }
 }
 
