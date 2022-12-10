@@ -26,25 +26,27 @@ function App() {
   const [view, setView] = useState('');
 
   useEffect(()=>{
-    const storedToken = localStorage.getItem("token");
-    if(storedToken){
-      console.log(storedToken);
-      API.getUserFromToken(storedToken).then(data=>{
-        console.log('effect', data);
-        if(data.user){
-          console.log(data);
-          setToken(storedToken);
-          setIsLoggedIn(true);
-          setUserId(data.user.id);
-          setUserName(data.user.username);
-          setUserEmail(data.user.email);
-          Socket.Auth.RegisterSocket(data.user.username)
-        }
-      })
-    } else {
-      console.log('no stored token');
-    };
-  },[])
+    if (!isLoggedIn){
+      const storedToken = localStorage.getItem("token");
+      if(storedToken){
+        console.log(storedToken);
+        API.getUserFromToken(storedToken).then(data=>{
+          console.log('effect', data);
+          if(data.user){
+            console.log(data);
+            setToken(storedToken);
+            setIsLoggedIn(true);
+            setUserId(data.user.id);
+            setUserName(data.user.username);
+            setUserEmail(data.user.email);
+            Socket.Auth.RegisterSocket(data.user.username)
+          }
+        })
+      } else {
+        console.log('no stored token');
+      };
+    }
+  })
 
   const handleLogin = userObj => {
     // console.log("APP Client side:");
