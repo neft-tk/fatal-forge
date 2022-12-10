@@ -10,15 +10,16 @@ import Game from './game/Game'
 export default function Gameview() {
   const [view, setView] = useState('assembly');
   const [gameId, setGameId] = useState();
+  const [deck, setDeck] = useState();
   
   function renderView(){
     switch (view){
       case 'assembly':
         return <Assembly setView={setView} setGameId={setGameId}/>
       case 'initialize':
-        return <Initialize gameId={gameId}/>
+        return <Initialize setView={setView} gameId={gameId} setDeck={setDeck} />
       case 'game':
-        return <Game/>
+        return <Game deckId={deck}/>
     }
   }
   return (
