@@ -46,7 +46,8 @@ export default function Game({deckId}) {
     setDeck(data.Cards.map(x=>{return {
       name: x.cardName,
       compass:[x.topAttack, x.rightAttack,x.bottomAttack,x.leftAttack],
-      class: x.class
+      class: x.class,
+      imagePath: x.imagePath
     }}));
   }
 
