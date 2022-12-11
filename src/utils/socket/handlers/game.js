@@ -56,8 +56,8 @@ export const Game = (socket)=>{
             socket.on('game', data=>{
                 if (data.type == 'placeCard'){
                     if (callback){
-                        console.log('player placed a card', data);
-                        callback(data);
+                        console.log('player placed a card', data.data);
+                        callback(data.data);
                     }
                 }
             })
