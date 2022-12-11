@@ -3,7 +3,7 @@
 // Players will join the initialize component from the assembly component and leave for the game component once both player indicate they are ready.
 
 import React, {useEffect, useState} from 'react'
-import Socket from '../../../utils/socket';
+import Socket from '../../utils/socket';
 import {CirclePicker} from 'react-color';
 
 export default function Initialize(props) {
@@ -24,7 +24,7 @@ export default function Initialize(props) {
   }, [])
 
   async function syncUp(){
-    const resp = await fetch(`http://localhost:3001/api/socket/game/${props.gameId}`);
+    const resp = await fetch(`http://localhost:3001/api/socket/games/${props.gameId}`);
     const data = await resp.json();
     setConnectedUsers(data.players);
 

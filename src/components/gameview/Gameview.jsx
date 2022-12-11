@@ -3,8 +3,8 @@
 // The general flow of the Gameview will be: assembly => initialize => game
 
 import React, { useState } from 'react'
-import Assembly from './assembly/Assembly'
-import Initialize from './initialize/Initialize';
+import Assembly from './Assembly'
+import Initialize from './Initialize';
 import Game from './game/Game'
 
 export default function Gameview() {

@@ -10,7 +10,7 @@ import Nav from './components/Nav';
 import Login from './components/login/Login';
 import Lobby from './components/lobby/Lobby';
 import Gameview from './components/gameview/Gameview';
-import Assembly from './components/gameview/assembly/Assembly';
+import Assembly from './components/gameview/Assembly';
 import Settings from './components/settings/Settings';
 import Deckbuilder from './components/deckbuilder/Deckbuilder';
 import './style.css';

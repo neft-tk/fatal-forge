@@ -3,7 +3,7 @@
 // Once a player has joined a room, they will be taken to that room, in the initialize component.
 
 import React, { useEffect, useState } from 'react'
-import Socket from '../../../utils/socket';
+import Socket from '../../utils/socket';
 
 
 function Assembly({setView, setGameId}) {
