@@ -44,6 +44,23 @@ export const Game = (socket)=>{
                     }
                 }
             })
+        },
+        PlaceCard(data){
+            socket.emit('game', {
+                type:'placeCard',
+                gameId: id,
+                data: data
+            })
+        },
+        OnPlacedCard(callback){
+            socket.on('game', data=>{
+                if (data.type == 'placeCard'){
+                    if (callback){
+                        console.log('player placed a card', data);
+                        callback(data);
+                    }
+                }
+            })
         }
     }
 }

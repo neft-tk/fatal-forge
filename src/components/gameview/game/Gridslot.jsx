@@ -4,6 +4,7 @@
 
 import React, {useState} from 'react'
 import { useDrop } from 'react-dnd'
+import Socket from '../../../utils/socket'
 
 export default function Gridslot({index, card}) {
      //basket and drop ref for drag and drop detection
@@ -15,8 +16,7 @@ export default function Gridslot({index, card}) {
          drop: (item) => setBasket((basket) => {
                                  const data = {
                                      gridIndex:index,
-                                     meta:item,
-                                     //faction:GameState.GetMyColor()
+                                     meta:item
                                  }
                                  //todo: -> socket.Game.PlaceCard(data) // emit the card placement to the server with the data of this slot index and the item (card meta)
                                  return !basket.includes(item) ? [...basket, item] : basket
@@ -30,7 +30,7 @@ export default function Gridslot({index, card}) {
      })
 
   return (
-    <div ref={dropRef} className='flex justify-center items-center relative w-[30%] h-[200px] border'>
+    <div ref={dropRef} className='flex justify-center items-center relative w-[30%] h-[200px] border' style={{backgroundColor:isOver ? 'yellow' : 'transparent'}}>
       <h1 className='absolute'>slot {index}</h1>
     </div>
   )
