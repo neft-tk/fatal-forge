@@ -14,7 +14,7 @@ import Assembly from './components/gameview/Assembly';
 import Settings from './components/settings/Settings';
 import Deckbuilder from './components/deckbuilder/Deckbuilder';
 import './style.css';
-import Socket from './utils/socket'
+import Socket from './utils/socket';
 
 function App() {
   const [userId, setUserId] = useState(0);
@@ -25,57 +25,56 @@ function App() {
 
   const [view, setView] = useState('');
 
-  useEffect(()=>{
-    if (!isLoggedIn){
-      const storedToken = localStorage.getItem("token");
-      if(storedToken){
+  useEffect(() => {
+    if (!isLoggedIn) {
+      const storedToken = localStorage.getItem('token');
+      if (storedToken) {
         console.log(storedToken);
-        API.getUserFromToken(storedToken).then(data=>{
-          if(data.user){
+        API.getUserFromToken(storedToken).then((data) => {
+          if (data.user) {
             setToken(storedToken);
             setIsLoggedIn(true);
             setUserId(data.user.id);
             setUserName(data.user.username);
             setUserEmail(data.user.email);
-            Socket.Auth.RegisterSocket(data.user)
+            Socket.Auth.RegisterSocket(data.user);
           }
-        })
+        });
       } else {
         console.log('no stored token');
-      };
+      }
     }
-  })
+  });
 
-  const handleLogin = userObj => {
+  const handleLogin = (userObj) => {
     // console.log("APP Client side:");
     // console.log(userObj);
-    API.login(userObj).then(data=>{
-      console.log("data:",data);
-      if(data.token){
+    API.login(userObj).then((data) => {
+      // console.log("data:",data);
+      if (data.token) {
         setUserId(data.user.id);
         setToken(data.token);
         setIsLoggedIn(true);
         setUserName(data.user.username);
         setUserEmail(data.user.email);
-        localStorage.setItem("token", data.token);
-        Socket.Auth.RegisterSocket(data.user)
-      };
+        localStorage.setItem('token', data.token);
+        Socket.Auth.RegisterSocket(data.user);
+      }
     });
   };
 
-  // TODO: handle sign up
-  const handleSignUp = userObj => {
-    API.signUp(userObj).then(data => {
-      console.log("data", data);
-      if(data.token){
+  const handleSignup = (userObj) => {
+    API.signup(userObj).then((data) => {
+      console.log('data', data);
+      if (data.token) {
         setUserId(data.user.id);
         setToken(data.token);
         setIsLoggedIn(true);
         setUserName(data.user.username);
         setUserEmail(data.user.email);
-        localStorage.setItem("token", data.token);
-        Socket.Auth.RegisterSocket(data.user)
-      };
+        localStorage.setItem('token', data.token);
+        Socket.Auth.RegisterSocket(data.user);
+      }
     });
   };
 
@@ -83,15 +82,17 @@ function App() {
     return (
       <>
         <Router>
-          <Nav view={view} setView={setView} />
-          <div id="routeContainer">
-            <Routes>
-              <Route path="/" element={<Lobby />} />
-              <Route path="/lobby" element={<Lobby />} />
-              <Route path="/gameview" element={<Gameview />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/deckbuilder" element={<Deckbuilder />} />
-            </Routes>
+          <div className="flex w-screen h-screen">
+            <Nav view={view} setView={setView} />
+            <div id="routeContainer" className="w-screen h-screen">
+              <Routes>
+                <Route path="/" element={<Lobby />} />
+                <Route path="/lobby" element={<Lobby />} />
+                <Route path="/gameview" element={<Gameview />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/deckbuilder" element={<Deckbuilder />} />
+              </Routes>
+            </div>
           </div>
         </Router>
       </>
@@ -99,8 +100,12 @@ function App() {
   };
 
   return (
-    <div className="App">
-      {isLoggedIn ? renderRoutes() : <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} />}
+    <div className="w-screen h-screen">
+      {isLoggedIn ? (
+        renderRoutes()
+      ) : (
+        <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} handleSignup={handleSignup} />
+      )}
     </div>
   );
 }
