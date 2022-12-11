@@ -26,6 +26,8 @@
 import React, { useEffect, useState } from 'react'
 import Grid from './Grid'
 import Hand from './Hand'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 export default function Game({deckId}) {
   const [deck, setDeck] = useState(null);
@@ -44,7 +46,8 @@ export default function Game({deckId}) {
     setDeck(data.Cards.map(x=>{return {
       name: x.cardName,
       compass:[x.topAttack, x.rightAttack,x.bottomAttack,x.leftAttack],
-      class: x.class
+      class: x.class,
+      imagePath: x.imagePath
     }}));
   }
 

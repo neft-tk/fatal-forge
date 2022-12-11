@@ -90,7 +90,7 @@ export default function Initialize(props) {
         </select>
         <br />
         <label> Pick Your Color:</label>
-        <CirclePicker className='border' onChange={(c,e)=>{Socket.Game.PickColor(c.hex)}}/>
+        <CirclePicker className='border' onChange={(c,e)=>{Socket.Game.PickColor(c.hex); Socket.IO.color=c.hex}}/>
         <br/>
         <button type='submit' onClick={handleFormSubmit}>Ready</button>
       </form>
