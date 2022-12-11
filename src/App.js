@@ -7,12 +7,14 @@ import {
 } from 'react-router-dom';
 import API from './utils/API';
 import Nav from './components/Nav';
-import Login from './components/login/Login';
-import Lobby from './components/lobby/Lobby';
+import Login from './components/pages/login/Login';
+import Lobby from './components/pages/lobby/Lobby';
 import Gameview from './components/gameview/Gameview';
 import Assembly from './components/gameview/Assembly';
-import Settings from './components/settings/Settings';
-import Deckbuilder from './components/deckbuilder/Deckbuilder';
+import Settings from './components/pages/settings/Settings';
+import Deckbuilder from './components/pages/deckbuilder/Deckbuilder';
+import Profile from './components/pages/profile/Profile';
+import Friends from './components/pages/friends/Friends';
 import './style.css';
 import Socket from './utils/socket';
 
@@ -92,6 +94,8 @@ function App() {
                 <Route path="/gameview" element={<Gameview />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/deckbuilder" element={<Deckbuilder />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/friends" element={<Friends />} />
               </Routes>
             </div>
           </div>
