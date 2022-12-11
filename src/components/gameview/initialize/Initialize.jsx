@@ -13,6 +13,13 @@ export default function Initialize(props) {
   const [decks, setDecks] = useState([]);
 
   useEffect(()=>{
+    Socket.IO.off('game');
+    Socket.Game.OnPlayerUpdate((players)=>{
+      if (players.filter(x=>x.isReady).length >1){
+        props.setView('game');
+      }
+      setConnectedUsers(players);
+    })
     syncUp();
   }, [])
 
@@ -51,13 +58,7 @@ export default function Initialize(props) {
     )
   }
 
-  Socket.Game.OnPlayerUpdate((players)=>{
-    if (players.filter(x=>x.isReady).length >1){
-      props.setView('game');
-    }
-    setConnectedUsers(players);
-    console.log('players', players)
-  })
+
 
   const handleFormSubmit = async(e) => {
     e.preventDefault()
