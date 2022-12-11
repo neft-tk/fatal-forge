@@ -52,7 +52,7 @@ function App() {
     // console.log("APP Client side:");
     // console.log(userObj);
     API.login(userObj).then(data=>{
-      console.log("data:",data);
+      // console.log("data:",data);
       if(data.token){
         setUserId(data.user.id);
         setToken(data.token);
@@ -85,7 +85,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="w-screen h-screen">
       {isLoggedIn ? renderRoutes() : <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} />}
     </div>
   );
