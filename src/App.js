@@ -82,15 +82,17 @@ function App() {
     return (
       <>
         <Router>
-          <Nav view={view} setView={setView} />
-          <div id="routeContainer">
-            <Routes>
-              <Route path="/" element={<Lobby />} />
-              <Route path="/lobby" element={<Lobby />} />
-              <Route path="/gameview" element={<Gameview />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/deckbuilder" element={<Deckbuilder />} />
-            </Routes>
+          <div className="flex w-screen h-screen">
+            <Nav view={view} setView={setView} />
+            <div id="routeContainer" className="w-screen h-screen">
+              <Routes>
+                <Route path="/" element={<Lobby />} />
+                <Route path="/lobby" element={<Lobby />} />
+                <Route path="/gameview" element={<Gameview />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/deckbuilder" element={<Deckbuilder />} />
+              </Routes>
+            </div>
           </div>
         </Router>
       </>
@@ -102,7 +104,7 @@ function App() {
       {isLoggedIn ? (
         renderRoutes()
       ) : (
-        <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} />
+        <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} handleSignup={handleSignup} />
       )}
     </div>
   );

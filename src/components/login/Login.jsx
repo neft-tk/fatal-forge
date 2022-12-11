@@ -13,7 +13,7 @@ i passed the setlogin state function through the props from the app component..
 that's the only change i made.
 */
 
-export default function Login({ setIsLoggedIn, handleLogin, handleSignUp }) {
+export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
   const [userId, setUserId] = useState(0);
   const [token, setToken] = useState('');
   const [showPassword, setShowPassword] = useState(false);

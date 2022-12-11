@@ -22,6 +22,7 @@ const API = {
         'Content-Type': 'application/json',
       },
     });
+    return await res.json();
   },
   getUserFromToken: async (token) => {
     const res = await fetch(`${URL_PREFIX}/api/users/readtoken`, {
