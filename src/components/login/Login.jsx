@@ -13,7 +13,7 @@ i passed the setlogin state function through the props from the app component..
 that's the only change i made.
 */
 
-export default function Login({ setIsLoggedIn, handleLogin }) {
+export default function Login({ setIsLoggedIn, handleLogin, handleSignUp }) {
   const [userId, setUserId] = useState(0);
   const [token, setToken] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -34,7 +34,7 @@ export default function Login({ setIsLoggedIn, handleLogin }) {
 
   const onUsernameChange = (e) => {
     setSignupUsername(e.target.value);
-  }
+  };
 
   const onSignupEmailChange = (e) => {
     setSignupEmail(e.target.value);
@@ -62,7 +62,12 @@ export default function Login({ setIsLoggedIn, handleLogin }) {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    console.log("Signup clicked!");
+    console.log('Signup clicked!');
+    handleSignup({
+      username: signupUsername,
+      email: signupEmail,
+      password: signupPassword,
+    });
   };
 
   return (

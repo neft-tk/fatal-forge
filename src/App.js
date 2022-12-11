@@ -14,7 +14,7 @@ import Assembly from './components/gameview/assembly/Assembly';
 import Settings from './components/settings/Settings';
 import Deckbuilder from './components/deckbuilder/Deckbuilder';
 import './style.css';
-import Socket from './utils/socket'
+import Socket from './utils/socket';
 
 function App() {
   const [userId, setUserId] = useState(0);
@@ -25,43 +25,56 @@ function App() {
 
   const [view, setView] = useState('');
 
-  useEffect(()=>{
-    if (!isLoggedIn){
-      const storedToken = localStorage.getItem("token");
-      if(storedToken){
+  useEffect(() => {
+    if (!isLoggedIn) {
+      const storedToken = localStorage.getItem('token');
+      if (storedToken) {
         console.log(storedToken);
-        API.getUserFromToken(storedToken).then(data=>{
-          console.log('effect', data);
-          if(data.user){
-            console.log(data);
+        API.getUserFromToken(storedToken).then((data) => {
+          if (data.user) {
             setToken(storedToken);
             setIsLoggedIn(true);
             setUserId(data.user.id);
             setUserName(data.user.username);
             setUserEmail(data.user.email);
-            Socket.Auth.RegisterSocket(data.user)
+            Socket.Auth.RegisterSocket(data.user);
           }
-        })
+        });
       } else {
         console.log('no stored token');
-      };
+      }
     }
-  })
+  });
 
-  const handleLogin = userObj => {
+  const handleLogin = (userObj) => {
     // console.log("APP Client side:");
     // console.log(userObj);
-    API.login(userObj).then(data=>{
+    API.login(userObj).then((data) => {
       // console.log("data:",data);
-      if(data.token){
+      if (data.token) {
         setUserId(data.user.id);
         setToken(data.token);
         setIsLoggedIn(true);
         setUserName(data.user.username);
         setUserEmail(data.user.email);
-        localStorage.setItem("token", data.token);
-        Socket.Auth.RegisterSocket(data.user)
-      };
+        localStorage.setItem('token', data.token);
+        Socket.Auth.RegisterSocket(data.user);
+      }
+    });
+  };
+
+  const handleSignup = (userObj) => {
+    API.signup(userObj).then((data) => {
+      console.log('data', data);
+      if (data.token) {
+        setUserId(data.user.id);
+        setToken(data.token);
+        setIsLoggedIn(true);
+        setUserName(data.user.username);
+        setUserEmail(data.user.email);
+        localStorage.setItem('token', data.token);
+        Socket.Auth.RegisterSocket(data.user);
+      }
     });
   };
 
@@ -86,7 +99,11 @@ function App() {
 
   return (
     <div className="w-screen h-screen">
-      {isLoggedIn ? renderRoutes() : <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} />}
+      {isLoggedIn ? (
+        renderRoutes()
+      ) : (
+        <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} />
+      )}
     </div>
   );
 }

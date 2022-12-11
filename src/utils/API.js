@@ -14,7 +14,15 @@ const API = {
     });
     return await res.json();
   },
-
+  signup: async (userObj) => {
+    const res = await fetch(`${URL_PREFIX}/api/users/`, {
+      method: 'POST',
+      body: JSON.stringify(userObj),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  },
   getUserFromToken: async (token) => {
     const res = await fetch(`${URL_PREFIX}/api/users/readtoken`, {
       method: 'GET',
@@ -25,5 +33,4 @@ const API = {
     return await res.json();
   },
 };
-
 export default API;

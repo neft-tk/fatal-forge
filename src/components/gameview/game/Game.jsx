@@ -23,11 +23,32 @@
 //    qMVP: Take the players back to the play screen.
 
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Grid from './grid/Grid'
 import Hand from './hand/Hand'
 
-export default function Game() {
+export default function Game({deckId}) {
+  const [deck,setDeck] = useState();
+  useEffect(()=>{
+    getHand();
+  },[])
+
+  useEffect(()=>{
+    if (deck){
+      console.log(deck);
+    }
+  },[deck])
+
+  async function getHand(){
+    const res = await fetch(`http://localhost:3001/api/decks/${deckId}`);
+    const data = await res.json();
+    setDeck(data.Cards.map(x=>{return {
+      name: x.cardName,
+      compass:[x.topAttack, x.rightAttack,x.bottomAttack,x.leftAttack],
+      class: x.class
+    }}))
+  }
+
   return (
     <div>
       {/* Players Scores will live outside of the gameboard, potentialy here or anywhere outside of the gameboard div.*/}
