@@ -7,7 +7,7 @@ export default function Card({name, compass, imagePath,inPlay, removeAndDraw}) {
   const [{isDragging}, dragRef] = useDrag(
     () => ({
       type: 'card',
-      item:{name,compass},
+      item:{name,compass, imagePath},
       collect: (monitor) => ({
         
         isDragging: monitor.isDragging()
