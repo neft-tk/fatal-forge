@@ -1,10 +1,29 @@
 // The Card component represents and individual card with its stat values pulled from the backend.
 
 import React from 'react'
+import {useDrag} from 'react-dnd'
 
-export default function Card({name, compass}) {
+export default function Card({name, compass, inPlay, removeAndDraw}) {
+  const [{isDragging}, dragRef] = useDrag(
+    () => ({
+      type: 'card',
+      item:{name,compass},
+      collect: (monitor) => ({
+        
+        isDragging: monitor.isDragging()
+      }
+      ),
+      end:(item, monitor) =>{
+        if (item && monitor.getDropResult()){
+            removeAndDraw();
+        }
+      },
+      canDrag:()=>{return !inPlay}
+    })
+  )
+
   return (
-    <div className='w-full h-full flex flex-col justify-center items-center border'>
+    <div ref={dragRef} className='w-full h-full m-0 flex flex-col justify-center items-center border'>
       <h3>{name}</h3>
       <div>
         <h3>{compass[0]}</h3>

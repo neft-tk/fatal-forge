@@ -2,11 +2,35 @@
 
 // The Gridslot component will either be contain a Card or be empty.
 
-import React from 'react'
+import React, {useState} from 'react'
+import { useDrop } from 'react-dnd'
 
-export default function Gridslot({index}) {
+export default function Gridslot({index, card}) {
+     //basket and drop ref for drag and drop detection
+     const [basket, setBasket] = useState([])
+
+     const [{ isOver }, dropRef] = useDrop(
+         {
+         accept: 'card', //accept a drop type of 'card' if this is a 'gridSlot'
+         drop: (item) => setBasket((basket) => {
+                                 const data = {
+                                     gridIndex:index,
+                                     meta:item,
+                                     //faction:GameState.GetMyColor()
+                                 }
+                                 //todo: -> socket.Game.PlaceCard(data) // emit the card placement to the server with the data of this slot index and the item (card meta)
+                                 return !basket.includes(item) ? [...basket, item] : basket
+                             }),
+         collect: (monitor) => ({
+             isOver: monitor.isOver() && card == undefined // allow collection if hovering and no card exists in this slot
+         }
+         
+         ),
+         canDrop: ()=> card == undefined // allow drop if this slot doesn't already have a card
+     })
+
   return (
-    <div className='flex justify-center items-center relative w-[30%] h-[200px] border'>
+    <div ref={dropRef} className='flex justify-center items-center relative w-[30%] h-[200px] border'>
       <h1 className='absolute'>slot {index}</h1>
     </div>
   )

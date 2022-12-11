@@ -26,6 +26,8 @@
 import React, { useEffect, useState } from 'react'
 import Grid from './Grid'
 import Hand from './Hand'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 export default function Game({deckId}) {
   const [deck, setDeck] = useState(null);
