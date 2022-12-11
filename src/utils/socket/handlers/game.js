@@ -39,7 +39,7 @@ export const Game = (socket)=>{
             socket.on('game', data=>{
                 if (data.type == 'playerUpdate'){
                     if(callback){
-                        console.log('player state changed', data)
+                        console.log('player(s) state changed', data)
                         callback(data.data)
                     }
                 }
