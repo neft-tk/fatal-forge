@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Label, TextInput } from 'flowbite-react';
-import blacksmithGif from '../../assets/gif/blacksmith_nobg.gif';
-import visibilityIcon from '../../assets/svg/visibilityIcon.svg';
+import blacksmithGif from '../../../assets/gif/blacksmith_nobg.gif';
+import visibilityIcon from '../../../assets/svg/visibilityIcon.svg';
 // The Login component provides a form and handler for users logging in.
 
 // import API from "./utils/API.js";
