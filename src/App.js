@@ -86,6 +86,7 @@ function App() {
             <Nav view={view} setView={setView} />
             <div id="routeContainer" className="w-screen h-screen">
               <Routes>
+                {/* LOBBY: */}
                 <Route path="/" element={<Lobby />} />
                 <Route path="/lobby" element={<Lobby />} />
                 <Route path="/gameview" element={<Gameview />} />

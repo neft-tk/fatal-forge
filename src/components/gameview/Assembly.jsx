@@ -18,7 +18,7 @@ function Assembly({ setView, setGameId }) {
     e.preventDefault()
 
     // Based on which button was clicked.
-    switch (e.target.className) {
+    switch (e.target.id) {
       case "join-room": {
         // Going to hit our api for a response to see if that room exists
         const resp = await fetch(`http://localhost:3001/api/socket/games/${joinRoom}`);
@@ -65,19 +65,19 @@ function Assembly({ setView, setGameId }) {
   }
 
   return (
-    <div>
-      <form action="">
-        <div className='flex flex-col'>
-          <label htmlFor="joinRoomInput" className=''>Room ID:</label>
-          <input type="text" id='joinRoomInput' placeholder='Room ID' value={joinRoom} onChange={e => setJoinRoom(e.target.value)} />
-          <button className='join-room' onClick={handleFormSubmit}>Join Room</button>
+    <div className='flex flex-col h-full items-center align-middle justify-evenly'>
+      <h3 className='text-4xl font-bold'>Create or Join a room to play!</h3>
+      <form action="" className='h-4/5 flex flex-col justify-evenly items-center'>
+        <div className='flex flex-col h-1/3 items-center justify-evenly'>
+          <label htmlFor="joinRoomInput" className='text-2xl font-semibold'>Join</label>
+          <input type="text" id='joinRoomInput' placeholder='Room ID' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={joinRoom} onChange={e => setJoinRoom(e.target.value)} />
+          <button id='join-room' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={handleFormSubmit}>Join Room</button>
         </div>
-        <div className='flex flex-col'>
-          <label htmlFor="createRoomInput">New Room ID: </label>
-          <input type='text' id='createRoomInput' placeholder="New Room ID" value={createRoom} onChange={e => setCreateRoom(e.target.value)} />
-          <button className='create-room' onClick={handleFormSubmit}>Create Room</button>
+        <div className='flex flex-col h-1/3 items-center justify-evenly'>
+          <label htmlFor="createRoomInput" className='text-2xl font-semibold'>Create</label>
+          <input type='text' id='createRoomInput' placeholder="New Room ID" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={createRoom} onChange={e => setCreateRoom(e.target.value)} />
+          <button id='create-room' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={handleFormSubmit}>Create Room</button>
         </div>
-        <br />
       </form>
     </div>
   )
