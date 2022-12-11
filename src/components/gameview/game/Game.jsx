@@ -24,37 +24,43 @@
 
 
 import React, { useEffect, useState } from 'react'
-import Grid from './grid/Grid'
-import Hand from './hand/Hand'
+import Grid from './Grid'
+import Hand from './Hand'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 export default function Game({deckId}) {
-  const [deck,setDeck] = useState();
+  const [deck, setDeck] = useState(null);
+  
   useEffect(()=>{
     getHand();
   },[])
 
-  useEffect(()=>{
-    if (deck){
-      console.log(deck);
-    }
-  },[deck])
 
   async function getHand(){
     const res = await fetch(`http://localhost:3001/api/decks/${deckId}`);
+    console.log(deckId);
+    console.log(res);
     const data = await res.json();
+    console.log(data);
     setDeck(data.Cards.map(x=>{return {
       name: x.cardName,
       compass:[x.topAttack, x.rightAttack,x.bottomAttack,x.leftAttack],
-      class: x.class
-    }}))
+      class: x.class,
+      imagePath: x.imagePath
+    }}));
   }
+
+
+
 
   return (
     <div>
       {/* Players Scores will live outside of the gameboard, potentialy here or anywhere outside of the gameboard div.*/}
-      <div className='gameboard'>
+      <div className='gameboard flex flex-col justify-center items-center w-full max-w-full'>
         <Grid />
-        <Hand />
+        
+        {deck ? <Hand deck={deck} /> : ''}
       </div>
       {/* Probably add some instuctions/settings modals on the margin here. */}
     </div>
