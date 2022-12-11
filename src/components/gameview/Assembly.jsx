@@ -6,59 +6,59 @@ import React, { useEffect, useState } from 'react'
 import Socket from '../../utils/socket';
 
 
-function Assembly({setView, setGameId}) {
+function Assembly({ setView, setGameId }) {
   const [joinRoom, setJoinRoom] = useState("");
   const [createRoom, setCreateRoom] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     Socket.IO.off('game');
   })
 
-  const handleFormSubmit = async(e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
 
     // Based on which button was clicked.
     switch (e.target.className) {
-      case "join-room":{
-          // Going to hit our api for a response to see if that room exists
-          const resp = await fetch(`http://localhost:3001/api/socket/games/${joinRoom}`);
+      case "join-room": {
+        // Going to hit our api for a response to see if that room exists
+        const resp = await fetch(`http://localhost:3001/api/socket/games/${joinRoom}`);
 
-          if (resp.ok){
-            const data = await resp.json();
+        if (resp.ok) {
+          const data = await resp.json();
 
-            // Make sure the room isn't full
-            if (data.players.length < 2){
-              // Join the game room on the server with socket, and set the states in the gameview to render the initialize component
-              Socket.Game.JoinGame(joinRoom);
-              setGameId(joinRoom);
-              setView('initialize');
-            }else{
-              //todo: change the alert to a modal when we get deeper in styling
-              alert('That room is full.')
-            }
-          }else{
-            alert(`That room doesn't exist`);
+          // Make sure the room isn't full
+          if (data.players.length < 2) {
+            // Join the game room on the server with socket, and set the states in the gameview to render the initialize component
+            Socket.Game.JoinGame(joinRoom);
+            setGameId(joinRoom);
+            setView('initialize');
+          } else {
+            //todo: change the alert to a modal when we get deeper in styling
+            alert('That room is full.')
           }
+        } else {
+          alert(`That room doesn't exist`);
+        }
 
       }
-      break;
+        break;
 
-      case "create-room":{
+      case "create-room": {
         // Going to hit our api for a response to see if that room already exists
         const resp = await fetch(`http://localhost:3001/api/socket/games/${createRoom}`);
 
         // if the response is ok then that room already exists
-        if (resp.ok){
+        if (resp.ok) {
           //todo: change the alert to a modal when we get deeper in styling
           alert('Room with that name already exists. Try another')
-        }else{ 
+        } else {
           // Create the game room on the server with socket, and set the states in the gameview to render the initialize component
           Socket.Game.CreateGame(createRoom);
           setGameId(createRoom);
           setView('initialize')
         }
       }
-      break;
+        break;
     }
     setCreateRoom("")
     setJoinRoom("")
@@ -67,13 +67,17 @@ function Assembly({setView, setGameId}) {
   return (
     <div>
       <form action="">
-        <label htmlFor="joinRoomInput">Room ID: </label>
-        <input type="text" id='joinRoomInput' placeholder='Room ID' value={joinRoom} onChange={e => setJoinRoom(e.target.value)}/>
-        <button className='join-room' onClick={handleFormSubmit}>Join Room</button>
+        <div className='flex flex-col'>
+          <label htmlFor="joinRoomInput" className=''>Room ID:</label>
+          <input type="text" id='joinRoomInput' placeholder='Room ID' value={joinRoom} onChange={e => setJoinRoom(e.target.value)} />
+          <button className='join-room' onClick={handleFormSubmit}>Join Room</button>
+        </div>
+        <div className='flex flex-col'>
+          <label htmlFor="createRoomInput">New Room ID: </label>
+          <input type='text' id='createRoomInput' placeholder="New Room ID" value={createRoom} onChange={e => setCreateRoom(e.target.value)} />
+          <button className='create-room' onClick={handleFormSubmit}>Create Room</button>
+        </div>
         <br />
-        <label htmlFor="createRoomInput">New Room ID: </label>
-        <input type='text' id='createRoomInput' placeholder="New Room ID" value={createRoom} onChange={e => setCreateRoom(e.target.value)}/>
-        <button className='create-room' onClick={handleFormSubmit}>Create Room</button>  
       </form>
     </div>
   )

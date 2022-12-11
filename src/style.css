@@ -18,6 +18,10 @@ body {
     color: white;
 }
 
+input, ::selection {
+    color: black;
+}
+
 /* Pretty Links */
 a {
     text-decoration: none;
