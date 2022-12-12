@@ -2,6 +2,7 @@ import { FaEdit } from 'react-icons/fa';
 import DeckView from './DeckView';
 import StatsView from './StatsView';
 import PastGamesView from './PastGamesView';
+import Static from '../utils/staticHelper'
 
 function ProfileCard({ user }) {
   return (
@@ -10,7 +11,7 @@ function ProfileCard({ user }) {
         <div className="flex">
           <img
             className="rounded"
-            src={`http://localhost:3001/api/images/${user.imagePath}`}
+            src={`${Static.serverUrl}/api/images/${user.imagePath}`}
             alt="Profile Picture"
           />
           <div className="flex flex-col justify-center ml-8 mr-20">

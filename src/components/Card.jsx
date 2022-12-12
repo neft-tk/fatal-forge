@@ -3,6 +3,7 @@
 import React from 'react'
 import {useDrag} from 'react-dnd'
 import Socket from '../utils/socket';
+import Static from '../utils/staticHelper'
 
 export default function Card({name, compass, imagePath,inPlay, removeAndDraw, slotIndex}) {
   const [{isDragging}, dragRef] = useDrag(
@@ -30,8 +31,8 @@ export default function Card({name, compass, imagePath,inPlay, removeAndDraw, sl
         <h3 className='absolute left-[10%] z-10'>{compass[3]}</h3>
         <h3 className='absolute right-[10%] z-10'>{compass[1]}</h3>
         <h3 className='absolute bottom-[4%] z-10'>{compass[2]}</h3>
-      <img src={`http://localhost:3001/api/images/${imagePath}`} className='w-1/2 h-1/2 absolute'></img>
-      <img src={`http://localhost:3001/api/images/cardsprite/face.png`} className='absolute'/>
+      <img src={`${Static.serverUrl}/api/images/${imagePath}`} className='w-1/2 h-1/2 absolute'></img>
+      <img src={`${Static.serverUrl}/api/images/cardsprite/face.png`} className='absolute'/>
 
 
     </div>
