@@ -24,6 +24,16 @@ const API = {
     });
     return await res.json();
   },
+  getUser: async (userId) => {
+    const res = await fetch(`${URL_PREFIX}/api/users/${userId}`);
+    return await res.json();
+  },
+  getUserPicture: async () => {
+    const res = await fetch(`${URL_PREFIX}/api/images/`)
+  },
+  // getUserFriends: async () => {
+
+  // },
   getUserFromToken: async (token) => {
     const res = await fetch(`${URL_PREFIX}/api/users/readtoken`, {
       method: 'GET',
