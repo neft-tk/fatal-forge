@@ -86,7 +86,7 @@ function App() {
         <Router>
           <div className="flex w-screen h-screen">
             <Nav view={view} setView={setView} />
-            <div id="routeContainer" className="w-screen h-screen">
+            <div id="routeContainer" className="w-full h-full">
               <Routes>
                 {/* LOBBY: */}
                 <Route path="/" element={<Lobby />} />

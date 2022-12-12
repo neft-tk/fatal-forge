@@ -22,9 +22,12 @@ export default function Gameview() {
         return <Initialize setView={setView} gameId={gameId} setDeck={setDeck} />
       case 'game':
         return (
+          <div className='max-h-screen h-screen p-3'>
           <DndProvider backend={HTML5Backend}>
             <Game deckId={deck}/>
           </DndProvider>
+          </div>
+
         )
     }
   }

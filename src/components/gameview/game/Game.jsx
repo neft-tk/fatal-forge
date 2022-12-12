@@ -67,14 +67,11 @@ export default function Game({deckId}) {
 
 
   return (
-    <div>
-      {/* Players Scores will live outside of the gameboard, potentialy here or anywhere outside of the gameboard div.*/}
-      <div className='gameboard flex flex-col justify-center items-center w-full max-w-full'>
+      <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
         <Grid setIsMyTurn={setIsMyTurn}/>
         <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting for opponent'}</h1>
         {deck ? <Hand deck={deck} /> : ''}
       </div>
-      {/* Probably add some instuctions/settings modals on the margin here. */}
-    </div>
+
   )
 }
