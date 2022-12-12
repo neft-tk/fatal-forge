@@ -4,11 +4,11 @@ import React from 'react'
 import {useDrag} from 'react-dnd'
 import Socket from '../utils/socket';
 
-export default function Card({name, compass, imagePath,inPlay, removeAndDraw}) {
+export default function Card({name, compass, imagePath,inPlay, removeAndDraw, slotIndex}) {
   const [{isDragging}, dragRef] = useDrag(
     () => ({
       type: 'card',
-      item:{name,compass, imagePath},
+      item:{index:slotIndex},
       collect: (monitor) => ({
         
         isDragging: !!monitor.isDragging()

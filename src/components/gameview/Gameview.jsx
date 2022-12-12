@@ -13,18 +13,19 @@ export default function Gameview() {
   const [view, setView] = useState('assembly');
   const [gameId, setGameId] = useState();
   const [deck, setDeck] = useState();
+  const [size, setSize] = useState(3);
   
   function renderView(){
     switch (view){
       case 'assembly':
         return <Assembly setView={setView} setGameId={setGameId}/>
       case 'initialize':
-        return <Initialize setView={setView} gameId={gameId} setDeck={setDeck} />
+        return <Initialize setView={setView} gameId={gameId} setDeck={setDeck} setSize={setSize}/>
       case 'game':
         return (
           <div className='max-h-screen h-screen p-3'>
           <DndProvider backend={HTML5Backend}>
-            <Game deckId={deck}/>
+            <Game deckId={deck} size={size}/>
           </DndProvider>
           </div>
 

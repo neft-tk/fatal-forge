@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import Socket from '../../../utils/socket';
 import Gridslot from './Gridslot';
 
-export default function Grid({setIsMyTurn}) {
+export default function Grid({setIsMyTurn,size}) {
   const [action, setAction] = useState();
   useState(()=>{
     Socket.Game.OnPlacedCard((data)=>{
@@ -40,13 +40,12 @@ export default function Grid({setIsMyTurn}) {
       }, total);
     })
   },[]);
-  const slots = Array(9).fill(null);
-
+  const slots = Array(size*size).fill(null);
 
 
   return (
     <div className='flex flex-wrap aspect-square justify-around items-around border border-yellow-500 h-[75%]'>
-      {slots.map((x,i)=>{return <Gridslot key={i} index={i} action={action}/>})}
+      {slots.map((x,i)=>{return <Gridslot key={i} index={i} action={action} size={size}/>})}
     </div>
   )
 }

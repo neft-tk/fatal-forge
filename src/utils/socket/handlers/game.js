@@ -2,11 +2,14 @@ export const Game = (socket)=>{
     let id;
 
     return {
-        CreateGame(gameId){
+        CreateGame(gameId, size = 3){
             console.log(`created ${gameId}`)
             socket.emit('game', {
                 type: "createGame",
-                data: gameId
+                data: {
+                    id: gameId,
+                    size: size
+                }
             });
             id = gameId;
         },

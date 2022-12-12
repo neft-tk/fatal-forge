@@ -7,8 +7,9 @@ import { useDrop } from 'react-dnd'
 import Socket from '../../../utils/socket'
 import {motion} from 'framer-motion'
 import Card from '../../Card';
+import state from '../../..//utils/staticHelper'
 
-export default function Gridslot({index, action}) {
+export default function Gridslot({index, action, size}) {
 
     const [card, setCard] = useState();
     const [faction, setFaction] = useState('transparent');
@@ -71,7 +72,7 @@ export default function Gridslot({index, action}) {
          drop: (item) => setBasket((basket) => {
                                  const data = {
                                      gridIndex:index,
-                                     meta:item
+                                     meta:state.hand.get(item.index)
                                  }
                                  Socket.Game.PlaceCard(data) // emit the card placement to the server with the data of this slot index and the item (card meta)
                                  return !basket.includes(item) ? [...basket, item] : basket
@@ -85,7 +86,7 @@ export default function Gridslot({index, action}) {
      })
 
   return (
-    <motion.div ref={dropRef} animate={currentAnimation} className='flex justify-center items-center relative w-1/3 aspect-square border' style={{backgroundColor:isOver ? 'yellow' : faction}}>
+    <motion.div ref={dropRef} animate={currentAnimation} className={`flex justify-center items-center relative w-1/${size} aspect-square border`} style={{backgroundColor:isOver ? 'yellow' : faction}}>
       {card ? <Card inPlay={true} name={card.name} compass={card.compass} imagePath={card.imagePath}/> : ''}
     </motion.div>
   )
