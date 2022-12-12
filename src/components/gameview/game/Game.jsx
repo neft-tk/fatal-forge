@@ -28,6 +28,7 @@ import Hand from './Hand'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import Socket from '../../../utils/socket'
+import Static from '../../../utils/staticHelper'
 
 export default function Game({deckId,size}) {
   const [deck, setDeck] = useState(null);
@@ -49,7 +50,7 @@ export default function Game({deckId,size}) {
 
 
   async function getHand() {
-    const res = await fetch(`http://localhost:3001/api/decks/${deckId}`);
+    const res = await fetch(`${Static.serverUrl}/api/decks/${deckId}`);
     console.log(deckId);
     console.log(res);
     const data = await res.json();

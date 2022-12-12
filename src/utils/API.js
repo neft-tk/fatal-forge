@@ -1,7 +1,7 @@
 // in dev mode
-const URL_PREFIX = 'http://localhost:3001';
-// in prod mode
-// const URL_PREFIX= "https://fatalforge-backend-API.herokuapp.com"
+import Static from './staticHelper'
+
+const URL_PREFIX = Static.serverUrl;
 
 const API = {
   login: async (userObj) => {

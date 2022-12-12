@@ -4,7 +4,7 @@
 
 import React, { useEffect, useState } from 'react'
 import Socket from '../../utils/socket';
-
+import Static from '../../utils/staticHelper'
 
 function Assembly({ setView, setGameId }) {
   const [joinRoom, setJoinRoom] = useState("");
@@ -22,7 +22,7 @@ function Assembly({ setView, setGameId }) {
     switch (e.target.id) {
       case "join-room": {
         // Going to hit our api for a response to see if that room exists
-        const resp = await fetch(`http://localhost:3001/api/sockets/games/${joinRoom}`);
+        const resp = await fetch(`${Static.serverUrl}/api/sockets/games/${joinRoom}`);
 
         if (resp.ok) {
           const data = await resp.json();
@@ -46,7 +46,7 @@ function Assembly({ setView, setGameId }) {
 
       case "create-room": {
         // Going to hit our api for a response to see if that room already exists
-        const resp = await fetch(`http://localhost:3001/api/sockets/games/${createRoom}`);
+        const resp = await fetch(`${Static.serverUrl}/api/sockets/games/${createRoom}`);
 
         // if the response is ok then that room already exists
         if (resp.ok) {

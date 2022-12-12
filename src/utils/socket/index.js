@@ -1,8 +1,8 @@
 import io from 'socket.io-client'
 import * as handlers from './handlers'
-
+import Static from '../staticHelper'
 const ClientSocket = ()=>{
-    const socket = io('http://localhost:3001');
+    const socket = io(`${Static.serverUrl}`);
     //const lobby = handlers.Lobby(socket);
     const game = handlers.Game(socket);
     const auth = handlers.Auth(socket);
