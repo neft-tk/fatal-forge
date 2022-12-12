@@ -45,7 +45,7 @@ export default function Grid({setIsMyTurn}) {
 
 
   return (
-    <div className='flex flex-wrap w-full'>
+    <div className='flex flex-wrap aspect-square justify-around items-around border border-yellow-500 h-[75%]'>
       {slots.map((x,i)=>{return <Gridslot key={i} index={i} action={action}/>})}
     </div>
   )

@@ -37,7 +37,7 @@ export default function Handslot({drawCard,index}) {
   },[])
 
   return (
-    <motion.div animate={currentAnimation} style={{backgroundColor:Socket.IO.color}} className={`flex flex-col justify-center items-center border w-[200px] h-[200px] relative`}>
+    <motion.div animate={currentAnimation} style={{backgroundColor:Socket.IO.color}} className={`w-[20%] aspect-square`}>
       {currentCard ? <Card name={currentCard.name} compass={currentCard.compass} imagePath={currentCard.imagePath} removeAndDraw={removeAndDraw} inPlay={false}/> : ''}
     </motion.div>
   )
