@@ -86,7 +86,7 @@ function App() {
         <Router>
           <div className="flex w-screen h-screen">
             <Nav view={view} setView={setView} />
-            <div id="routeContainer" className="w-full h-full">
+            <div id="routeContainer" className="w-full h-full bg-main-bg">
               <Routes>
                 {/* LOBBY: */}
                 <Route path="/" element={<Lobby />} />
@@ -94,7 +94,7 @@ function App() {
                 <Route path="/gameview" element={<Gameview />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/deckbuilder" element={<Deckbuilder />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile" element={<Profile userId={userId}/>} />
                 <Route path="/friends" element={<Friends />} />
               </Routes>
             </div>

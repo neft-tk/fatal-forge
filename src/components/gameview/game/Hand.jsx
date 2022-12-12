@@ -14,7 +14,7 @@ export default function Hand({deck}) {
         console.log(rand);
         const card = deck.splice(rand,1)[0];
         return card;
-      }
+    }
 
     const slots = Array(5).fill(null);
 

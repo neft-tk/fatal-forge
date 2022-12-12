@@ -22,6 +22,11 @@
 //    PMVP: Take the players to a stats screen.
 //    qMVP: Take the players back to the play screen.
 
+import React, { useEffect, useState } from 'react';
+import Grid from './Grid';
+import Hand from './Hand';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import React, { useEffect, useState } from 'react'
 import Grid from './Grid'
@@ -49,22 +54,23 @@ export default function Game({deckId,size}) {
   }
 
 
-  async function getHand(){
+  async function getHand() {
     const res = await fetch(`http://localhost:3001/api/decks/${deckId}`);
     console.log(deckId);
     console.log(res);
     const data = await res.json();
     console.log(data);
-    setDeck(data.Cards.map(x=>{return {
-      name: x.cardName,
-      compass:[x.topAttack, x.rightAttack,x.bottomAttack,x.leftAttack],
-      class: x.class,
-      imagePath: x.imagePath
-    }}));
+    setDeck(
+      data.Cards.map((x) => {
+        return {
+          name: x.cardName,
+          compass: [x.topAttack, x.rightAttack, x.bottomAttack, x.leftAttack],
+          class: x.class,
+          imagePath: x.imagePath,
+        };
+      })
+    );
   }
-
-
-
 
   return (
       <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
