@@ -7,16 +7,23 @@ import { useDrop } from 'react-dnd'
 import Socket from '../../../utils/socket'
 import {motion} from 'framer-motion'
 import Card from '../../Card';
+import state from '../../..//utils/staticHelper'
 
-export default function Gridslot({index, action}) {
+export default function Gridslot({index, action, size}) {
 
     const [card, setCard] = useState();
     const [faction, setFaction] = useState('transparent');
+    const [width, setWidth] = useState(10);
 
     const [currentAnimation, setCurrentAnimation] = useState({scale:1});
      //basket and drop ref for drag and drop detection
      const [basket, setBasket] = useState([])
 
+     useEffect(()=>{
+      setTimeout(()=>{
+        setWidth(getWidth(size))
+      }, 100)
+     },[])
      useEffect(()=>{
       if (!action){
         return;
@@ -71,7 +78,7 @@ export default function Gridslot({index, action}) {
          drop: (item) => setBasket((basket) => {
                                  const data = {
                                      gridIndex:index,
-                                     meta:item
+                                     meta:state.hand.get(item.index)
                                  }
                                  Socket.Game.PlaceCard(data) // emit the card placement to the server with the data of this slot index and the item (card meta)
                                  return !basket.includes(item) ? [...basket, item] : basket
@@ -83,9 +90,13 @@ export default function Gridslot({index, action}) {
          ),
          canDrop: ()=> card == undefined // allow drop if this slot doesn't already have a card
      })
+    
+     function getWidth(s){
+      return `1/${s}`
+     }
 
   return (
-    <motion.div ref={dropRef} animate={currentAnimation} className='flex justify-center items-center relative w-1/3 aspect-square border' style={{backgroundColor:isOver ? 'yellow' : faction}}>
+    <motion.div ref={dropRef} animate={currentAnimation} className={`flex justify-center items-center relative grow w-${width} aspect-square border`} style={{backgroundColor:isOver ? 'yellow' : faction}}>
       {card ? <Card inPlay={true} name={card.name} compass={card.compass} imagePath={card.imagePath}/> : ''}
     </motion.div>
   )

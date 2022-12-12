@@ -30,6 +30,8 @@ export default function Initialize(props) {
   async function syncUp() {
     const resp = await fetch(`http://localhost:3001/api/socket/games/${props.gameId}`);
     const data = await resp.json();
+    console.log('size', data.size);
+    props.setSize(data.size);
     setConnectedUsers(data.players);
 
     const userId = Socket.IO.userInfo.id;
