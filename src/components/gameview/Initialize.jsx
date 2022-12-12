@@ -20,6 +20,10 @@ export default function Initialize(props) {
       }
       setConnectedUsers(players);
     })
+    Socket.Game.OnStart((username)=>{
+      const myTurn = Socket.IO.userInfo.username == username;
+      Socket.IO.myTurn = myTurn;
+    })
     syncUp();
   }, [])
 
