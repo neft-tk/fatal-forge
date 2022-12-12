@@ -28,13 +28,25 @@ import Grid from './Grid'
 import Hand from './Hand'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import Socket from '../../../utils/socket'
 
-export default function Game({deckId}) {
+export default function Game({deckId,size}) {
   const [deck, setDeck] = useState(null);
-  
+  const [myTurn, setMyTurn] = useState();
+
   useEffect(()=>{
+    setIsMyTurn(Socket.IO.myTurn)
     getHand();
   },[])
+
+  const setIsMyTurn = (isMyTurn)=>{
+    setMyTurn(isMyTurn);
+    // if (isMyTurn){
+    //   alert("Your Turn");
+    // }else {
+    //   alert("Waiting for opponent");
+    // }
+  }
 
 
   async function getHand(){
@@ -54,14 +66,11 @@ export default function Game({deckId}) {
 
 
   return (
-    <div>
-      {/* Players Scores will live outside of the gameboard, potentialy here or anywhere outside of the gameboard div.*/}
-      <div className='gameboard flex flex-col justify-center items-center w-full max-w-full'>
-        <Grid />
-        
+      <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
+        <Grid setIsMyTurn={setIsMyTurn} size={size}/>
+        <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting for opponent'}</h1>
         {deck ? <Hand deck={deck} /> : ''}
       </div>
-      {/* Probably add some instuctions/settings modals on the margin here. */}
-    </div>
+
   )
 }

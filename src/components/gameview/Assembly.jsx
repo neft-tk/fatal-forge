@@ -9,6 +9,7 @@ import Socket from '../../utils/socket';
 function Assembly({ setView, setGameId }) {
   const [joinRoom, setJoinRoom] = useState("");
   const [createRoom, setCreateRoom] = useState("");
+  const [gridSize, setGridSize] = useState(3);
 
   useEffect(() => {
     Socket.IO.off('game');
@@ -53,7 +54,7 @@ function Assembly({ setView, setGameId }) {
           alert('Room with that name already exists. Try another')
         } else {
           // Create the game room on the server with socket, and set the states in the gameview to render the initialize component
-          Socket.Game.CreateGame(createRoom);
+          Socket.Game.CreateGame(createRoom, gridSize);
           setGameId(createRoom);
           setView('initialize')
         }
@@ -76,6 +77,11 @@ function Assembly({ setView, setGameId }) {
         <div className='flex flex-col h-1/3 items-center justify-evenly'>
           <label htmlFor="createRoomInput" className='text-2xl font-semibold'>Create</label>
           <input type='text' id='createRoomInput' placeholder="New Room ID" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={createRoom} onChange={e => setCreateRoom(e.target.value)} />
+          <select defaultValue={3} onChange={(e)=>{setGridSize(e.target.value)}}>
+            <option value={3}>3x3</option>
+            <option value={4}>4x4</option>
+            <option value={5}>5x5</option>
+          </select>
           <button id='create-room' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={handleFormSubmit}>Create Room</button>
         </div>
       </form>
