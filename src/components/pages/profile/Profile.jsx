@@ -20,7 +20,7 @@ function Profile({ userId }) {
       username: data.username,
       email: data.email,
       name: data.name,
-      biography: data.biography,
+      motto: data.motto,
       decks: data.Decks,
       friends: data.FavoriteUser,
       imagePath: data.imagePath,

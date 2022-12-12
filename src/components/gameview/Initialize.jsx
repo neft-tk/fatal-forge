@@ -5,6 +5,7 @@
 import React, { useEffect, useState } from 'react'
 import Socket from '../../utils/socket';
 import { CirclePicker } from 'react-color';
+import Static from '../../utils/staticHelper'
 
 export default function Initialize(props) {
   // Use the DeckID as values for the options
@@ -28,14 +29,14 @@ export default function Initialize(props) {
   }, [])
 
   async function syncUp() {
-    const resp = await fetch(`http://localhost:3001/api/sockets/games/${props.gameId}`);
+    const resp = await fetch(`${Static.serverUrl}/api/sockets/games/${props.gameId}`);
     const data = await resp.json();
     console.log('size', data.size);
     props.setSize(data.size);
     setConnectedUsers(data.players);
 
     const userId = Socket.IO.userInfo.id;
-    const r = await fetch(`http://localhost:3001/api/users/${userId}`);
+    const r = await fetch(`${Static.serverUrl}/api/users/${userId}`);
     const d = await r.json();
 
     const deckMap = d.Decks.map(x => { return { name: x.deckName, id: x.id } });
