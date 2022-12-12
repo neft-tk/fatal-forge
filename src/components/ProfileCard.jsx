@@ -17,7 +17,7 @@ function ProfileCard({ user }) {
             <h2 className="text-2xl">{user.username}</h2>
             <h3 className="text-md">Aka: {user.name}</h3>
             <h3>Email: {user.email}</h3>
-            <h3>Biography: {user.biography}</h3>
+            <h3>Motto: {user.motto}</h3>
           </div>
         </div>
         <button
