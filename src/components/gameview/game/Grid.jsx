@@ -42,9 +42,12 @@ export default function Grid({setIsMyTurn,size}) {
   },[]);
   const slots = Array(size*size).fill(null);
 
+  function minWidth(){
+    return document.querySelector('#grid').clientHeight;
+  }
 
   return (
-    <div className='flex flex-wrap aspect-square justify-around items-around border border-yellow-500 h-[75%]'>
+    <div id='grid' className={'flex flex-wrap justify-around items-around border border-yellow-500 grow max-h-[70%] max-w-full shrink aspect-square'}>
       {slots.map((x,i)=>{return <Gridslot key={i} index={i} action={action} size={size}/>})}
     </div>
   )

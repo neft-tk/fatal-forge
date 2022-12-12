@@ -24,14 +24,15 @@ export default function Card({name, compass, imagePath,inPlay, removeAndDraw, sl
   )
 
   return (
-    <div ref={dragRef} className='w-full h-full flex flex-col justify-center items-center border relative'>
+    <div ref={dragRef} className='w-full h-full flex flex-col justify-center items-center relative'>
       <h3>{name}</h3>
+        <h3 className='absolute top-[3%] z-10'>{compass[0]}</h3>
+        <h3 className='absolute left-[10%] z-10'>{compass[3]}</h3>
+        <h3 className='absolute right-[10%] z-10'>{compass[1]}</h3>
+        <h3 className='absolute bottom-[4%] z-10'>{compass[2]}</h3>
       <img src={`http://localhost:3001/api/images/${imagePath}`} className='w-1/2 h-1/2 absolute'></img>
-      <div className='relative bg-black bg-opacity-50 flex flex-col justify-center items-center'>
-        <h3>{compass[0]}</h3>
-        <h3>{compass[3]} - {compass[1]}</h3>
-        <h3>{compass[2]}</h3>
-      </div>
+      <img src={`http://localhost:3001/api/images/cardsprite/face.png`} className='absolute'/>
+
 
     </div>
   )

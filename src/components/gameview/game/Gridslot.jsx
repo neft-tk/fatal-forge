@@ -13,11 +13,17 @@ export default function Gridslot({index, action, size}) {
 
     const [card, setCard] = useState();
     const [faction, setFaction] = useState('transparent');
+    const [width, setWidth] = useState(10);
 
     const [currentAnimation, setCurrentAnimation] = useState({scale:1});
      //basket and drop ref for drag and drop detection
      const [basket, setBasket] = useState([])
 
+     useEffect(()=>{
+      setTimeout(()=>{
+        setWidth(getWidth(size))
+      }, 100)
+     },[])
      useEffect(()=>{
       if (!action){
         return;
@@ -84,9 +90,13 @@ export default function Gridslot({index, action, size}) {
          ),
          canDrop: ()=> card == undefined // allow drop if this slot doesn't already have a card
      })
+    
+     function getWidth(s){
+      return `1/${s}`
+     }
 
   return (
-    <motion.div ref={dropRef} animate={currentAnimation} className={`flex justify-center items-center relative w-1/${size} aspect-square border`} style={{backgroundColor:isOver ? 'yellow' : faction}}>
+    <motion.div ref={dropRef} animate={currentAnimation} className={`flex justify-center items-center relative grow w-${width} aspect-square border`} style={{backgroundColor:isOver ? 'yellow' : faction}}>
       {card ? <Card inPlay={true} name={card.name} compass={card.compass} imagePath={card.imagePath}/> : ''}
     </motion.div>
   )
