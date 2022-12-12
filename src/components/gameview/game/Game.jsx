@@ -22,47 +22,46 @@
 //    PMVP: Take the players to a stats screen.
 //    qMVP: Take the players back to the play screen.
 
+import React, { useEffect, useState } from 'react';
+import Grid from './Grid';
+import Hand from './Hand';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import React, { useEffect, useState } from 'react'
-import Grid from './Grid'
-import Hand from './Hand'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-
-export default function Game({deckId}) {
+export default function Game({ deckId }) {
   const [deck, setDeck] = useState(null);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     getHand();
-  },[])
+  }, []);
 
-
-  async function getHand(){
+  async function getHand() {
     const res = await fetch(`http://localhost:3001/api/decks/${deckId}`);
     console.log(deckId);
     console.log(res);
     const data = await res.json();
     console.log(data);
-    setDeck(data.Cards.map(x=>{return {
-      name: x.cardName,
-      compass:[x.topAttack, x.rightAttack,x.bottomAttack,x.leftAttack],
-      class: x.class,
-      imagePath: x.imagePath
-    }}));
+    setDeck(
+      data.Cards.map((x) => {
+        return {
+          name: x.cardName,
+          compass: [x.topAttack, x.rightAttack, x.bottomAttack, x.leftAttack],
+          class: x.class,
+          imagePath: x.imagePath,
+        };
+      })
+    );
   }
-
-
-
 
   return (
     <div>
       {/* Players Scores will live outside of the gameboard, potentialy here or anywhere outside of the gameboard div.*/}
-      <div className='gameboard flex flex-col justify-center items-center w-full max-w-full'>
+      <div className="gameboard flex flex-col justify-center items-center w-full max-w-full">
         <Grid />
-        
+
         {deck ? <Hand deck={deck} /> : ''}
       </div>
       {/* Probably add some instuctions/settings modals on the margin here. */}
     </div>
-  )
+  );
 }
