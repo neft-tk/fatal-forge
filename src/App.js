@@ -31,7 +31,7 @@ function App() {
     if (!isLoggedIn) {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
-        console.log(storedToken);
+        // console.log(storedToken);
         API.getUserFromToken(storedToken).then((data) => {
           if (data.user) {
             setToken(storedToken);
@@ -67,7 +67,7 @@ function App() {
 
   const handleSignup = (userObj) => {
     API.signup(userObj).then((data) => {
-      console.log('data', data);
+      // console.log('data', data);
       if (data.token) {
         setUserId(data.user.id);
         setToken(data.token);
