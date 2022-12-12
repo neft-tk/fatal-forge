@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {useDrag} from 'react-dnd'
+import Socket from '../utils/socket';
 
 export default function Card({name, compass, imagePath,inPlay, removeAndDraw}) {
   const [{isDragging}, dragRef] = useDrag(
@@ -10,7 +11,7 @@ export default function Card({name, compass, imagePath,inPlay, removeAndDraw}) {
       item:{name,compass, imagePath},
       collect: (monitor) => ({
         
-        isDragging: monitor.isDragging()
+        isDragging: !!monitor.isDragging()
       }
       ),
       end:(item, monitor) =>{
@@ -18,7 +19,7 @@ export default function Card({name, compass, imagePath,inPlay, removeAndDraw}) {
             removeAndDraw();
         }
       },
-      canDrag:()=>{return !inPlay}
+      canDrag:()=>{return !inPlay && Socket.IO.myTurn}
     })
   )
 

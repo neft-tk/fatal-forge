@@ -6,12 +6,16 @@ import React, { useState } from 'react'
 import Socket from '../../../utils/socket';
 import Gridslot from './Gridslot';
 
-export default function Grid() {
+export default function Grid({setIsMyTurn}) {
   const [action, setAction] = useState();
   useState(()=>{
     Socket.Game.OnPlacedCard((data)=>{
+      Socket.IO.myTurn = false;
+
       console.log('onplacedata',data);
-      const {card, index, changes} = data;
+      const {card, index, changes, state} = data;
+      const animLength = 500;
+      let total = animLength * (changes.length + 1);
       setAction({
         type:'place',
         data:{
@@ -29,6 +33,11 @@ export default function Grid() {
           );
         },(500*i) + 500)
       }
+      setTimeout(() => {
+        const myTurn = state.turn == Socket.IO.userInfo.username;
+        Socket.IO.myTurn = myTurn;
+        setIsMyTurn(myTurn)
+      }, total);
     })
   },[]);
   const slots = Array(9).fill(null);

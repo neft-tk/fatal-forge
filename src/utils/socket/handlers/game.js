@@ -55,8 +55,18 @@ export const Game = (socket)=>{
         OnPlacedCard(callback){
             socket.on('game', data=>{
                 if (data.type == 'placeCard'){
+                    console.log('player placed a card', data.data);
                     if (callback){
-                        console.log('player placed a card', data.data);
+                        callback(data.data);
+                    }
+                }
+            })
+        },
+        OnStart(callback){
+            socket.on('game', data=>{
+                if (data.type == 'startTurn'){
+                    console.log(`all players joined, rolled to start: ${data.data}`)
+                    if (callback){
                         callback(data.data);
                     }
                 }
