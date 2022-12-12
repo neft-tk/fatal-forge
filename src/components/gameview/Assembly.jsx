@@ -22,7 +22,7 @@ function Assembly({ setView, setGameId }) {
     switch (e.target.id) {
       case "join-room": {
         // Going to hit our api for a response to see if that room exists
-        const resp = await fetch(`http://localhost:3001/api/socket/games/${joinRoom}`);
+        const resp = await fetch(`http://localhost:3001/api/sockets/games/${joinRoom}`);
 
         if (resp.ok) {
           const data = await resp.json();
@@ -46,7 +46,7 @@ function Assembly({ setView, setGameId }) {
 
       case "create-room": {
         // Going to hit our api for a response to see if that room already exists
-        const resp = await fetch(`http://localhost:3001/api/socket/games/${createRoom}`);
+        const resp = await fetch(`http://localhost:3001/api/sockets/games/${createRoom}`);
 
         // if the response is ok then that room already exists
         if (resp.ok) {
