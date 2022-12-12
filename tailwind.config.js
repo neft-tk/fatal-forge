@@ -20,12 +20,13 @@ module.exports = {
       },
       // Fonts by use case.
       fontFamily: {
-        'main-text-f': ['sans-serif', 'lucida-console'],
-        'alt-text-f': ['serif'],
-        'display-text-f': ['Papyrus', 'Copperstone']
+        'main-text-f': ['"Crimson Text"', 'serif'],
+        'alt-text-f': ['"Lato"', 'sans-serif'],
+        'display-text-f': ['"Unbounded"', 'Copperstone']
       },
     },
-  },
+    },
+    extend: {},
   plugins: [
     require('flowbite/plugin')
   ],
