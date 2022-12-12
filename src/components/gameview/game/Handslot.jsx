@@ -6,16 +6,24 @@ import React, { useState } from 'react'
 import {motion} from 'framer-motion'
 import Card from '../../Card'
 import Socket from '../../../utils/socket'
+import state from '../../../utils/staticHelper';
 
 export default function Handslot({drawCard,index}) {
   const [currentCard, setCurrentCard] = useState(null);
 
   const draw = () =>{
     const card = drawCard();
+    
     console.log(card);
     setCurrentCard(card);
     setAnimation(animation);
     setTimeout(()=>setAnimation({scale:1}), 500)
+
+    
+    setTimeout(()=>{
+      //todo: this timeout is a hack, should reconsider how properly change this
+      state.hand.set(index, card);
+    },2000)
   }
 
   const removeAndDraw = ()=>{
@@ -37,8 +45,8 @@ export default function Handslot({drawCard,index}) {
   },[])
 
   return (
-    <motion.div animate={currentAnimation} style={{backgroundColor:Socket.IO.color}} className={`flex flex-col justify-center items-center border w-[200px] h-[200px] relative`}>
-      {currentCard ? <Card name={currentCard.name} compass={currentCard.compass} imagePath={currentCard.imagePath} removeAndDraw={removeAndDraw} inPlay={false}/> : ''}
+    <motion.div animate={currentAnimation} style={{backgroundColor:Socket.IO.color}} className={`w-[20%] aspect-square`}>
+      {currentCard ? <Card name={currentCard.name} compass={currentCard.compass} imagePath={currentCard.imagePath} removeAndDraw={removeAndDraw} inPlay={false} slotIndex={index}/> : ''}
     </motion.div>
   )
 }
