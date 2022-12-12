@@ -48,8 +48,7 @@ export default function Game({deckId}) {
       compass:[x.topAttack, x.rightAttack,x.bottomAttack,x.leftAttack],
       class: x.class,
       imagePath: x.imagePath
-    }}));
-  }
+    }}));896912
 
 
 
