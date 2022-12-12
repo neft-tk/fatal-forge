@@ -22,8 +22,9 @@ export default function Gridslot({index, action, size}) {
      useEffect(()=>{
       setTimeout(()=>{
         setWidth(getWidth(size))
-      }, 100)
+      }, 500)
      },[])
+     
      useEffect(()=>{
       if (!action){
         return;
