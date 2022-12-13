@@ -56,7 +56,7 @@ function Profile({ userId, token, setIsLoggedIn }) {
   };
 
   return (
-    <div className="m-6 text-main-text font-main-text-f">
+    <div className="flex flex-col justify-evenly h-full">
       {user ? (
         <ProfileCard
           user={user}
@@ -66,7 +66,7 @@ function Profile({ userId, token, setIsLoggedIn }) {
           handleDeleteUser={handleDeleteUser}
         />
       ) : (
-        ''
+        'Please Log In'
       )}
     </div>
   );
