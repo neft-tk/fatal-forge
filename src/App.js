@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,6 +17,9 @@ import Profile from './components/pages/profile/Profile';
 import Friends from './components/pages/friends/Friends';
 import './style.css';
 import Socket from './utils/socket';
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import options from './assets/particles/ember.json';
 
 function App() {
   const [userId, setUserId] = useState(0);
@@ -91,6 +94,18 @@ function App() {
     // Socket.Auth stuff?
   }
 
+  const particlesInit = useCallback(async engine => {
+    console.log(engine);
+    // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(engine);
+  }, []);
+
+  const particlesLoaded = useCallback(async container => {
+      await console.log(container);
+  }, []);
+
   const renderRoutes = () => {
     return (
       <>
@@ -101,7 +116,11 @@ function App() {
               setView={setView}
               handleLogout={handleLogout}
             />
-            <div id="routeContainer" className="w-full h-full bg-main-bg">
+            <div id="routeContainer" className="w-full h-full">
+            <Particles 
+              init={particlesInit}
+              loaded={particlesLoaded}
+              options={options}/>
               <Routes>
                 {/* LOBBY: */}
                 <Route path="/" element={<Lobby />} />
@@ -130,10 +149,17 @@ function App() {
       {isLoggedIn ? (
         renderRoutes()
       ) : (
-        <Login
+        <>
+                    <Particles 
+              init={particlesInit}
+              loaded={particlesLoaded}
+              options={options}/>
+                      <Login
           handleLogin={handleLogin}
           handleSignup={handleSignup}
         />
+        </>
+
       )}
     </div>
   );
