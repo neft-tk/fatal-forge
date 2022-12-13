@@ -8,12 +8,26 @@ import Gridslot from './Gridslot';
 
 export default function Grid({setIsMyTurn,size}) {
   const [action, setAction] = useState();
+
+  // const getScoreChange = (players) =>{
+  //   const me = players.find(x=>x.color == Socket.IO.color);
+  //   const other = players.find(x=>x.color != Socket.IO.color);
+
+  //   const myChange = me.score - scores[0];
+  //   const otherChange = other.score - scores[1];
+  //   setScores([me,other])
+  //   return [myChange,otherChange];
+    
+  // }
+
   useState(()=>{
     Socket.Game.OnPlacedCard((data)=>{
       Socket.IO.myTurn = false;
 
       console.log('onplacedata',data);
       const {card, index, changes, state} = data;
+      
+
       const animLength = 500;
       let total = animLength * (changes.length + 1);
       setAction({
@@ -23,6 +37,9 @@ export default function Grid({setIsMyTurn,size}) {
           index
         }
       })
+      setTimeout(()=>{
+
+      },animLength)
       for (let i = 0; i < changes.length; i++){
         setTimeout(()=>{
           setAction(

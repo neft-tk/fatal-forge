@@ -39,6 +39,13 @@ export default function Game({deckId,size}) {
     getHand();
   },[])
 
+  useEffect(()=>{
+    return ()=>{
+      console.log('unmount')
+      Socket.Game.Leave();
+    }
+  },[])
+
   const setIsMyTurn = (isMyTurn)=>{
     setMyTurn(isMyTurn);
     // if (isMyTurn){
