@@ -52,7 +52,7 @@ export default function Grid({setIsMyTurn,size, setPlayers}) {
   }
 
   return (
-    <div id='grid' className={'flex flex-wrap justify-around items-around border border-yellow-500 grow max-h-[70%] min-w-[100px] max-w-full shrink aspect-square'}>
+    <div id='grid' className={'flex flex-wrap justify-around items-around bg-black/30 p-4 grow rounded-xl max-h-[70%] min-w-[100px] max-w-full shrink aspect-square'}>
       {slots.map((x,i)=>{return <Gridslot key={i} index={i} action={action} size={size}/>})}
     </div>
   )

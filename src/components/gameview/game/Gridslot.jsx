@@ -103,8 +103,11 @@ export default function Gridslot({index, action, size}) {
      }
 
   return (
-    <motion.div ref={dropRef} animate={currentAnimation} width={width} className={`flex justify-center items-center grow aspect-square border`} style={{backgroundColor:isOver ? 'yellow' : faction, width:width}}>
-      {card ? <Card inPlay={true} name={card.name} compass={card.compass} imagePath={card.imagePath}/> : ''}
+    <motion.div ref={dropRef} animate={currentAnimation} width={width} className={`aspect-square p-1`} style={{ width:width}}>
+      <div className={`${!card ? 'border' : ''} border-white/30 rounded w-full h-full overflow-hidden relative`} >
+        <div className='absolute w-[98%] h-[98%]' style={{backgroundColor:isOver ? 'yellow' : faction}}></div>
+        {card && <Card inPlay={true} name={card.name} compass={card.compass} imagePath={card.imagePath}/>}
+      </div>
     </motion.div>
   )
 }
