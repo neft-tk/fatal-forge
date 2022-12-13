@@ -35,7 +35,7 @@ export default function Gameview() {
           <div className='max-h-screen h-screen border flex flex-col'>
 
             <DndProvider backend={HTML5Backend}>
-              <Game deckId={deck} size={size} gameId={gameId}/>
+              <Game deckId={deck} size={size} gameId={gameId} setView={setView}/>
             </DndProvider>
           </div>
 

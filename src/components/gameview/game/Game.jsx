@@ -29,13 +29,24 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import Socket from '../../../utils/socket'
 import Static from '../../../utils/staticHelper'
+import { Button, Modal, Label, TextInput} from 'flowbite-react';
+import { useNavigate } from "react-router-dom";
 
-export default function Game({ deckId, size, gameId}) {
+export default function Game({ deckId, size, gameId, setView}) {
   const [deck, setDeck] = useState(null);
   const [myTurn, setMyTurn] = useState();
   const [players, setPlayers] = useState([]);
   const [slots, setSlots] = useState(Array(size*size).fill(null));
-  
+  const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState('hi');
+  const [gameEnd, setGameEnd] = useState(false);
+  const navigate = useNavigate();
+
+  const Alert = (msg) =>{
+    setMessage(msg);
+    console.log(msg);
+    setShowModal(true);
+  }
 
   useEffect(() => {
     setup();
@@ -62,13 +73,15 @@ export default function Game({ deckId, size, gameId}) {
   }
 
   useEffect(()=>{
-    if (slots.filter(x=>x!=null).length == size*size){
-      //todo: hit our endpoint to update gamehistory/stats
-
-      //todo: make a modal that gives choice to go to assembly or home
-      alert('game ended');
+    if (!gameEnd){
+      return;
     }
-  },[slots])
+    //todo: hit our endpoint to update gamehistory/stats
+
+    //todo: make a modal that gives choice to go to assembly or home
+    Alert('game ended');
+
+  },[gameEnd])
 
   const getScore = (color)=>{
     return slots.filter(x=>x == color).length;
@@ -88,6 +101,38 @@ export default function Game({ deckId, size, gameId}) {
     // }else {
     //   alert("Waiting for opponent");
     // }
+  }
+
+  function renderModal(){
+    return(    <Modal
+      show={showModal}
+      size="md"
+      popup={true}
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
+            <h3 className="mb-5 text-lg font-normal text-gray-400">
+              {message}
+            </h3>
+            <div className="flex justify-between gap-4">
+              <Button
+                color="gray"
+                onClick={()=>{setView('assembly')}}
+              >
+                New Game
+              </Button>
+              <Button
+                color="gray"
+                onClick={()=>{navigate('/lobby')}}
+              >
+                Go Home
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>)
   }
 
 
@@ -110,8 +155,9 @@ export default function Game({ deckId, size, gameId}) {
   }
 
   return (
+    <>
       <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
-        <Grid setIsMyTurn={setIsMyTurn} size={size} setPlayers={setPlayers}/>
+        <Grid setIsMyTurn={setIsMyTurn} size={size} setPlayers={setPlayers} setGameEnd={setGameEnd}/>
         <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting for opponent'}</h1>
         {deck ? <Hand deck={deck} /> : ''}
         <div className='flex w-full justify-around'>
@@ -123,6 +169,7 @@ export default function Game({ deckId, size, gameId}) {
           )}
         </div>
       </div>
-
+      {renderModal()}
+    </>
   )
 }

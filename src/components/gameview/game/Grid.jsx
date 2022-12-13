@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import Socket from '../../../utils/socket';
 import Gridslot from './Gridslot';
 
-export default function Grid({setIsMyTurn,size, setPlayers}) {
+export default function Grid({setIsMyTurn,size, setPlayers, setGameEnd}) {
   const [action, setAction] = useState();
 
   useState(()=>{
@@ -26,6 +26,12 @@ export default function Grid({setIsMyTurn,size, setPlayers}) {
           index
         }
       })
+      if (state.slots.filter(x=>x!=null).length == size*size){
+        setTimeout(()=>{
+          console.log('gameend')
+          setGameEnd(true);
+        },total)
+      }
 
       for (let i = 0; i < changes.length; i++){
         setTimeout(()=>{
@@ -35,6 +41,7 @@ export default function Grid({setIsMyTurn,size, setPlayers}) {
               change: changes[i]
             }
           );
+
         },(500*i) + 500)
       }
       setTimeout(() => {
