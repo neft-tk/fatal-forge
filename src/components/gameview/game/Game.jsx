@@ -29,23 +29,110 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import Socket from '../../../utils/socket'
 import Static from '../../../utils/staticHelper'
+import { Button, Modal, Label, TextInput} from 'flowbite-react';
+import { useNavigate } from "react-router-dom";
 
-export default function Game({deckId,size}) {
+export default function Game({ deckId, size, gameId, setView}) {
   const [deck, setDeck] = useState(null);
   const [myTurn, setMyTurn] = useState();
+  const [players, setPlayers] = useState([]);
+  const [slots, setSlots] = useState(Array(size*size).fill(null));
+  const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState('hi');
+  const [gameEnd, setGameEnd] = useState(false);
+  const navigate = useNavigate();
 
-  useEffect(()=>{
+  const Alert = (msg) =>{
+    setMessage(msg);
+    console.log(msg);
+    setShowModal(true);
+  }
+
+  useEffect(() => {
+    setup();
+    Socket.IO.slots = Array(size*size).fill(null);
+    Socket.IO.setSlot = (index,color)=>{
+      Socket.IO.slots[index] = color;
+      setSlots([...Socket.IO.slots])
+      console.log(Socket.IO.slots);
+    }
     setIsMyTurn(Socket.IO.myTurn)
     getHand();
+  }, [])
+
+  const setup = async() =>{
+    const resp = await fetch(`${Static.serverUrl}/api/sockets/games/${gameId}`);
+    const data = await resp.json();
+    console.log('this', data)
+    const op = data.players.find(x=>x.userData.username != Socket.IO.userInfo.username);
+    if (op){
+      Socket.IO.opponent = op;
+      console.log('opponent',op);
+    }
+    setPlayers(data.players);
+  }
+
+  useEffect(()=>{
+    if (!gameEnd){
+      return;
+    }
+    //todo: hit our endpoint to update gamehistory/stats
+
+    //todo: make a modal that gives choice to go to assembly or home
+    Alert('game ended');
+
+  },[gameEnd])
+
+  const getScore = (color)=>{
+    return slots.filter(x=>x == color).length;
+  }
+
+  useEffect(()=>{
+    return ()=>{
+      console.log('unmount')
+      Socket.Game.Leave();
+    }
   },[])
 
-  const setIsMyTurn = (isMyTurn)=>{
+  const setIsMyTurn = (isMyTurn) => {
     setMyTurn(isMyTurn);
     // if (isMyTurn){
     //   alert("Your Turn");
     // }else {
     //   alert("Waiting for opponent");
     // }
+  }
+
+  function renderModal(){
+    return(    <Modal
+      show={showModal}
+      size="md"
+      popup={true}
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
+            <h3 className="mb-5 text-lg font-normal text-gray-400">
+              {message}
+            </h3>
+            <div className="flex justify-between gap-4">
+              <Button
+                color="gray"
+                onClick={()=>{setView('assembly')}}
+              >
+                New Game
+              </Button>
+              <Button
+                color="gray"
+                onClick={()=>{navigate('/lobby')}}
+              >
+                Go Home
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>)
   }
 
 
@@ -68,11 +155,21 @@ export default function Game({deckId,size}) {
   }
 
   return (
+    <>
       <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
-        <Grid setIsMyTurn={setIsMyTurn} size={size}/>
+        <Grid setIsMyTurn={setIsMyTurn} size={size} setPlayers={setPlayers} setGameEnd={setGameEnd}/>
         <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting for opponent'}</h1>
         {deck ? <Hand deck={deck} /> : ''}
+        <div className='flex w-full justify-around'>
+          {players.map((x,i)=>
+            <div key={i} style={{color:x.color}}>
+              <h1>{x.userData.username}</h1>
+              <h1>{getScore(x.color)}</h1>
+            </div>
+          )}
+        </div>
       </div>
-
+      {renderModal()}
+    </>
   )
 }

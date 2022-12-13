@@ -3,9 +3,12 @@
 // Chat, friends tab, add friend, etc.
 
 import React from 'react'
+import Chat from './Chat'
+import gllogo from '../../../assets/png/gridlocke1.png'
 
-export default function Lobby() {
+export default function Lobby({ userId }) {
+
   return (
-    <div>Lobby</div>
+    <Chat userId={userId} />
   )
 }

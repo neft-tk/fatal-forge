@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, Label, TextInput } from 'flowbite-react';
+import { Modal, Label } from 'flowbite-react';
 import blacksmithGif from '../../../assets/gif/blacksmith_nobg.gif';
 import visibilityIcon from '../../../assets/svg/visibilityIcon.svg';
 // The Login component provides a form and handler for users logging in.
@@ -62,7 +62,7 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    console.log('Signup clicked!');
+    // console.log('Signup clicked!');
     handleSignup({
       username: signupUsername,
       email: signupEmail,
@@ -71,10 +71,10 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
   };
 
   return (
-    <div className="h-full flex sm:flex-row flex-col">
+    <div className="h-full w-2/3 flex sm:flex-row flex-col justify-between mx-auto my-0">
       <div className="ml-8 flex flex-col justify-center items-center text-center sm:w-1/4 w-full">
         <form onSubmit={handleLoginSubmit} className="flex flex-col">
-          <h3 className="pt-6 text-cyan-400">Login</h3>
+          <h3 className="pt-6 text-main-orange font-display-text-f">Login</h3>
 
           <input
             id="login-email"
@@ -82,7 +82,7 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
             placeholder="email"
             value={loginEmail}
             onChange={onLoginEmailChange}
-            className="text-black p-2 m-4 rounded"
+            className="text-black p-2 m-4 rounded font-alt-text-f"
           />
 
           <div className="relative m-4">
@@ -93,7 +93,7 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
               value={loginPassword}
               type={showPassword ? 'text' : 'password'}
               onChange={onLoginPasswordChange}
-              className="text-black p-2 rounded"
+              className="text-black p-2 rounded font-alt-text-f"
             />
 
             <img
@@ -106,18 +106,20 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
 
           <button
             type="submit"
-            className="m-4 text-black bg-cyan-400 hover:bg-cyan-500 focus:ring-4 focus:ring-cyan-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-cyan-500 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-300"
+            className="m-4 text-black bg-main-orange hover:bg-active-orange focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
           >
             Login
           </button>
         </form>
 
         <>
-          <h3 className="m-4">
-            New here?{' '}
+          <h3 className="m-4 font-alt-text-f">
+            <span className='mr-4'>
+              New here?
+            </span>
             <span
               onClick={onModalClick}
-              className="text-cyan-400 cursor-pointer"
+              className="text-highlight-orange hover:text-active-orange cursor-pointer"
             >
               Sign up to play!
             </span>
@@ -186,8 +188,8 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
         </>
       </div>
 
-      <div className="flex p-4 sm:w-3/4 w-full justify-center items-center">
-        <img src={blacksmithGif} alt="A blacksmith hard at work." />
+      <div className="flex justify-center items-center min-w-50">
+        <img className='min-w-full' src={blacksmithGif} alt="A blacksmith hard at work." />
       </div>
     </div>
   );
