@@ -67,7 +67,7 @@ function Assembly({ setView, setGameId }) {
 
   return (
     <div className='flex flex-col h-full items-center align-middle justify-evenly'>
-      <h3 className='text-4xl font-bold font-main-text-f'>Join or Create a room to play!</h3>
+      <h3 className='text-4xl font-display-text-f'>Join or Create a room to play!</h3>
       <form action="" className='h-4/5 w-2/5 flex justify-between items-center'>
         <div className='flex flex-col h-3/5 items-center justify-between font-main-text-f'>
           <label htmlFor="joinRoomInput" className='text-2xl font-semibold alt-text-f'>Join</label>

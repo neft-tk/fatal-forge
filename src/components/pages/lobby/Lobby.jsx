@@ -4,9 +4,11 @@
 
 import React from 'react'
 import Chat from './Chat'
+import gllogo from '../../../assets/png/gridlocke1.png'
 
-export default function Lobby({userId}) {
+export default function Lobby({ userId }) {
+  
   return (
-    <Chat userId={userId} />
+        <Chat userId={userId} />
   )
 }

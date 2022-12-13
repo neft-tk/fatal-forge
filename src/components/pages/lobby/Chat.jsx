@@ -8,10 +8,9 @@ export default function Chat({userId}) {
 
 
   const findUser = async () => {
-    console.log(userId)
     const data = await API.getUser(userId);
-    console.log(data);
     setUser(data.username)
+    console.log(user)
   }
 
   const handleFormSubmit = async (e) => {
@@ -20,7 +19,7 @@ export default function Chat({userId}) {
       Socket.Chat.SendMessage(message);
       // Reset the input.
       setMessage("")
-      findUser();
+      await findUser();
   }
 
   useEffect(() => {

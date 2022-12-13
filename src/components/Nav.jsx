@@ -11,6 +11,7 @@ import { CgProfile } from 'react-icons/cg';
 import { Button, Modal, Label, TextInput } from 'flowbite-react';
 import HomeIcon from '.././assets/svg/homeIcon.svg';
 import NavBarIcon from './NavBarIcon';
+import gllogo from '../assets/png/gridlocke1.png';
 
 export default function Nav(props) {
   const [showModal, setShowModal] = useState(false);
@@ -24,15 +25,16 @@ export default function Nav(props) {
   };
 
   return (
-    <div className="p-2 w-28 flex flex-col bg-alt-bg justify-evenly">
+    <div className="p-2 w-28 flex flex-col bg-main-bg justify-evenly">
       {/* <Link to="/gameview">Play</Link>
         <Link to="/deckbuilder">Decks</Link>
         <Link to="/lobby">Friends</Link> */}
+      <Link to="/lobby">
+        <img src={gllogo} alt="Gridlocke logo" />
+        {/* <NavBarIcon icon={<BsFillChatDotsFill size="40" />} text="Chat" /> */}
+      </Link>
       <Link to="/gameview">
         <NavBarIcon icon={<FaGamepad size="40" />} text="Game" />
-      </Link>
-      <Link to="/lobby">
-        <NavBarIcon icon={<BsFillChatDotsFill size="40" />} text="Chat" />
       </Link>
       <Link to="/deckbuilder">
         <NavBarIcon icon={<GiCardAceSpades size="40" />} text="Deck Builder" />
