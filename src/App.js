@@ -80,6 +80,12 @@ function App() {
     });
   };
 
+  const handleDeckCreate = (deckObj) => {
+    API.createDeck(deckObj).then((data) => {
+      console.log('data', data)
+    })
+  }
+
   const renderRoutes = () => {
     return (
       <>
@@ -93,7 +99,7 @@ function App() {
                 <Route path="/lobby" element={<Lobby />} />
                 <Route path="/gameview" element={<Gameview />} />
                 <Route path="/settings" element={<Settings />} />
-                <Route path="/deckbuilder" element={<Deckbuilder />} />
+                <Route path="/deckbuilder" element={<Deckbuilder userId={userId} handleDeckCreate={handleDeckCreate}/>} />
                 <Route path="/profile" element={<Profile userId={userId}/>} />
                 <Route path="/friends" element={<Friends />} />
               </Routes>

@@ -24,6 +24,26 @@ const API = {
     });
     return await res.json();
   },
+  getCards: async (cardData) => {
+    const res = await fetch(`${URL_PREFIX}/api/cards/`, {
+      method: 'GET',
+      body: JSON.stringify(cardData),
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+    });
+    return await res.json();
+  },
+  createDeck: async (deckData) => {
+    const res = await fetch(`${URL_PREFIX}/api/decks/`, {
+      method: 'POST',
+      body: JSON.stringify(deckData),
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+    })
+    return await res.json();
+  },
   getUser: async (userId) => {
     const res = await fetch(`${URL_PREFIX}/api/users/${userId}`);
     return await res.json();
