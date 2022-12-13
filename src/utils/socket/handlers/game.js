@@ -74,6 +74,12 @@ export const Game = (socket) => {
                     }
                 }
             })
+        },
+        Leave(){
+            socket.emit('game', {
+                type:'leave',
+                gameId: id
+            })
         }
     }
 }

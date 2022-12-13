@@ -30,14 +30,56 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import Socket from '../../../utils/socket'
 import Static from '../../../utils/staticHelper'
 
-export default function Game({ deckId, size }) {
+export default function Game({ deckId, size, gameId}) {
   const [deck, setDeck] = useState(null);
   const [myTurn, setMyTurn] = useState();
+  const [players, setPlayers] = useState([]);
+  const [slots, setSlots] = useState(Array(size*size).fill(null));
+  
 
   useEffect(() => {
+    setup();
+    Socket.IO.slots = Array(size*size).fill(null);
+    Socket.IO.setSlot = (index,color)=>{
+      Socket.IO.slots[index] = color;
+      setSlots([...Socket.IO.slots])
+      console.log(Socket.IO.slots);
+    }
     setIsMyTurn(Socket.IO.myTurn)
     getHand();
   }, [])
+
+  const setup = async() =>{
+    const resp = await fetch(`${Static.serverUrl}/api/sockets/games/${gameId}`);
+    const data = await resp.json();
+    console.log('this', data)
+    const op = data.players.find(x=>x.userData.username != Socket.IO.userInfo.username);
+    if (op){
+      Socket.IO.opponent = op;
+      console.log('opponent',op);
+    }
+    setPlayers(data.players);
+  }
+
+  useEffect(()=>{
+    if (slots.filter(x=>x!=null).length == size*size){
+      //todo: hit our endpoint to update gamehistory/stats
+
+      //todo: make a modal that gives choice to go to assembly or home
+      alert('game ended');
+    }
+  },[slots])
+
+  const getScore = (color)=>{
+    return slots.filter(x=>x == color).length;
+  }
+
+  useEffect(()=>{
+    return ()=>{
+      console.log('unmount')
+      Socket.Game.Leave();
+    }
+  },[])
 
   const setIsMyTurn = (isMyTurn) => {
     setMyTurn(isMyTurn);
@@ -68,11 +110,19 @@ export default function Game({ deckId, size }) {
   }
 
   return (
-    <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
-      <Grid setIsMyTurn={setIsMyTurn} size={size} />
-      <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting for opponent'}</h1>
-      {deck ? <Hand deck={deck} /> : ''}
-    </div>
+      <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
+        <Grid setIsMyTurn={setIsMyTurn} size={size} setPlayers={setPlayers}/>
+        <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting for opponent'}</h1>
+        {deck ? <Hand deck={deck} /> : ''}
+        <div className='flex w-full justify-around'>
+          {players.map((x,i)=>
+            <div key={i} style={{color:x.color}}>
+              <h1>{x.userData.username}</h1>
+              <h1>{getScore(x.color)}</h1>
+            </div>
+          )}
+        </div>
+      </div>
 
   )
 }

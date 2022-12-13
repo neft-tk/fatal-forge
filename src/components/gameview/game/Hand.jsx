@@ -19,7 +19,7 @@ export default function Hand({ deck }) {
     const slots = Array(5).fill(null);
 
     return (
-        <div className='flex justify-between'>
+        <div className='flex justify-between p-3 bg-black/30 rounded-xl my-2 w-[90%]'>
             {slots.map((x, i) => { return (<Handslot key={i} index={i} drawCard={drawCard} />) })}
         </div>
     )
