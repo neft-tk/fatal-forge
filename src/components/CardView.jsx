@@ -12,6 +12,13 @@ function CardView({ cardData, setDeckData, deckData}) {
       id: newCardName[1],
     };
     console.log(newCard);
+    if(deckData.filter((card) => 
+      newCard.id == card.id
+    ).length === 1) {
+      alert('Cannot have more than one card with the same unique id.')
+      return
+    }
+
     const newDeck = [...deckData];
     newDeck.push(newCard);
     setDeckData(newDeck);
@@ -20,8 +27,8 @@ function CardView({ cardData, setDeckData, deckData}) {
 
   return (
     <div>
-      {cardData.map((card) => (
-        <button className="block" key={card.id} onClick={addCard}>
+      {cardData.map((card, index) => (
+        <button className="block" key={index} onClick={addCard}>
           <div className="border">
             <p>
               {card.cardName}, {card.id}

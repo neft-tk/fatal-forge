@@ -25,7 +25,6 @@ const API = {
     });
     return await res.json();
   },
-<<<<<<< HEAD
   getCards: async (cardData) => {
     const res = await fetch(`${URL_PREFIX}/api/cards/`, {
       method: 'GET',
@@ -56,11 +55,6 @@ const API = {
   //   })
   //   return await res.json();
   // },
-=======
-
-  // GETs
-  // TODO: Delete the not needed routes.
->>>>>>> dev
   getUser: async (userId) => {
     const res = await fetch(`${URL_PREFIX}/api/users/${userId}`);
     return await res.json();
