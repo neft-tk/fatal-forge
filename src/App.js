@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,6 +17,9 @@ import Profile from './components/pages/profile/Profile';
 import Friends from './components/pages/friends/Friends';
 import './style.css';
 import Socket from './utils/socket';
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import options from './assets/particles/ember.json';
 
 function App() {
   const [userId, setUserId] = useState(0);
@@ -31,7 +34,7 @@ function App() {
     if (!isLoggedIn) {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
-        console.log(storedToken);
+        // console.log(storedToken);
         API.getUserFromToken(storedToken).then((data) => {
           if (data.user) {
             setToken(storedToken);
@@ -67,7 +70,7 @@ function App() {
 
   const handleSignup = (userObj) => {
     API.signup(userObj).then((data) => {
-      console.log('data', data);
+      // console.log('data', data);
       if (data.token) {
         setUserId(data.user.id);
         setToken(data.token);
@@ -86,22 +89,59 @@ function App() {
     })
   }
 
+  const handleLogout = ()=>{
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setUserId(0);
+    setToken('');
+    setUserName('');
+    setUserEmail('');
+    // TODO: Look into this tomorrow.
+    // Socket.Auth stuff?
+  }
+
+  const particlesInit = useCallback(async engine => {
+    console.log(engine);
+    // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(engine);
+  }, []);
+
+  const particlesLoaded = useCallback(async container => {
+      await console.log(container);
+  }, []);
+
   const renderRoutes = () => {
     return (
       <>
         <Router>
           <div className="flex w-screen h-screen">
-            <Nav view={view} setView={setView} />
-            <div id="routeContainer" className="w-full h-full bg-main-bg">
+            <Nav
+              view={view}
+              setView={setView}
+              handleLogout={handleLogout}
+            />
+            <div id="routeContainer" className="w-full h-full">
+            <Particles 
+              init={particlesInit}
+              loaded={particlesLoaded}
+              options={options}/>
               <Routes>
                 {/* LOBBY: */}
                 <Route path="/" element={<Lobby />} />
-                <Route path="/lobby" element={<Lobby />} />
+                <Route path="/lobby" element={<Lobby userId={userId} />} />
                 <Route path="/gameview" element={<Gameview />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/deckbuilder" element={<Deckbuilder userId={userId} handleDeckCreate={handleDeckCreate}/>} />
-                <Route path="/profile" element={<Profile userId={userId}/>} />
-                <Route path="/friends" element={<Friends />} />
+                <Route
+                  path="/profile"
+                  element={<Profile userId={userId} token={token} setIsLoggedIn={setIsLoggedIn} />}
+                />
+                <Route
+                  path="/friends"
+                  element={<Friends userId={userId} token={token} />}
+                />
               </Routes>
             </div>
           </div>
@@ -115,7 +155,17 @@ function App() {
       {isLoggedIn ? (
         renderRoutes()
       ) : (
-        <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} handleSignup={handleSignup} />
+        <>
+                    <Particles 
+              init={particlesInit}
+              loaded={particlesLoaded}
+              options={options}/>
+                      <Login
+          handleLogin={handleLogin}
+          handleSignup={handleSignup}
+        />
+        </>
+
       )}
     </div>
   );

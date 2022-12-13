@@ -20,9 +20,7 @@ export default function Gridslot({index, action, size}) {
      const [basket, setBasket] = useState([])
 
      useEffect(()=>{
-      setTimeout(()=>{
-        setWidth(getWidth(size))
-      }, 500)
+      setWidth(getWidth(size))
      },[])
      
      useEffect(()=>{
@@ -50,7 +48,8 @@ export default function Gridslot({index, action, size}) {
           }
         })
         setTimeout(() => {
-          setCurrentAnimation({scale:1})
+          setCurrentAnimation({scale:1});
+          Socket.IO.setSlot(index, card.faction)
         }, 500);
       }else if (action.type = 'flip'){
         const change = action.change;
@@ -68,7 +67,8 @@ export default function Gridslot({index, action, size}) {
         })
         setFaction(change.toFaction);
         setTimeout(()=>{
-          setCurrentAnimation({scale:1, backgroundColor:change.toFaction})
+          setCurrentAnimation({scale:1, backgroundColor:change.toFaction});
+          Socket.IO.setSlot(index, change.toFaction)
         },500)
       }
      },[action])
@@ -93,12 +93,21 @@ export default function Gridslot({index, action, size}) {
      })
     
      function getWidth(s){
-      return `1/${s}`
+      if (s== 3){
+        return '33%'
+      } else if (s==4){
+        return '25%'
+      } else if (s ==5 ){
+        return '20%'
+      }
      }
 
   return (
-    <motion.div ref={dropRef} animate={currentAnimation} className={`flex justify-center items-center relative grow w-${width} aspect-square border`} style={{backgroundColor:isOver ? 'yellow' : faction}}>
-      {card ? <Card inPlay={true} name={card.name} compass={card.compass} imagePath={card.imagePath}/> : ''}
+    <motion.div ref={dropRef} animate={currentAnimation} width={width} className={`aspect-square p-1`} style={{ width:width}}>
+      <div className={`${!card ? 'border' : ''} border-white/30 rounded w-full h-full overflow-hidden relative`} >
+        <div className='absolute w-[98%] h-[98%]' style={{backgroundColor:isOver ? 'yellow' : faction}}></div>
+        {card && <Card inPlay={true} name={card.name} compass={card.compass} imagePath={card.imagePath}/>}
+      </div>
     </motion.div>
   )
 }
