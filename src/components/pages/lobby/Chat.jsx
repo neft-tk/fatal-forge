@@ -8,7 +8,8 @@ export default function Chat({userId}) {
 
 
   const findUser = async () => {
-    const data = await API.getUser({userId});
+    console.log(userId)
+    const data = await API.getUser(userId);
     console.log(data);
     setUser(data.username)
   }
