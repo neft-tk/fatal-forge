@@ -59,6 +59,7 @@ export default function Deckbuilder({ userId, handleDeckCreate }) {
     <>
       <div className="text-center">Deckbuilder</div>
       <h1 className="text-center">Welcome to the Deckbuilder!</h1>
+      <h1 className="text-center">Create a New Deck Below:</h1>
       <div className="flex flex-row justify-evenly">
         <div className="flex flex-col deck-editor p-4">
           <h2>All Cards:</h2>
