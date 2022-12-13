@@ -51,7 +51,7 @@ function Friends({ userId, token }) {
     };
 
     fetchUser();
-    fetchUsers()
+    fetchUsers();
   }, []);
 
   const handleDeleteFriend = async (delObj) => {
@@ -64,6 +64,32 @@ function Friends({ userId, token }) {
     console.log(delMessage);
 
     // Reset friends after del
+    const data = await API.getUser(userId);
+    user = {
+      username: data.username,
+      email: data.email,
+      name: data.name,
+      motto: data.motto,
+      decks: data.Decks,
+      friends: data.FavoriteUser,
+      imagePath: data.imagePath,
+      decks: data.Decks,
+      friends: data.FavoriteUser,
+    };
+    setFriends(data.FavoriteUser);
+  };
+
+  const handleAddFriend = async (addObj) => {
+    const { userId, friendId, token } = addObj
+    console.log('Add this friend.');
+    console.log('User ID: ', userId);
+    console.log('Friend ID: ', friendId);
+    console.log('Token: ', token);
+    const addMessage = await API.addFriend(userId, friendId, token)
+    console.log(addMessage);
+
+    // TODO: Only add users that are NOT friends.
+    // Reset users after add
     const data = await API.getUser(userId);
     user = {
       username: data.username,
@@ -110,6 +136,9 @@ function Friends({ userId, token }) {
               <UserCard
                 key={users.id}
                 user={user}
+                userId={userId}
+                token={token}
+                handleAddFriend={handleAddFriend}
               />
             ))}
           </div>

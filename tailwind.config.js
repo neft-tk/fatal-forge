@@ -12,7 +12,7 @@ module.exports = {
         'alt-bg': '#444',
         'main-text': '#eee',
         'alt-text': '#ccc',
-        highlight: '#c0ffee',
+        'highlight': '#c0ffee',
         'alt-highlight': 'yellow',
         'main-orange': '#f25939',
         'highlight-orange': '#fe6601',
@@ -26,7 +26,6 @@ module.exports = {
       },
     },
   },
-  extend: {},
   plugins: [
     require('flowbite/plugin')
   ],

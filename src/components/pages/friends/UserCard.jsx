@@ -1,15 +1,15 @@
 import { FaUserPlus } from 'react-icons/fa';
 import Static from '../../../utils/staticHelper'
 
-function UserCard({ user }) {
+function UserCard({ user, userId, token, handleAddFriend }) {
 
-  const handleAddFriend = (e) => {
+  const handleAdd = (e) => {
     console.log("Add this guy as my friend.")
-    // handleDeleteFriend({
-    //   userId: userId,
-    //   friendId: friendId,
-    //   token: token
-    // });
+    handleAddFriend({
+      userId: userId,
+      friendId: user.id,
+      token: token
+    });
   };
 
   return (
@@ -22,7 +22,7 @@ function UserCard({ user }) {
         ></img>
         <p className="ml-4">{user.username}</p>
       </div>
-      <button className="profile-icon" onClick={handleAddFriend}><FaUserPlus size="40" /></button>
+      <button className="profile-icon" onClick={handleAdd}><FaUserPlus size="40" /></button>
     </div>
   );
 }
