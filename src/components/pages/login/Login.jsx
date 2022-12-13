@@ -71,7 +71,7 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
   };
 
   return (
-    <div className="h-full w-3/5 flex sm:flex-row flex-col justify-between mx-auto my-0">
+    <div className="h-full w-2/3 flex sm:flex-row flex-col justify-between mx-auto my-0">
       <div className="ml-8 flex flex-col justify-center items-center text-center sm:w-1/4 w-full">
         <form onSubmit={handleLoginSubmit} className="flex flex-col">
           <h3 className="pt-6 text-main-orange font-display-text-f">Login</h3>
@@ -186,8 +186,8 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
         </>
       </div>
 
-      <div className="flex justify-center items-center">
-        <img src={blacksmithGif} alt="A blacksmith hard at work." />
+      <div className="flex justify-center items-center min-w-50">
+        <img className='min-w-full' src={blacksmithGif} alt="A blacksmith hard at work." />
       </div>
     </div>
   );
