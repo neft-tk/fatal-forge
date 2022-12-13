@@ -5,7 +5,7 @@ import API from "../../../utils/API";
 // import Card from '../../Card';
 import CardView from "../../CardView";
 import DeckEditView from "../../DeckEditView";
-import CardBack from "../../CardBack";
+// import CardBack from "../../CardBack";
 
 export default function Deckbuilder({ userId, handleDeckCreate }) {
   const [cardData, setCardData] = useState([]);
@@ -64,7 +64,6 @@ export default function Deckbuilder({ userId, handleDeckCreate }) {
             <DeckEditView setDeckData={setDeckData} deckData={deckData} />
           </div>
           <h2>Select Your Deck Back:</h2>
-          <CardBack/>
           <li>Basic</li>
           <li>Cross</li>
           <li>Fluid-Rune</li>

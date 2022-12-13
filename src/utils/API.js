@@ -44,6 +44,16 @@ const API = {
     })
     return await res.json();
   },
+  // getCardBackSprite: async (cardback) => {
+  //   const res = await fetch(`${URL_PREFIX}/api/images/`, {
+  //     method: 'GET',
+  //     body: JSON.stringify(cardback),
+  //     headers: {
+  //       'Content-Type': 'Application/json',
+  //     },
+  //   })
+  //   return await res.json();
+  // },
   getUser: async (userId) => {
     const res = await fetch(`${URL_PREFIX}/api/users/${userId}`);
     return await res.json();
