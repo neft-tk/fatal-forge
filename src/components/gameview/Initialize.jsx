@@ -16,9 +16,11 @@ export default function Initialize(props) {
   useEffect(() => {
     Socket.IO.off('game');
     Socket.Game.OnPlayerUpdate((players) => {
+      console.log(players);
       if (players.filter(x => x.isReady).length > 1) {
         props.setView('game');
       }
+
       setConnectedUsers(players);
     })
     Socket.Game.OnStart((username) => {
@@ -34,6 +36,7 @@ export default function Initialize(props) {
     console.log('size', data.size);
     props.setSize(data.size);
     setConnectedUsers(data.players);
+
 
     const userId = Socket.IO.userInfo.id;
     const r = await fetch(`${Static.serverUrl}/api/users/${userId}`);

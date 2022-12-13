@@ -9,17 +9,6 @@ import Gridslot from './Gridslot';
 export default function Grid({setIsMyTurn,size, setPlayers}) {
   const [action, setAction] = useState();
 
-  // const getScoreChange = (players) =>{
-  //   const me = players.find(x=>x.color == Socket.IO.color);
-  //   const other = players.find(x=>x.color != Socket.IO.color);
-
-  //   const myChange = me.score - scores[0];
-  //   const otherChange = other.score - scores[1];
-  //   setScores([me,other])
-  //   return [myChange,otherChange];
-    
-  // }
-
   useState(()=>{
     Socket.Game.OnPlacedCard((data)=>{
       Socket.IO.myTurn = false;

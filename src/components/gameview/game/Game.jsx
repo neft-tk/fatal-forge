@@ -30,7 +30,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import Socket from '../../../utils/socket'
 import Static from '../../../utils/staticHelper'
 
-export default function Game({ deckId, size }) {
+export default function Game({ deckId, size, gameId}) {
   const [deck, setDeck] = useState(null);
   const [myTurn, setMyTurn] = useState();
   const [players, setPlayers] = useState([]);
@@ -38,6 +38,7 @@ export default function Game({ deckId, size }) {
   
 
   useEffect(() => {
+    setup();
     Socket.IO.slots = Array(size*size).fill(null);
     Socket.IO.setSlot = (index,color)=>{
       Socket.IO.slots[index] = color;
@@ -47,6 +48,27 @@ export default function Game({ deckId, size }) {
     setIsMyTurn(Socket.IO.myTurn)
     getHand();
   }, [])
+
+  const setup = async() =>{
+    const resp = await fetch(`${Static.serverUrl}/api/sockets/games/${gameId}`);
+    const data = await resp.json();
+    console.log('this', data)
+    const op = data.players.find(x=>x.userData.username != Socket.IO.userInfo.username);
+    if (op){
+      Socket.IO.opponent = op;
+      console.log('opponent',op);
+    }
+    setPlayers(data.players);
+  }
+
+  useEffect(()=>{
+    if (slots.filter(x=>x!=null).length == size*size){
+      //todo: hit our endpoint to update gamehistory/stats
+
+      //todo: make a modal that gives choice to go to assembly or home
+      alert('game ended');
+    }
+  },[slots])
 
   const getScore = (color)=>{
     return slots.filter(x=>x == color).length;
