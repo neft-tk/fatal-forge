@@ -20,9 +20,10 @@ export default function Gridslot({index, action, size}) {
      const [basket, setBasket] = useState([])
 
      useEffect(()=>{
-      setTimeout(()=>{
-        setWidth(getWidth(size))
-      }, 500)
+      setWidth(getWidth(size))
+      // setTimeout(()=>{
+        
+      // }, 1000)
      },[])
      
      useEffect(()=>{
@@ -93,11 +94,17 @@ export default function Gridslot({index, action, size}) {
      })
     
      function getWidth(s){
-      return `1/${s}`
+      if (s== 3){
+        return '33%'
+      } else if (s==4){
+        return '25%'
+      } else if (s ==5 ){
+        return '20%'
+      }
      }
 
   return (
-    <motion.div ref={dropRef} animate={currentAnimation} className={`flex justify-center items-center relative grow w-${width} aspect-square border`} style={{backgroundColor:isOver ? 'yellow' : faction}}>
+    <motion.div ref={dropRef} animate={currentAnimation} width={width} className={`flex justify-center items-center grow aspect-square border`} style={{backgroundColor:isOver ? 'yellow' : faction, width:width}}>
       {card ? <Card inPlay={true} name={card.name} compass={card.compass} imagePath={card.imagePath}/> : ''}
     </motion.div>
   )
