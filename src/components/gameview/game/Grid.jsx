@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import Socket from '../../../utils/socket';
 import Gridslot from './Gridslot';
 
-export default function Grid({setIsMyTurn,size}) {
+export default function Grid({setIsMyTurn,size, modMy, modThem}) {
   const [action, setAction] = useState();
 
   // const getScoreChange = (players) =>{
@@ -65,7 +65,7 @@ export default function Grid({setIsMyTurn,size}) {
 
   return (
     <div id='grid' className={'flex flex-wrap justify-around items-around border border-yellow-500 grow max-h-[70%] min-w-[100px] max-w-full shrink aspect-square'}>
-      {slots.map((x,i)=>{return <Gridslot key={i} index={i} action={action} size={size}/>})}
+      {slots.map((x,i)=>{return <Gridslot key={i} index={i} action={action} size={size} modMy={modMy} modThem={modThem}/>})}
     </div>
   )
 }

@@ -33,6 +33,16 @@ import Static from '../../../utils/staticHelper'
 export default function Game({deckId,size}) {
   const [deck, setDeck] = useState(null);
   const [myTurn, setMyTurn] = useState();
+  const [myScore, setMyScore] = useState(0);
+  const [theirScore, setTheirScore] = useState(0)
+
+  const modMyScore = (amount) =>{
+    setMyScore(myScore + amount);
+  }
+
+  const modTheirScore = (amount) =>{
+    setTheirScore(theirScore + amount);
+  }
 
   useEffect(()=>{
     setIsMyTurn(Socket.IO.myTurn)
@@ -76,9 +86,12 @@ export default function Game({deckId,size}) {
 
   return (
       <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
-        <Grid setIsMyTurn={setIsMyTurn} size={size}/>
+        <Grid setIsMyTurn={setIsMyTurn} size={size} modMy={modMyScore} modThem={modTheirScore}/>
         <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting for opponent'}</h1>
         {deck ? <Hand deck={deck} /> : ''}
+        <div>
+          {myScore} - {theirScore}
+        </div>
       </div>
 
   )

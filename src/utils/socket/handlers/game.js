@@ -77,7 +77,7 @@ export const Game = (socket)=>{
         },
         Leave(){
             socket.emit('game', {
-                type:'disconnect',
+                type:'leave',
                 gameId: id
             })
         }

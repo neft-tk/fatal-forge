@@ -9,7 +9,7 @@ import {motion} from 'framer-motion'
 import Card from '../../Card';
 import state from '../../..//utils/staticHelper'
 
-export default function Gridslot({index, action, size}) {
+export default function Gridslot({index, action, size, modMy, modThem}) {
 
     const [card, setCard] = useState();
     const [faction, setFaction] = useState('transparent');
@@ -51,7 +51,12 @@ export default function Gridslot({index, action, size}) {
           }
         })
         setTimeout(() => {
-          setCurrentAnimation({scale:1})
+          setCurrentAnimation({scale:1});
+          if (card.faction == Socket.IO.color){
+            modMy(1);
+          }else{
+            modThem(1);
+          }
         }, 500);
       }else if (action.type = 'flip'){
         const change = action.change;
@@ -69,7 +74,14 @@ export default function Gridslot({index, action, size}) {
         })
         setFaction(change.toFaction);
         setTimeout(()=>{
-          setCurrentAnimation({scale:1, backgroundColor:change.toFaction})
+          setCurrentAnimation({scale:1, backgroundColor:change.toFaction});
+          if (change.toFaction == Socket.IO.color){
+            modMy(1);
+            modThem(-1);
+          }else{
+            modMy(-1);
+            modThem(1);
+          }
         },500)
       }
      },[action])
