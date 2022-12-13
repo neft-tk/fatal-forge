@@ -23,8 +23,8 @@ export default function Chat({ userId }) {
   }
 
   useEffect(() => {
-    Socket.Chat.RecieveMessage()
-  }, [])
+    Socket.Chat.RecieveMessage();
+  }, []);
 
   return (
     <div className='h-3/4 flex flex-col justify-evenly align-middle items-center'>

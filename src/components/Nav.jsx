@@ -4,24 +4,28 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaGamepad, FaUserFriends } from 'react-icons/fa';
+import { FaGamepad, FaUserAlt, FaUserFriends } from 'react-icons/fa';
 import { BsFillChatDotsFill, BsQuestionLg } from 'react-icons/bs';
 import { GiCardAceSpades } from 'react-icons/gi';
-import { CgProfile } from 'react-icons/cg';
-import { Button, Modal, Label, TextInput } from 'flowbite-react';
+import { RiLogoutBoxFill } from 'react-icons/ri';
+import { Modal } from 'flowbite-react';
 import HomeIcon from '.././assets/svg/homeIcon.svg';
 import NavBarIcon from './NavBarIcon';
 import gllogo from '../assets/png/gridlocke1.png';
 
-export default function Nav(props) {
+export default function Nav({ view, setView, handleLogout }) {
   const [showModal, setShowModal] = useState(false);
 
-  const onModalClick = (e) => {
+  const onModalClick = () => {
     setShowModal(true);
   };
 
-  const onModalClose = (e) => {
+  const onModalClose = () => {
     setShowModal(false);
+  };
+
+  const onLogoutClick = () => {
+    handleLogout();
   };
 
   return (
@@ -40,7 +44,7 @@ export default function Nav(props) {
         <NavBarIcon icon={<GiCardAceSpades size="40" />} text="Deck Builder" />
       </Link>
       <Link to="/profile">
-        <NavBarIcon icon={<CgProfile size="40" />} text="Profile" />
+        <NavBarIcon icon={<FaUserAlt size="40" />} text="Profile" />
       </Link>
       <Link to="/friends">
         <NavBarIcon icon={<FaUserFriends size="40" />} text="Friends" />
@@ -48,19 +52,34 @@ export default function Nav(props) {
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Stats'/> */}
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Channels'/> */}
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Settings'/> */}
-      <span onClick={onModalClick}><NavBarIcon icon={<BsQuestionLg size="40" />} text="How To Play" /> </span>
+      <button onClick={onModalClick}>
+        <NavBarIcon icon={<BsQuestionLg size="40" />} text="How To Play" />{' '}
+      </button>
+      <button onClick={onLogoutClick}>
+        <NavBarIcon icon={<RiLogoutBoxFill size="40" />} text="Logout" />{' '}
+      </button>
       <>
-        <Modal className='' show={showModal} size="xl" popup={true} onClose={onModalClose}>
+        <Modal show={showModal} size="xl" popup={true} onClose={onModalClose}>
           <Modal.Header className="bg-slate-600">
             <Modal.Body className="bg-slate-500 max-h-90 min-w-full overflow-auto">
-              <div className="">
-                <h3>How to Play:</h3>
+              <div>
+                <h3 className="text-center text-xl text-main-orange">
+                  How to Play:
+                </h3>
                 <p>
-                  In Gridlocke, your goal is to control the majority of the grid at the end of the game!
+                  In Gridlocke, your goal is to control the majority of the grid
+                  at the end of the game!
                   <br />
-                  Each player takes turn playing a card in an empty slot on the grid. After playing your card, your card will initiate a battle with any adjacent opposing cards!
+                  Each player takes turn playing a card in an empty slot on the
+                  grid. After playing your card, your card will initiate a
+                  battle with any adjacent opposing cards!
                   <br />
-                  When a battle occurs, your card's stat will be compared to the adjacent opposing card's stat. So if there is a card north of the slot you just played your card, your card's north stat will be compared to the opposing card's lower stat. If your card's value is higher, then you will capture the opposing card!
+                  When a battle occurs, your card's stat will be compared to the
+                  adjacent opposing card's stat. So if there is a card north of
+                  the slot you just played your card, your card's north stat
+                  will be compared to the opposing card's lower stat. If your
+                  card's value is higher, then you will capture the opposing
+                  card!
                   <br />
                   Keep in mind that the order of battle is left, right, top, then bottom! Your card will do battle in each of these directions and perform a chain.
                 </p>
@@ -75,7 +94,6 @@ export default function Nav(props) {
             </Modal.Body>
           </Modal.Header>
         </Modal>
-
       </>
     </div>
   );

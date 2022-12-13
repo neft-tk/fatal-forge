@@ -62,7 +62,7 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    console.log('Signup clicked!');
+    // console.log('Signup clicked!');
     handleSignup({
       username: signupUsername,
       email: signupEmail,
@@ -114,7 +114,9 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
 
         <>
           <h3 className="m-4 font-alt-text-f">
-            New here?{' '}
+            <span className='mr-4'>
+              New here?
+            </span>
             <span
               onClick={onModalClick}
               className="text-highlight-orange hover:text-active-orange cursor-pointer"

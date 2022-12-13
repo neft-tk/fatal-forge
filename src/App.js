@@ -31,7 +31,7 @@ function App() {
     if (!isLoggedIn) {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
-        console.log(storedToken);
+        // console.log(storedToken);
         API.getUserFromToken(storedToken).then((data) => {
           if (data.user) {
             setToken(storedToken);
@@ -67,7 +67,7 @@ function App() {
 
   const handleSignup = (userObj) => {
     API.signup(userObj).then((data) => {
-      console.log('data', data);
+      // console.log('data', data);
       if (data.token) {
         setUserId(data.user.id);
         setToken(data.token);
@@ -80,12 +80,27 @@ function App() {
     });
   };
 
+  const handleLogout = ()=>{
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setUserId(0);
+    setToken('');
+    setUserName('');
+    setUserEmail('');
+    // TODO: Look into this tomorrow.
+    // Socket.Auth stuff?
+  }
+
   const renderRoutes = () => {
     return (
       <>
         <Router>
           <div className="flex w-screen h-screen">
-            <Nav view={view} setView={setView} />
+            <Nav
+              view={view}
+              setView={setView}
+              handleLogout={handleLogout}
+            />
             <div id="routeContainer" className="w-full h-full bg-main-bg">
               <Routes>
                 {/* LOBBY: */}
@@ -94,8 +109,14 @@ function App() {
                 <Route path="/gameview" element={<Gameview />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/deckbuilder" element={<Deckbuilder />} />
-                <Route path="/profile" element={<Profile userId={userId} />} />
-                <Route path="/friends" element={<Friends />} />
+                <Route
+                  path="/profile"
+                  element={<Profile userId={userId} token={token} setIsLoggedIn={setIsLoggedIn} />}
+                />
+                <Route
+                  path="/friends"
+                  element={<Friends userId={userId} token={token} />}
+                />
               </Routes>
             </div>
           </div>
@@ -109,7 +130,10 @@ function App() {
       {isLoggedIn ? (
         renderRoutes()
       ) : (
-        <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} handleSignup={handleSignup} />
+        <Login
+          handleLogin={handleLogin}
+          handleSignup={handleSignup}
+        />
       )}
     </div>
   );
