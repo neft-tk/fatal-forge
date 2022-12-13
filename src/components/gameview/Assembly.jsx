@@ -5,11 +5,20 @@
 import React, { useEffect, useState } from 'react'
 import Socket from '../../utils/socket';
 import Static from '../../utils/staticHelper'
+import { Button, Modal, Label, TextInput} from 'flowbite-react';
 
 function Assembly({ setView, setGameId }) {
   const [joinRoom, setJoinRoom] = useState("");
   const [createRoom, setCreateRoom] = useState("");
   const [gridSize, setGridSize] = useState(3);
+  const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState('hi');
+
+  const Alert = (msg) =>{
+    setMessage(msg);
+    console.log(msg);
+    setShowModal(true);
+  }
 
   useEffect(() => {
     Socket.IO.off('game');
@@ -21,6 +30,9 @@ function Assembly({ setView, setGameId }) {
     // Based on which button was clicked.
     switch (e.target.id) {
       case "join-room": {
+        if (!joinRoom){
+          Alert('Must enter a room name.')
+        }
         // Going to hit our api for a response to see if that room exists
         const resp = await fetch(`${Static.serverUrl}/api/sockets/games/${joinRoom}`);
 
@@ -35,23 +47,27 @@ function Assembly({ setView, setGameId }) {
             setView('initialize');
           } else {
             //todo: change the alert to a modal when we get deeper in styling
-            alert('That room is full.')
+            Alert('That room is full.')
           }
         } else {
-          alert(`That room doesn't exist`);
+          Alert(`That room doesn't exist`);
         }
 
       }
         break;
 
       case "create-room": {
+        if(!createRoom){
+          Alert("Room ID cannot be empty.")
+          return;
+        }
         // Going to hit our api for a response to see if that room already exists
         const resp = await fetch(`${Static.serverUrl}/api/sockets/games/${createRoom}`);
 
         // if the response is ok then that room already exists
         if (resp.ok) {
           //todo: change the alert to a modal when we get deeper in styling
-          alert('Room with that name already exists. Try another')
+          Alert('Room with that name already exists. Try another.')
         } else {
           // Create the game room on the server with socket, and set the states in the gameview to render the initialize component
           Socket.Game.CreateGame(createRoom, gridSize);
@@ -65,7 +81,34 @@ function Assembly({ setView, setGameId }) {
     setJoinRoom("")
   }
 
+  function renderModal(){
+    return(    <Modal
+      show={showModal}
+      size="md"
+      popup={true}
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
+            <h3 className="mb-5 text-lg font-normal text-gray-400">
+              {message}
+            </h3>
+            <div className="flex justify-center gap-4">
+              <Button
+                color="gray"
+                onClick={()=>{setShowModal(false)}}
+              >
+                OK
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>)
+  }
+
   return (
+    <>
     <div className='flex flex-col h-full items-center align-middle justify-evenly'>
       <h3 className='text-4xl font-display-text-f'>Join or Create a room to play!</h3>
       <form action="" className='h-4/5 w-2/5 flex justify-between items-center'>
@@ -89,7 +132,10 @@ function Assembly({ setView, setGameId }) {
         </div>
       </form>
     </div>
+    {renderModal(message)}
+  </>
   )
+  
 }
 
 export default Assembly;

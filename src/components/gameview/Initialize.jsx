@@ -6,12 +6,21 @@ import React, { useEffect, useState } from 'react'
 import Socket from '../../utils/socket';
 import { CirclePicker } from 'react-color';
 import Static from '../../utils/staticHelper'
+import { Button, Modal, Label, TextInput} from 'flowbite-react';
 
 export default function Initialize(props) {
   // Use the DeckID as values for the options
   const [deckChoice, setDeckChoice] = useState();
   const [connectedUsers, setConnectedUsers] = useState([]);
   const [decks, setDecks] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState('hi');
+
+  const Alert = (msg) =>{
+    setMessage(msg);
+    console.log(msg);
+    setShowModal(true);
+  }
 
   useEffect(() => {
     Socket.IO.off('game');
@@ -74,15 +83,45 @@ export default function Initialize(props) {
     // TODO: Check that values are valid
     // this is ensuring users pick different colors
     const set = new Set(connectedUsers.map(x => x.color));
-    if (set.size != connectedUsers.length) {
-      alert('Someone already has that color! Please choose a different one.');
+    if (!Socket.IO.color){
+      Alert("You must pick a color.")
+    }else if (set.size != connectedUsers.length) {
+      Alert('Someone already has that color! Please choose a different one.');
     } else {
       Socket.Game.SetReady();
     }
 
   }
 
+  function renderModal(){
+    return(    <Modal
+      show={showModal}
+      size="md"
+      popup={true}
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
+            <h3 className="mb-5 text-lg font-normal text-gray-400">
+              {message}
+            </h3>
+            <div className="flex justify-center gap-4">
+              <Button
+                color="gray"
+                onClick={()=>{setShowModal(false)}}
+              >
+                OK
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>)
+  }
+
   return (
+    <>
+
     <div className='text-center h-full flex flex-col justify-evenly align-center'>
 
       <h1 className='text-4xl font-display-text-f'>Game Setup</h1>
@@ -124,5 +163,7 @@ export default function Initialize(props) {
         <h1 className='text-gray-300 text-4xl rounded-md w-1/5 p-3 font-main-text-f'>Room ID: <span className='font-bold font-alt-text-f text-white m-3'>{props.gameId}</span></h1>
       </div>
     </div>
+    {renderModal()}
+</>
   )
 }
