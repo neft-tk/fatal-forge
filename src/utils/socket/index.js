@@ -6,11 +6,13 @@ const ClientSocket = ()=>{
     //const lobby = handlers.Lobby(socket);
     const game = handlers.Game(socket);
     const auth = handlers.Auth(socket);
+    const chat = handlers.Chat(socket)
 
     return {
         //Lobby: lobby,
         Auth: auth,
         Game: game,
+        Chat: chat,
         Emit: function(eventType, ...args){
             socket.emit(eventType, ...args)
         },
