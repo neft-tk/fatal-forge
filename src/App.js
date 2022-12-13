@@ -90,7 +90,7 @@ function App() {
               <Routes>
                 {/* LOBBY: */}
                 <Route path="/" element={<Lobby />} />
-                <Route path="/lobby" element={<Lobby />} />
+                <Route path="/lobby" element={<Lobby userId={userId}/>} />
                 <Route path="/gameview" element={<Gameview />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/deckbuilder" element={<Deckbuilder />} />

@@ -4,9 +4,14 @@ import Chat from '../lobby/Chat'
 // Chat, friends tab, add friend, etc.
 
 import React from 'react'
+import Chat from './Chat'
 
-export default function Lobby() {
+export default function Lobby({userId}) {
   return (
+<<<<<<< HEAD
     <Chat />
+=======
+    <Chat userId={userId} />
+>>>>>>> dev
   )
 }
