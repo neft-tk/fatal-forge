@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import * as handlers from './handlers'
 import Static from '../staticHelper'
-const ClientSocket = ()=>{
+const ClientSocket = () => {
     const socket = io(`${Static.serverUrl}`, { transports: ['websocket', 'polling', 'flashsocket'] });
     //const lobby = handlers.Lobby(socket);
     const game = handlers.Game(socket);
@@ -13,10 +13,10 @@ const ClientSocket = ()=>{
         Auth: auth,
         Game: game,
         Chat: chat,
-        Emit: function(eventType, ...args){
+        Emit: function (eventType, ...args) {
             socket.emit(eventType, ...args)
         },
-        IO : socket
+        IO: socket
     }
 }
 

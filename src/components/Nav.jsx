@@ -63,13 +63,13 @@ export default function Nav(props) {
                   When a battle occurs, your card's stat will be compared to the adjacent opposing card's stat. So if there is a card north of the slot you just played your card, your card's north stat will be compared to the opposing card's lower stat. If your card's value is higher, then you will capture the opposing card!
                   <br />
                   Keep in mind that the order of battle is left, right, top, then bottom! Your card will do battle in each of these directions and perform a chain.
-                  </p>
+                </p>
                 <h3>Chaining Cards:</h3>
                 <br />
                 <p>
-                After capturing an opposing card, your card will perform a chain! This means that the card that you just captured will act just like playing a new card.
-                <br />
-                The new card will perform battle just like playing a regular card, and this process will continue until the card loses.
+                  After capturing an opposing card, your card will perform a chain! This means that the card that you just captured will act just like playing a new card.
+                  <br />
+                  The new card will perform battle just like playing a regular card, and this process will continue until the card loses.
                 </p>
               </div>
             </Modal.Body>

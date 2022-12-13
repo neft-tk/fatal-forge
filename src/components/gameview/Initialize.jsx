@@ -21,7 +21,7 @@ export default function Initialize(props) {
       }
       setConnectedUsers(players);
     })
-    Socket.Game.OnStart((username)=>{
+    Socket.Game.OnStart((username) => {
       const myTurn = Socket.IO.userInfo.username == username;
       Socket.IO.myTurn = myTurn;
     })
@@ -50,10 +50,10 @@ export default function Initialize(props) {
       <div id='usersContainer' className='flex flex-col justify-evenly h-4/5 rounded-lg p-10 shadow-xl shadow-black'>
         {users.map((x, i) => {
           return (
-            <div className='text-center border rounded-lg h-1/3 hover:scale-105 transition-all' key={i} style={{borderColor: x.color}}>
+            <div className='text-center border rounded-lg h-1/3 hover:scale-105 transition-all' key={i} style={{ borderColor: x.color }}>
               <div className='flex justify-evenly items-center h-3/5'>
                 <h3 className='font-semibold text-main-text font-main-text-f text-xl'>{x.userData.username}</h3>
-                <div className='border p-1 rounded-full w-1/5 h-1/5' style={{ backgroundColor: x.color}}></div>
+                <div className='border p-1 rounded-full w-1/5 h-1/5' style={{ backgroundColor: x.color }}></div>
               </div>
               <h3 className='h-2/5 font-semibold text-alt-text font-alt-text-f'>{x.isReady ? 'Ready' : 'Preparing'}</h3>
             </div>

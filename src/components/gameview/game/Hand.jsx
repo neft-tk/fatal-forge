@@ -5,14 +5,14 @@
 import React, { useEffect } from 'react'
 import Handslot from './Handslot'
 
-export default function Hand({deck}) {
+export default function Hand({ deck }) {
     const hand = [];
 
-    const drawCard = ()=>{
+    const drawCard = () => {
         console.log(deck);
         const rand = Math.floor(Math.random() * deck.length);
         console.log(rand);
-        const card = deck.splice(rand,1)[0];
+        const card = deck.splice(rand, 1)[0];
         return card;
     }
 
@@ -20,8 +20,7 @@ export default function Hand({deck}) {
 
     return (
         <div className='flex justify-between'>
-            {slots.map((x,i)=>{return(<Handslot key={i} index={i} drawCard={drawCard}/>)})}
+            {slots.map((x, i) => { return (<Handslot key={i} index={i} drawCard={drawCard} />) })}
         </div>
     )
 }
-    

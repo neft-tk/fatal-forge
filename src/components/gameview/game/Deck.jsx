@@ -2,7 +2,6 @@
 
 // Users will create decks with the deckbuilding component.
 
-
 import React from 'react'
 
 export default function Deck() {

@@ -30,16 +30,16 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import Socket from '../../../utils/socket'
 import Static from '../../../utils/staticHelper'
 
-export default function Game({deckId,size}) {
+export default function Game({ deckId, size }) {
   const [deck, setDeck] = useState(null);
   const [myTurn, setMyTurn] = useState();
 
-  useEffect(()=>{
+  useEffect(() => {
     setIsMyTurn(Socket.IO.myTurn)
     getHand();
-  },[])
+  }, [])
 
-  const setIsMyTurn = (isMyTurn)=>{
+  const setIsMyTurn = (isMyTurn) => {
     setMyTurn(isMyTurn);
     // if (isMyTurn){
     //   alert("Your Turn");
@@ -68,11 +68,11 @@ export default function Game({deckId,size}) {
   }
 
   return (
-      <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
-        <Grid setIsMyTurn={setIsMyTurn} size={size}/>
-        <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting for opponent'}</h1>
-        {deck ? <Hand deck={deck} /> : ''}
-      </div>
+    <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
+      <Grid setIsMyTurn={setIsMyTurn} size={size} />
+      <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting for opponent'}</h1>
+      {deck ? <Hand deck={deck} /> : ''}
+    </div>
 
   )
 }

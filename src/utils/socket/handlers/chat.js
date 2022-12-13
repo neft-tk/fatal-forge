@@ -1,4 +1,4 @@
-export const Chat = (socket)=>{
+export const Chat = (socket) => {
     return {
         SendMessage(message) {
             socket.emit('send-message', message)

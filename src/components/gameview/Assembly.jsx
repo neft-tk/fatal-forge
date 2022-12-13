@@ -77,12 +77,14 @@ function Assembly({ setView, setGameId }) {
         <div className='flex flex-col h-3/5 items-center justify-between font-main-text-f'>
           <label htmlFor="createRoomInput" className='text-2xl font-semibold'>Create</label>
           <input type='text' id='createRoomInput' placeholder="New Room ID" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={createRoom} onChange={e => setCreateRoom(e.target.value)} />
-          <label htmlFor="gridSize" className='text-2xl font-semibold alt-text-f'>Grid Size</label>
-          <select id='gridSize' className='bg-alt-bg font-alt-text-f' defaultValue={3} onChange={(e)=>{setGridSize(e.target.value)}}>
-            <option className='font-alt-text-f' value={3}>3x3</option>
-            <option className='font-alt-text-f' value={4}>4x4</option>
-            <option className='font-alt-text-f' value={5}>5x5</option>
-          </select>
+          <div className='flex flex-col justify-between h-1/4'>
+            <label htmlFor="gridSize" className='text-2xl font-semibold alt-text-f'>Grid Size</label>
+            <select id='gridSize' className='bg-alt-bg font-alt-text-f' defaultValue={3} onChange={(e) => { setGridSize(e.target.value) }}>
+              <option className='font-alt-text-f' value={3}>3x3</option>
+              <option className='font-alt-text-f' value={4}>4x4</option>
+              <option className='font-alt-text-f' value={5}>5x5</option>
+            </select>
+          </div>
           <button id='create-room' className='bg-highlight-orange hover:bg-active-orange text-white font-bold py-2 px-4 rounded' onClick={handleFormSubmit}>Create Room</button>
         </div>
       </form>

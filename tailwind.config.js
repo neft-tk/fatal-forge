@@ -25,8 +25,8 @@ module.exports = {
         'display-text-f': ['"Forum"', 'Copperstone']
       },
     },
-    },
-    extend: {},
+  },
+  extend: {},
   plugins: [
     require('flowbite/plugin')
   ],
