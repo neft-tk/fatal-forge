@@ -37,16 +37,20 @@ function DeckCard({ deck }) {
   };
 
   return (
-    <div className="flex m-4 p-2 justify-center items-center border-2 rounded border-black">
+    // Overall Card
+    <div className="flex flex-wrap justify-evenly items-center rounded h-full">
+      {/* Deck + Deck Name */}
+      {/* TODO: Make each deck a link to deckbuilder with that deck */}
       <div className="flex flex-col justify-center items-center p-2">
         <img
-          className="w-40 h-40 border-4 border-black rounded-3xl"
+          className="h-1/3 border-4 border-black rounded-3xl"
           src={`${Static.serverUrl}/api/images/${deck.imagePath}`}
           alt="Deck's Back of Card"
         />
         <h3 className="mt-4">{deck.deckName}</h3>
       </div>
-      <div className="ml-4 flex flex-col justify-center items-center">
+      {/* Sample */}
+      {/* <div className="ml-4 flex flex-col justify-center items-center">
         <h3>Includes:</h3>
         <div className="grid grid-cols-2 grid-rows-2 gap-2">
           {cards.map((card) => (
@@ -60,7 +64,7 @@ function DeckCard({ deck }) {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

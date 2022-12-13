@@ -74,7 +74,7 @@ const API = {
     const res = await fetch(`${URL_PREFIX}/api/users/readtoken`, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
       },
     });
     return await res.json();
@@ -85,6 +85,20 @@ const API = {
   },
 
   // POSTs
+  addFriend: async (userId, friendId, token) => {
+    const res = await fetch(`${URL_PREFIX}/api/users/${userId}/friends/${friendId}`, {
+      method: 'POST',
+      body:JSON.stringify({
+        userId,
+        friendId
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    return await res.json();
+  },
 
   // PUTs
   editUser: async (token) => {
@@ -97,7 +111,7 @@ const API = {
     const res = await fetch(`${URL_PREFIX}/api/users/${userId}`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
       },
     });
     return await res.json();
@@ -110,11 +124,11 @@ const API = {
       {
         method: 'DELETE',
         headers: {
-          Authorization: `Bearer ${token}`,
+          'Authorization': `Bearer ${token}`,
         },
       }
     );
-    return res;
+    return await res.json();
   },
 };
 export default API;

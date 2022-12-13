@@ -61,7 +61,7 @@ export default function Nav({ view, setView, handleLogout }) {
       <>
         <Modal show={showModal} size="xl" popup={true} onClose={onModalClose}>
           <Modal.Header className="bg-slate-600">
-            <Modal.Body className="bg-slate-500 max-h-90 min-w-full overflow-auto">
+            <Modal.Body className="bg-slate-500 max-h-90 min-w-full text-sm overflow-auto">
               <div>
                 <h3 className="text-center text-xl text-main-orange">
                   How to Play:
