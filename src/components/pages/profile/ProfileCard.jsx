@@ -1,22 +1,38 @@
+import React, { useState } from 'react';
+import { Modal, Button } from 'flowbite-react';
 import { FaUserEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
+import { HiOutlineExclamationCircle } from 'react-icons/hi'
 import DeckView from './DeckView';
 import StatsView from './StatsView';
 import PastGamesView from './PastGamesView';
-import Static from '../../../utils/staticHelper'
+import Static from '../../../utils/staticHelper';
 
-function ProfileCard({ user, userId, token, handleEditUser, handleDeleteUser }) {
+function ProfileCard({
+  user,
+  userId,
+  token,
+  handleEditUser,
+  handleDeleteUser,
+}) {
+  const [showModal, setShowModal] = useState(false);
+
+  const onModalClick = (e) => {
+    setShowModal(true);
+  };
+
+  const onModalClose = (e) => {
+    setShowModal(false);
+  };
 
   const handleEdit = (e) => {
-    console.log("Edit clicked.");
-    console.log("Will edit following user: ", user);
-    console.log("With the following ID: ", userId);
+    console.log('Edit clicked.');
+    console.log('Will edit following user: ', user);
+    console.log('With the following ID: ', userId);
     handleEditUser({
-      userObj: {
-
-      },
+      userObj: {},
       userId: userId,
-      token: token
+      token: token,
     });
   };
 
@@ -26,9 +42,11 @@ function ProfileCard({ user, userId, token, handleEditUser, handleDeleteUser }) 
     // console.log("With the following ID: ", userId);
     handleDeleteUser({
       userId: userId,
-      token: token
+      token: token,
     });
   };
+
+  
 
   return (
     <>
@@ -63,10 +81,29 @@ function ProfileCard({ user, userId, token, handleEditUser, handleDeleteUser }) 
           <button
             type="button"
             className="profile-icon m-4"
-            onClick={handleDelete}
+            onClick={onModalClick}
           >
             <MdDelete size="48" className='' />
           </button>
+          <Modal show={showModal} size="md" popup={true} onClose={onModalClose}>
+            <Modal.Header className="bg-slate-600"/>
+            <Modal.Body className="bg-slate-500">
+              <div className="text-center">
+                <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-white dark:text-gray-200" />
+                <h3 className="mb-5 text-lg font-normal text-white dark:text-gray-400">
+                  Are you sure you want to delete your profile?
+                </h3>
+                <div className="flex justify-center gap-4">
+                  <Button color="failure" onClick={handleDelete}>
+                    Yes, I'm sure
+                  </Button>
+                  <Button color="gray" onClick={onModalClose}>
+                    No, cancel
+                  </Button>
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
         </div>
       </div>
       {/* Decks, Matches, Stats */}
