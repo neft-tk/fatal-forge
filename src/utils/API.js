@@ -26,18 +26,23 @@ const API = {
     return await res.json();
   },
 
-  // GETS
+  // GETs
+  // TODO: Delete the not needed routes.
   getUser: async (userId) => {
     const res = await fetch(`${URL_PREFIX}/api/users/${userId}`);
     return await res.json();
   },
-  getUserPicture: async () => {
-    const res = await fetch(`${URL_PREFIX}/api/images/`);
-  },
-  getUserFriends: async (userId, friendId) => {
-    const res = await fetch(`${URL_PREFIX}/api/users/${userId}/friends/${friendId}`);
+  getAllUsers: async () => {
+    const res = await fetch(`${URL_PREFIX}/api/users/`);
     return await res.json();
   },
+  // getUserPicture: async () => {
+  //   const res = await fetch(`${URL_PREFIX}/api/images/`);
+  // },
+  // getUserFriend: async (userId, friendId) => {
+  //   const res = await fetch(`${URL_PREFIX}/api/users/${userId}/friends/${friendId}`);
+  //   return await res.json();
+  // },
   getUserFromToken: async (token) => {
     const res = await fetch(`${URL_PREFIX}/api/users/readtoken`, {
       method: 'GET',
@@ -47,8 +52,19 @@ const API = {
     });
     return await res.json();
   },
+  getDeckCards: async (deckId) => {
+    const res = await fetch(`${URL_PREFIX}/api/decks/${deckId}`);
+    return await res.json();
+  },
 
-  // DELETES
+  // POSTs
+
+  // PUTs
+  editUser: async (token) => {
+
+  },
+
+  // DELETEs
   // @ api/users/:userId
   deleteUser: async (userId, token) => {
     const res = await fetch(`${URL_PREFIX}/api/users/${userId}`, {
@@ -71,7 +87,7 @@ const API = {
         },
       }
     );
-    return await res;
+    return res;
   },
 };
 export default API;

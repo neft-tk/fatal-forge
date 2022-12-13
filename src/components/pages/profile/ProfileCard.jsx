@@ -5,34 +5,60 @@ import StatsView from './StatsView';
 import PastGamesView from './PastGamesView';
 import Static from '../../../utils/staticHelper'
 
-function ProfileCard({ user }) {
+function ProfileCard({ user, userId, token, handleEditUser, handleDeleteUser }) {
+
+  const handleEdit = (e) => {
+    console.log("Edit clicked.");
+    console.log("Will edit following user: ", user);
+    console.log("With the following ID: ", userId);
+    handleEditUser({
+      userObj: {
+
+      },
+      userId: userId,
+      token: token
+    });
+  };
+
+  const handleDelete = (e) => {
+    // console.log("Delete clicked.");
+    // console.log("Will delete following user: ", user);
+    // console.log("With the following ID: ", userId);
+    handleDeleteUser({
+      userId: userId,
+      token: token
+    });
+  };
+
   return (
     <>
-      <div className="flex m-4 p-6 items-center bg-alt-bg rounded justify-between">
-        <div className="flex">
+      <div className="flex m-4 p-8 items-center bg-alt-bg border-4 rounded border-gray-300 justify-between ">
+        <div className="flex ">
           <img
-            className="w-40 h-40 rounded-full border-2 border-main-orange"
+            className="w-48 h-48 rounded-full border-2 border-main-orange"
             src={`${Static.serverUrl}/api/images/${user.imagePath}`}
             alt="Profile Picture"
           />
           <div className="flex flex-col justify-center ml-12 mr-20">
-            <h2 className="text-3xl mb-4">{user.username}</h2>
+            <h2 className="text-4xl mb-4">{user.username}</h2>
             <h3 className="text-sm mb-2">Aka: {user.name}</h3>
-            <h3 className="text-sm">Motto: {user.motto}</h3>
+            <h3 className="text-sm">{user.motto}</h3>
           </div>
         </div>
         <div>
           <button
             type="button"
-            className="edit-icon m-4"
+            className="profile-icon m-4"
+            onClick={handleEdit}
           >
-            <FaUserEdit size="40" />
+            <FaUserEdit size="48" />
           </button>
           <button
             type="button"
-            className="edit-icon m-4"
+            className="profile-icon m-4"
+            onClick={handleDelete}
           >
-            <MdDelete size="40" />
+            <MdDelete size="48" className=''/>
           </button>
         </div>
       </div>

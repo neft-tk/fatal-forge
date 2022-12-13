@@ -1,3 +1,4 @@
+import { FaUserTimes } from 'react-icons/fa';
 import Static from '../../../utils/staticHelper'
 
 function FriendCard({ friendId, userId, friend, token, handleDeleteFriend }) {
@@ -20,7 +21,7 @@ function FriendCard({ friendId, userId, friend, token, handleDeleteFriend }) {
         ></img>
         <p className="ml-4">{friend.username}</p>
       </div>
-      <button className="edit-icon" onClick={handleDelete}>Delete Friend</button>
+      <button className="profile-icon" onClick={handleDelete}><FaUserTimes size="40" /></button>
     </div>
   );
 }

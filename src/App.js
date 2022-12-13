@@ -80,22 +80,43 @@ function App() {
     });
   };
 
+  const handleLogout = ()=>{
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setUserId(0);
+    setToken('');
+    setUserName('');
+    setUserEmail('');
+    // TODO: Look into this tomorrow.
+    // Socket.Auth stuff?
+  }
+
   const renderRoutes = () => {
     return (
       <>
         <Router>
           <div className="flex w-screen h-screen">
-            <Nav view={view} setView={setView} />
+            <Nav
+              view={view}
+              setView={setView}
+              handleLogout={handleLogout}
+            />
             <div id="routeContainer" className="w-full h-full bg-main-bg">
               <Routes>
                 {/* LOBBY: */}
                 <Route path="/" element={<Lobby />} />
-                <Route path="/lobby" element={<Lobby userId={userId}/>} />
+                <Route path="/lobby" element={<Lobby userId={userId} />} />
                 <Route path="/gameview" element={<Gameview />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/deckbuilder" element={<Deckbuilder />} />
-                <Route path="/profile" element={<Profile userId={userId} token={token}/>} />
-                <Route path="/friends" element={<Friends userId={userId} token={token}/>} />
+                <Route
+                  path="/profile"
+                  element={<Profile userId={userId} token={token} setIsLoggedIn={setIsLoggedIn} />}
+                />
+                <Route
+                  path="/friends"
+                  element={<Friends userId={userId} token={token} />}
+                />
               </Routes>
             </div>
           </div>
@@ -109,7 +130,10 @@ function App() {
       {isLoggedIn ? (
         renderRoutes()
       ) : (
-        <Login setLogin={setIsLoggedIn} handleLogin={handleLogin} handleSignup={handleSignup} />
+        <Login
+          handleLogin={handleLogin}
+          handleSignup={handleSignup}
+        />
       )}
     </div>
   );
