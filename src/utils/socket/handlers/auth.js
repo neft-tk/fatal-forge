@@ -1,10 +1,10 @@
-export const Auth = (socket)=>{
+export const Auth = (socket) => {
     return {
-        RegisterSocket(userInfo){
+        RegisterSocket(userInfo) {
             socket.emit('register', userInfo);
             socket.userInfo = userInfo;
         },
-        UnregisterSocket(){
+        UnregisterSocket() {
             socket.emit('unregister');
         }
     }
