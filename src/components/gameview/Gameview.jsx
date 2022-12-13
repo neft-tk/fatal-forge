@@ -37,9 +37,6 @@ export default function Gameview() {
             <DndProvider backend={HTML5Backend}>
               <Game deckId={deck} size={size}/>
             </DndProvider>
-            <div className='border border-green-500 h-[10vh] flex justify-between'>
-
-            </div>
           </div>
 
         )
