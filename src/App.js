@@ -94,8 +94,8 @@ function App() {
                 <Route path="/gameview" element={<Gameview />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/deckbuilder" element={<Deckbuilder />} />
-                <Route path="/profile" element={<Profile userId={userId}/>} />
-                <Route path="/friends" element={<Friends />} />
+                <Route path="/profile" element={<Profile userId={userId} token={token}/>} />
+                <Route path="/friends" element={<Friends userId={userId} token={token}/>} />
               </Routes>
             </div>
           </div>

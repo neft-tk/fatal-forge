@@ -1,12 +1,13 @@
 import { FaUserEdit } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
 import DeckView from './DeckView';
 import StatsView from './StatsView';
 import PastGamesView from './PastGamesView';
-import Static from '../utils/staticHelper'
+import Static from '../../../utils/staticHelper'
 
 function ProfileCard({ user }) {
   return (
-    <div>
+    <>
       <div className="flex m-4 p-6 items-center bg-alt-bg rounded justify-between">
         <div className="flex">
           <img
@@ -20,12 +21,20 @@ function ProfileCard({ user }) {
             <h3 className="text-sm">Motto: {user.motto}</h3>
           </div>
         </div>
-        <button
-          type="button"
-          className="edit-icon"
-        >
-          <FaUserEdit size="40" />
-        </button>
+        <div>
+          <button
+            type="button"
+            className="edit-icon m-4"
+          >
+            <FaUserEdit size="40" />
+          </button>
+          <button
+            type="button"
+            className="edit-icon m-4"
+          >
+            <MdDelete size="40" />
+          </button>
+        </div>
       </div>
       <div className="m-4 grid grid-cols-2 grid-rows-2 gap-6">
         <div className="flex flex-col col-span-1 row-span-1 gap-4">
@@ -33,10 +42,10 @@ function ProfileCard({ user }) {
           <StatsView />
         </div>
         <div className="col-span-1 row-span-2">
-          <PastGamesView />
+          <PastGamesView decks={user.decks}/>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

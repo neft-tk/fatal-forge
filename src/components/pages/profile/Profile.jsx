@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import API from '../../../utils/API';
-import ProfileCard from '../../ProfileCard';
+import ProfileCard from './ProfileCard';
 
 function Profile({ userId }) {
   const [user, setUser] = useState(null);
@@ -8,14 +8,14 @@ function Profile({ userId }) {
   useEffect(() => {
     async function fetchUser() {
       const data = await API.getUser(userId);
-      // console.log(data);
-      // console.log(data.username);
-      // console.log(data.Decks);
+      console.log(data);
+      console.log(data.username);
+      console.log(data.Decks);
       const decks = data.Decks;
       for (let i = 0; i < decks.length; i++) {
         const deck = decks[i];
-        // console.log(deck);
-        // console.log(deck.deckName);
+        console.log(deck);
+        console.log(deck.deckName);
       }
       setUser({
         username: data.username,
@@ -31,7 +31,6 @@ function Profile({ userId }) {
     }
 
     fetchUser();
-    
   }, [])
 
   return (
