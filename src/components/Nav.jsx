@@ -46,23 +46,32 @@ export default function Nav(props) {
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Stats'/> */}
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Channels'/> */}
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Settings'/> */}
-      <span onClick={onModalClick}><NavBarIcon icon={<BsQuestionLg size="40" />} text="How To Play"/> </span>
+      <span onClick={onModalClick}><NavBarIcon icon={<BsQuestionLg size="40" />} text="How To Play" /> </span>
       <>
-      <Modal show={showModal} size="md" popup={true} onClose={onModalClose}>
-        <Modal.Header className="bg-slate-600">
-          <Modal.Body className="bg-slate-500">
-            <div className="flex flex-col space-y-2 space-x-2 px-2 pb-4 sm:pb-6 lg:px-10 xl:pb-10 justify-center items-center text-center">
-                  <h1 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">How To Play:</h1>
-                  <li>In FatalForge, your goal is to control the majority of the grid at the end of the game!</li>
-                  <li>Each player takes turn playing a card in an empty slot on the grid. After playing your card, your card will initiate a battle with any adjacent opposing cards!</li>
-                  <li>When a battle occurs, your card's stat will be compared to the adjacent opposing card's stat. So if there is a card north of the slot you just played your card, your card's north stat will be compared to the opposing card's lower stat. If your card's value is higher, then you will capture the opposing card!</li>
-                  <li>Keep in mind that the order of battle is left, right, top, then bottom! Your card will do battle in each of these directions and perform a chain.</li>
-                  <h1>Chaining Cards:</h1>
-                  <li>After capturing an opposing card, your card will perform a chain! This means that the card that you just captured will act just like playing a new card.</li>
-                  <li>The new card will perform battle just like playing a regular card, and this process will continue until the card loses.</li>
-                  </div>
-          </Modal.Body>
-        </Modal.Header>
+        <Modal className='' show={showModal} size="xl" popup={true} onClose={onModalClose}>
+          <Modal.Header className="bg-slate-600">
+            <Modal.Body className="bg-slate-500 max-h-90 min-w-full overflow-auto">
+              <div className="">
+                <h3>How to Play:</h3>
+                <p>
+                  In Gridlocke, your goal is to control the majority of the grid at the end of the game!
+                  <br />
+                  Each player takes turn playing a card in an empty slot on the grid. After playing your card, your card will initiate a battle with any adjacent opposing cards!
+                  <br />
+                  When a battle occurs, your card's stat will be compared to the adjacent opposing card's stat. So if there is a card north of the slot you just played your card, your card's north stat will be compared to the opposing card's lower stat. If your card's value is higher, then you will capture the opposing card!
+                  <br />
+                  Keep in mind that the order of battle is left, right, top, then bottom! Your card will do battle in each of these directions and perform a chain.
+                  </p>
+                <h3>Chaining Cards:</h3>
+                <br />
+                <p>
+                After capturing an opposing card, your card will perform a chain! This means that the card that you just captured will act just like playing a new card.
+                <br />
+                The new card will perform battle just like playing a regular card, and this process will continue until the card loses.
+                </p>
+              </div>
+            </Modal.Body>
+          </Modal.Header>
         </Modal>
 
       </>
