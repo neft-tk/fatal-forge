@@ -35,14 +35,14 @@ function Profile({ userId, token, setIsLoggedIn }) {
 
   const handleEditUser = async (editObj) => {
     const { username, email, name, motto, userId, token } = editObj;
-    console.log('Editing...');
-    console.log('Edit this user.');
-    console.log('User ID: ', username);
-    console.log('User ID: ', email);
-    console.log('User ID: ', name);
-    console.log('User ID: ', motto);
-    console.log('User ID: ', userId);
-    console.log('Token: ', token);
+    // console.log('Editing...');
+    // console.log('Edit this user.');
+    // console.log('User ID: ', username);
+    // console.log('User ID: ', email);
+    // console.log('User ID: ', name);
+    // console.log('User ID: ', motto);
+    // console.log('User ID: ', userId);
+    // console.log('Token: ', token);
     const editMessage = await API.editUser({
       username,
       email,
@@ -51,7 +51,7 @@ function Profile({ userId, token, setIsLoggedIn }) {
       userId,
       token
     });
-    console.log(editMessage);
+    // console.log(editMessage);
     const data = await API.getSingleUser(userId);
     setUser({
       username: data.username,
@@ -73,7 +73,7 @@ function Profile({ userId, token, setIsLoggedIn }) {
     // console.log('User ID: ', userId);
     // console.log('Token: ', token);
     const delMessage = await API.deleteUser(userId, token);
-    console.log(delMessage);
+    // console.log(delMessage);
     localStorage.removeItem('token');
     setIsLoggedIn(false);
   };

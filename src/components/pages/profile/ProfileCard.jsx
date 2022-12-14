@@ -55,9 +55,9 @@ function ProfileCard({
   };
 
   const handleEdit = (e) => {
-    console.log('Edit clicked.');
-    console.log('Will edit following user: ', user);
-    console.log('With the following ID: ', userId);
+    // console.log('Edit clicked.');
+    // console.log('Will edit following user: ', user);
+    // console.log('With the following ID: ', userId);
     handleEditUser({
       username: editUsername,
       email: editEmail,
