@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Label } from 'flowbite-react';
+import { Modal, Label, Tooltip } from 'flowbite-react';
 import blacksmithGif from '../../../assets/gif/blacksmith_nobg.gif';
 import visibilityIcon from '../../../assets/svg/visibilityIcon.svg';
 // The Login component provides a form and handler for users logging in.
@@ -13,11 +13,16 @@ i passed the setlogin state function through the props from the app component..
 that's the only change i made.
 */
 
-export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
+export default function Login({
+  handleLogin,
+  handleSignup,
+  isValidLogin,
+  isValidSignup,
+}) {
   const [userId, setUserId] = useState(0);
   const [token, setToken] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [signupUsername, setSignupUsername] = useState('');
@@ -44,16 +49,18 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
     setSignupPassword(e.target.value);
   };
 
-  const onModalClick = (e) => {
-    setShowModal(true);
+  const onSignupModalClick = (e) => {
+    setShowSignupModal(true);
   };
 
-  const onModalClose = (e) => {
-    setShowModal(false);
+  const onSignupModalClose = (e) => {
+    setShowSignupModal(false);
   };
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
+    setLoginEmail('');
+    setLoginPassword('');
     handleLogin({
       email: loginEmail,
       password: loginPassword,
@@ -62,7 +69,9 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    // console.log('Signup clicked!');
+    setSignupUsername('');
+    setSignupEmail('');
+    setSignupPassword('');
     handleSignup({
       username: signupUsername,
       email: signupEmail,
@@ -71,29 +80,35 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
   };
 
   return (
-    <div className="h-full w-2/3 flex sm:flex-row flex-col justify-between mx-auto my-0">
-      <div className="ml-8 flex flex-col justify-center items-center text-center sm:w-1/4 w-full">
-        <form onSubmit={handleLoginSubmit} className="flex flex-col">
+    <div className="h-full w-2/3 flex lg:flex-row flex-col justify-between mx-auto my-0">
+      <div className="ml-8 flex flex-col justify-center items-center text-center lg:w-1/4 w-full">
+        <form onSubmit={handleLoginSubmit} className="flex flex-col w-full">
           <h3 className="pt-6 text-main-orange font-display-text-f">Login</h3>
 
           <input
             id="login-email"
             name="login-email"
-            placeholder="email"
+            placeholder={`${isValidLogin ? 'Email' : 'Wrong Email/Password'}`}
             value={loginEmail}
             onChange={onLoginEmailChange}
-            className="text-black p-2 m-4 rounded font-alt-text-f"
+            className={`text-black p-2 m-4 rounded font-alt-text-f ${
+              isValidLogin ? '' : 'error-input'
+            }`}
           />
 
           <div className="relative m-4">
             <input
               id="login-password"
               name="login-password"
-              placeholder="password"
+              placeholder={`${
+                isValidLogin ? 'Password' : 'Wrong Email/Password'
+              }`}
               value={loginPassword}
               type={showPassword ? 'text' : 'password'}
               onChange={onLoginPasswordChange}
-              className="text-black p-2 rounded font-alt-text-f"
+              className={`text-black p-2 rounded font-alt-text-f w-full ${
+                isValidLogin ? '' : 'error-input'
+              }`}
             />
 
             <img
@@ -104,80 +119,109 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
             />
           </div>
 
-          <button
-            type="submit"
-            className="m-4 text-black bg-main-orange hover:bg-active-orange focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
-          >
+          <button type="submit" className="button-style">
             Login
           </button>
         </form>
+        <p
+          className={`mt-2 text-sm text-red-600 dark:text-red-500 ${
+            isValidLogin ? 'hidden' : 'block'
+          }`}
+        >
+          {' '}
+          Username or password invalid.
+        </p>
 
         <>
           <h3 className="m-4 font-alt-text-f">
-            <span className='mr-4'>
-              New here?
-            </span>
+            <span className="mr-4">New here?</span>
             <span
-              onClick={onModalClick}
-              className="text-highlight-orange hover:text-active-orange cursor-pointer"
+              onClick={onSignupModalClick}
+              className="text-highlight-orange hover:text-active-orange transition hover:text-lg duration-300 ease-in-out cursor-pointer"
             >
               Sign up to play!
             </span>
           </h3>
-          <Modal show={showModal} size="md" popup={true} onClose={onModalClose}>
+          <Modal
+            show={showSignupModal}
+            size="md"
+            popup={true}
+            onClose={onSignupModalClose}
+          >
             <Modal.Header className="bg-slate-600" />
-            <Modal.Body className="bg-slate-500">
+            <Modal.Body className="bg-slate-300">
               <div className="flex flex-col space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8 justify-center items-center text-center">
                 <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                   Welcome Adventurer! Tell us about yourself...
                 </h3>
-                <div className="w-full">
-                  <div className="mb-2 block">
-                    <Label htmlFor="username" value="Your username:" />
-                  </div>
-                  <input
-                    id="signup-username"
-                    name="signup-username"
-                    placeholder="Adventurer"
-                    required={true}
-                    value={signupUsername}
-                    onChange={onUsernameChange}
-                    className="text-black p-2 mt-4 rounded text-center w-full"
-                  />
+                <div className="w-full flex justify-center">
+                  <Tooltip content="Can't be blank." placement="bottom">
+                    <div className="mb-2 block">
+                      <Label htmlFor="username" value="Your username:" />
+                    </div>
+
+                    <input
+                      id="signup-username"
+                      name="signup-username"
+                      placeholder="Adventurer"
+                      required={true}
+                      value={signupUsername}
+                      onChange={onUsernameChange}
+                      className={`text-black p-2 mt-4 rounded text-center w-full ${
+                        isValidSignup ? '' : 'error-input'
+                      }`}
+                    />
+                  </Tooltip>
                 </div>
-                <div className="w-full">
-                  <div className="mb-2 block">
-                    <Label htmlFor="email" value="Your email:" />
-                  </div>
-                  <input
-                    id="signup-email"
-                    name="signup-email"
-                    placeholder="adventurer@fatalforge.com"
-                    required={true}
-                    value={signupEmail}
-                    onChange={onSignupEmailChange}
-                    className="text-black p-2 mt-4 rounded text-center w-full"
-                  />
+                <div className="w-full flex justify-center">
+                  <Tooltip content="Must be a valid email." placement="bottom">
+                    <div className="mb-2 block">
+                      <Label htmlFor="email" value="Your email:" />
+                    </div>
+                    <input
+                      id="signup-email"
+                      name="signup-email"
+                      placeholder="adventurer@mail.com"
+                      required={true}
+                      value={signupEmail}
+                      onChange={onSignupEmailChange}
+                      className={`text-black p-2 mt-4 rounded text-center w-full ${
+                        isValidSignup ? '' : 'error-input'
+                      }`}
+                    />
+                  </Tooltip>
                 </div>
-                <div className="w-full">
-                  <div className="mb-2 block">
-                    <Label htmlFor="password" value="Your password:" />
-                  </div>
-                  <input
-                    id="signup-password"
-                    name="signup-password"
-                    type="password"
-                    required={true}
-                    value={signupPassword}
-                    onChange={onSignPasswordChange}
-                    className="text-black p-2 mt-4 rounded text-center w-full"
-                  />
+                <div className="w-full flex justify-center">
+                  <Tooltip content="Must be 8 or more characters." placement="bottom">
+                    <div className="mb-2 block">
+                      <Label htmlFor="password" value="Your password:" />
+                    </div>
+                    <input
+                      id="signup-password"
+                      name="signup-password"
+                      type="password"
+                      required={true}
+                      value={signupPassword}
+                      onChange={onSignPasswordChange}
+                      className={`text-black p-2 mt-4 rounded text-center w-full ${
+                        isValidSignup ? '' : 'error-input'
+                      }`}
+                    />
+                  </Tooltip>
                 </div>
+                <p
+                  className={`mt-2 text-sm text-red-600 dark:text-red-500 ${
+                    isValidSignup ? 'hidden' : 'block'
+                  }`}
+                >
+                  {' '}
+                  Email or password didn't pass validation.
+                </p>
                 <div className="w-full">
                   <button
                     type="button"
                     onClick={handleSignupSubmit}
-                    className="m-4 text-black bg-cyan-400 hover:bg-cyan-500 focus:ring-4 focus:ring-cyan-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-cyan-500 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-300"
+                    className="button-style"
                   >
                     Sign Up!
                   </button>
@@ -188,8 +232,12 @@ export default function Login({ setIsLoggedIn, handleLogin, handleSignup }) {
         </>
       </div>
 
-      <div className="flex justify-center items-center min-w-50">
-        <img className='min-w-full' src={blacksmithGif} alt="A blacksmith hard at work." />
+      <div className="flex justify-center items-center min-w-50 lg:ml-12">
+        <img
+          className="min-w-full"
+          src={blacksmithGif}
+          alt="A blacksmith hard at work."
+        />
       </div>
     </div>
   );
