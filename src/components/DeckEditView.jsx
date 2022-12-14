@@ -5,7 +5,7 @@ function DeckEditView({ setDeckData, deckData }) {
     const removeCard = (e) => {
         e.preventDefault();
         const selectedCard = e.target.innerHTML;
-        console.log(selectedCard)
+        // console.log(selectedCard)
 
         const newDeck = [...deckData];
         newDeck.pop(selectedCard);
