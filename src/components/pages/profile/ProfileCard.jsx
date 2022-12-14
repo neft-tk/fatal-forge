@@ -103,7 +103,7 @@ function ProfileCard({
   return (
     <>
       {/* Profile Card, Name + Pic + Motto + Options */}
-      <div className="bg-gradient-to-r from-main-bg to-alt-bg flex justify-around h-1/3 my-8 mx-auto border-highlight-orange border-2 rounded-3xl w-4/5">
+      <div className="bg-gradient-to-r from-main-bg to-alt-bg flex justify-around h-1/3 my-14 mx-14 py-10 px-4 border-highlight-orange border-2 rounded-3xl">
         {/* Pic + Name */}
         <div className="flex justify-around w-auto">
           <img
@@ -112,7 +112,7 @@ function ProfileCard({
             alt="Profile Picture"
           />
           <div className="flex flex-col ml-4 justify-center">
-            <h2 className="text-4xl mb-4 font-display-text-f">{user.username}</h2>
+            <h2 className="text-4xl mb-4">{user.username}</h2>
             <h3 className="text-sm mb-2">
               Aka:{' '}
               <span className="italic font-semibold tracking-wide ml-2">
