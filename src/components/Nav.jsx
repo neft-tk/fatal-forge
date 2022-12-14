@@ -29,13 +29,13 @@ export default function Nav({ view, setView, handleLogout }) {
   };
 
   return (
-    <div className="p-2 w-28 flex flex-col bg-main-bg justify-evenly">
+    <div className="flex h-[80px] w-full justify-around md:flex-col md:w-[80px] md:h-full bg-main-bg grow-0 shrink-0">
       <Link to="/lobby">
-        <img src={gllogo} alt="Gridlocke logo" />
+        <img src={gllogo} alt="Gridlocke logo" className='h-full'/>
         {/* <NavBarIcon icon={<BsFillChatDotsFill size="40" />} text="Chat" /> */}
       </Link>
       <Link to="/gameview">
-        <NavBarIcon icon={<FaGamepad size="40" />} text="Game" />
+        <NavBarIcon classes={''} icon={<FaGamepad size="40" />} text="Game" />
       </Link>
       <Link to="/deckbuilder">
         <NavBarIcon icon={<GiCardAceSpades size="40" />} text="Deck Builder" />
