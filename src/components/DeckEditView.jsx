@@ -15,12 +15,12 @@ function DeckEditView({ setDeckData, deckData }) {
 
 
     useEffect(() => {
-        console.log('data',deckData)
-    },[deckData]);
+        console.log('data', deckData);
+    }, [deckData]);
 
 
     return (
-        <div>
+        <div className="flex flex-col">
             {deckData.map((card, index) => 
             <button className="border" key={index} onClick={removeCard}>    
                 <div className="border">
