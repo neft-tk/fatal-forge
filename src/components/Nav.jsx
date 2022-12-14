@@ -29,7 +29,7 @@ export default function Nav({ view, setView, handleLogout }) {
   };
 
   return (
-    <div className="flex h-[80px] w-full justify-around md:flex-col md:w-[80px] md:h-full bg-main-bg grow-0 shrink-0">
+    <div className="flex h-[80px] w-screen justify-around md:flex-col md:w-[80px] md:h-screen bg-main-bg grow-0 shrink-0 fixed top-0">
       <Link to="/lobby">
         <img src={gllogo} alt="Gridlocke logo" className='h-full'/>
         {/* <NavBarIcon icon={<BsFillChatDotsFill size="40" />} text="Chat" /> */}

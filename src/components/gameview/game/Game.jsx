@@ -184,21 +184,24 @@ export default function Game({ deckId, size, gameId, setView}) {
 
   return (
     <>
-      <div className='gameboard flex flex-col justify-between items-center h-full w-full p-3'>
-      <div className='flex w-full justify-between shrink grow'>
-          {players.map((x,i)=>
-          <>
-            <div key={i} style={{backgroundColor:x.color, opacity:0.75}} className={`rounded-full aspect-square h-14 border border-neutral-900 border-4 relative mt-4 flex justify-center items-center font-display-text-f font-bold`}>
-              <h1 style={{backgroundColor:x.color}} className={`absolute -top-5 border border-neutral-900 border-4 rounded-t-xl py-1 px-3 ${i ? 'text-end -right-1 rounded-bl-xl' : '-left-1 rounded-br-xl'}`}>{x.userData.username}</h1>
-              <h1 className='mt-4 font-alt-text-f'>{getScore(x.color)}</h1>
-            </div>
-            {!i && <h1 className='text-4xl font-display-text-f'>{myTurn ? 'Your Turn' : 'Waiting'}</h1>}
-          </>
-          )}
+      <div className='gameboard flex flex-col justify-between items-center h-full w-full p-3 grow shrink'>
+        <div className='w-full mb-2'> 
+          <div className='flex w-full justify-between'>
+            {players.map((x,i)=>
+            <>
+              <div key={i} style={{backgroundColor:x.color, opacity:0.75}} className={`rounded-full aspect-square h-14 border border-neutral-900 border-4 relative mt-4 flex justify-center items-center font-display-text-f font-bold`}>
+                <h1 style={{backgroundColor:x.color}} className={`absolute -top-5 border border-neutral-900 border-4 rounded-t-xl py-1 px-3 ${i ? 'text-end -right-1 rounded-bl-xl' : '-left-1 rounded-br-xl'}`}>{x.userData.username}</h1>
+                <h1 className='mt-4 font-alt-text-f'>{getScore(x.color)}</h1>
+              </div>
+              {!i && <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting'}</h1>}
+            </>
+            )}
+          </div>
+          {players[0] && <div style={{background: `linear-gradient(90deg, ${players[0].color} 0%, ${players[1].color} 100%)`}} className='h-2 w-full relative'>
+            {/* <div style={{left:`${loc}%`}} className='h-4 border w-2 absolute -top-1'></div> */}
+          </div>}
         </div>
-        {players[0] && <div style={{background: `linear-gradient(90deg, ${players[0].color} 0%, ${players[1].color} 100%)`}} className='h-2 w-full relative'>
-          <div style={{left:`${loc}%`}} className='h-4 border w-2 absolute -top-1'></div>
-        </div>}
+
         <Grid setIsMyTurn={setIsMyTurn} size={size} setPlayers={setPlayers} setGameEnd={setGameEnd}/>
         
 
