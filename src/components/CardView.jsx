@@ -8,8 +8,8 @@ function CardView({ cardData, setDeckData, deckData}) {
     e.preventDefault();
     const newCardName = e.target.innerHTML.split(",");
     const newCard = {
-      name: newCardName[0],
-      id: newCardName[1],
+      name: newCardName[1],
+      id: newCardName[0],
     };
     console.log(newCard);
     if(deckData.filter((card) => 
@@ -31,7 +31,7 @@ function CardView({ cardData, setDeckData, deckData}) {
         <button className="block" key={index} onClick={addCard}>
           <div className="border">
             <p>
-              {card.cardName}, {card.id}
+              {card.id}, {card.cardName}, L:{card.leftAttack}, R:{card.rightAttack}, T:{card.topAttack}, B:{card.bottomAttack}
             </p>
           </div>
         </button>

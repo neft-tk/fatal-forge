@@ -7,7 +7,7 @@ import CardView from "../../CardView";
 import DeckEditView from "../../DeckEditView";
 import Static from "../../../utils/staticHelper";
 
-export default function Deckbuilder({ userId, handleDeckCreate }) {
+export default function Deckbuilder({ userId, handleDeckCreate, token }) {
   const [cardData, setCardData] = useState([]);
   const [deckData, setDeckData] = useState([]);
   const [deck, setDeck] = useState();
@@ -39,7 +39,7 @@ export default function Deckbuilder({ userId, handleDeckCreate }) {
   }
 
   async function getSelectedDeck() {
-    const submittedDeck = await fetch(`${Static.serverUrl}/api/decks/${deckChoice}`,)
+    const submittedDeck = await fetch(`${Static.serverUrl}/api/decks/${deckChoice}`)
     const deckInfo = await submittedDeck.json()
     const deckCards = deckInfo.Cards.map((card) => {
       return {
@@ -50,6 +50,12 @@ export default function Deckbuilder({ userId, handleDeckCreate }) {
     console.log(deckCards)
     setDeckData(deckCards)
     // const deconstructedDeck = await 
+  }
+
+  async function deleteSelectedDeck() {
+    console.log(deckChoice)
+    const submittedDeck = await API.deleteDeck(deckChoice, token)
+    console.log("deck deleted")
   }
 
   const handleDeckTitleSubmit = (e) => {
@@ -87,12 +93,13 @@ export default function Deckbuilder({ userId, handleDeckCreate }) {
       <h1 className="text-center">Select an old deck to edit here:</h1>
 
       {/* Deck Choice */}
-      <div className="flex flex-col justify-evenly items-center">
+      <div className="flex flex-row justify-evenly items-center">
+        <div>
         <label
           htmlFor="deckChoice"
-          className="m-5 font-bold text-2xl font-main-text-f"
+          className="m-2 font-bold text-2xl font-main-text-f"
         >
-          Choose Your Deck
+          Choose Your Deck:
         </label>
         <select
           name="deck-choice"
@@ -113,7 +120,11 @@ export default function Deckbuilder({ userId, handleDeckCreate }) {
             );
           })}
         </select>
-        <button type="button" className="border" onClick={getSelectedDeck}>Edit This Deck!</button>
+        </div>
+        <div className="flex flex-col">
+        <button type="button" className="border m-2" onClick={getSelectedDeck}>Edit This Deck!</button>
+        <button type="button" className="border bg-red-800 m-2" onClick={deleteSelectedDeck}>DELETE This Deck!</button>
+        </div>
       </div>
 
       <h1 className="text-center">Create a New Deck Below:</h1>
@@ -136,50 +147,50 @@ export default function Deckbuilder({ userId, handleDeckCreate }) {
             onChange={handleDeckTitleSubmit}
           />
           <h2>Current Deck Build:</h2>
-          <div className="max-h-40 max-w-md">
+          <div className="flex flex-col justify-start overflow-auto">
             <DeckEditView setDeckData={setDeckData} deckData={deckData} />
           </div>
           <h2>Select Your Deck Back:</h2>
           <h3>Currently Selected Deck Back: {deckBackData}</h3>
-          <div className="">
+          <div className="flex flex-row">
             <li>Basic</li>
             <img
-              className="border-black w-20 h-20"
+              className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Basic.png`}
               alt="Basic"
               onClick={handleDeckBackSubmit}
             />
             <li>Cross</li>
             <img
-              className="border-black w-20 h-20"
+              className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Cross.png`}
               alt="Cross"
               onClick={handleDeckBackSubmit}
             />
             <li>Fluid-Rune</li>
             <img
-              className="border-black w-20 h-20"
+              className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Fluid-Rune.png`}
               alt="Fluid-Rune"
               onClick={handleDeckBackSubmit}
             />
             <li>Glowing-Rune</li>
             <img
-              className="border-black w-20 h-20"
+              className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Glowing-Rune.png`}
               alt="Glowing-Rune"
               onClick={handleDeckBackSubmit}
             />
             <li>Grounded-Rune</li>
             <img
-              className="border-black w-20 h-20"
+              className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Grounded-Rune.png`}
               alt="Grounded-Rune"
               onClick={handleDeckBackSubmit}
             />
             <li>Star</li>
             <img
-              className="border-black w-20 h-20"
+              className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Star.png`}
               alt="Star"
               onClick={handleDeckBackSubmit}
