@@ -11,7 +11,7 @@ function CardView({ cardData, setDeckData, deckData}) {
       name: newCardName[1],
       id: newCardName[0],
     };
-    console.log(newCard);
+    // console.log(newCard);
     if(deckData.filter((card) => 
       newCard.id == card.id
     ).length === 1) {
@@ -22,7 +22,7 @@ function CardView({ cardData, setDeckData, deckData}) {
     const newDeck = [...deckData];
     newDeck.push(newCard);
     setDeckData(newDeck);
-    console.log(deckData);
+    // console.log(deckData);
   };
 
   return (

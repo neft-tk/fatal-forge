@@ -37,7 +37,7 @@ function Friends({ userId, token }) {
 
     async function fetchUsers() {
       const data = await API.getAllUsers();
-      console.log(data);
+      // console.log(data);
       // console.log(data.username);
       // console.log(data.FavoriteUser);
       // console.log(friends);
@@ -61,7 +61,7 @@ function Friends({ userId, token }) {
     // console.log('Friend ID: ', friendId);
     // console.log('Token: ', token);
     const delMessage = await API.deleteFriend(userId, friendId, token)
-    console.log(delMessage);
+    // console.log(delMessage);
 
     // Reset friends after del
     const data = await API.getSingleUser(userId);
@@ -81,12 +81,12 @@ function Friends({ userId, token }) {
 
   const handleAddFriend = async (addObj) => {
     const { userId, friendId, token } = addObj
-    console.log('Add this friend.');
-    console.log('User ID: ', userId);
-    console.log('Friend ID: ', friendId);
-    console.log('Token: ', token);
+    // console.log('Add this friend.');
+    // console.log('User ID: ', userId);
+    // console.log('Friend ID: ', friendId);
+    // console.log('Token: ', token);
     const addMessage = await API.addFriend(userId, friendId, token)
-    console.log(addMessage);
+    // console.log(addMessage);
 
     // TODO: Only add users that are NOT friends.
     // Reset users after add

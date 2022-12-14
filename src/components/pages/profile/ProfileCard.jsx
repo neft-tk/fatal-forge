@@ -6,7 +6,6 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import DeckView from './DeckView';
 import StatsView from './StatsView';
 import PastGamesView from './PastGamesView';
-import API from '../../../utils/API';
 import Static from '../../../utils/staticHelper';
 
 function ProfileCard({
@@ -17,43 +16,11 @@ function ProfileCard({
   handleDeleteUser,
 }) {
   const [showEditModal, setShowEditModal] = useState(false);
-  const [editUsername, setEditUsername] = useState('');
-  const [editEmail, setEditEmail] = useState('');
+  const [editUsername, setEditUsername] = useState(user.username);
+  const [editEmail, setEditEmail] = useState(user.email);
+  const [editName, setEditName] = useState(user.name);
+  const [editMotto, setEditMotto] = useState(user.motto);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  // TODO: FIX BUG FOR GETTING PROFILE IMAGE AND USING DEFAULT IF NO PROFILE PIC ON BACKEND.
-  useEffect(() => {
-    async function fetchUserProfilePicture() {
-      console.log('Current User');
-      console.log(user);
-      const data = await API.getUserPicture(user.imagePath);
-      console.log('Data from API call:');
-      console.log(data);
-      // console.log(data.username);
-      // console.log(data.FavoriteUser);
-      // console.log(friends);
-      // const friendsData = data.FavoriteUser;
-      // for (let i = 0; i < friendsData.length; i++) {
-      //   const friend = friendsData[i];
-      //   console.log(friend);
-      //   console.log(friend.username);
-      // }
-      // user = {
-      //   username: data.username,
-      //   email: data.email,
-      //   name: data.name,
-      //   motto: data.motto,
-      //   decks: data.Decks,
-      //   friends: data.FavoriteUser,
-      //   imagePath: data.imagePath,
-      //   decks: data.Decks,
-      //   friends: data.FavoriteUser,
-      // };
-      // setFriends(data.FavoriteUser);
-    }
-
-    fetchUserProfilePicture();
-  }, []);
 
   const onEditModalClick = (e) => {
     setShowEditModal(true);
@@ -71,6 +38,14 @@ function ProfileCard({
     setEditEmail(e.target.value);
   };
 
+  const onEditNameChange = (e) => {
+    setEditName(e.target.value);
+  };
+
+  const onEditMottoChange = (e) => {
+    setEditMotto(e.target.value);
+  };
+
   const onDeleteModalClick = (e) => {
     setShowDeleteModal(true);
   };
@@ -80,14 +55,18 @@ function ProfileCard({
   };
 
   const handleEdit = (e) => {
-    console.log('Edit clicked.');
-    console.log('Will edit following user: ', user);
-    console.log('With the following ID: ', userId);
+    // console.log('Edit clicked.');
+    // console.log('Will edit following user: ', user);
+    // console.log('With the following ID: ', userId);
     handleEditUser({
-      userObj: {},
+      username: editUsername,
+      email: editEmail,
+      name: editName,
+      motto: editMotto,
       userId: userId,
-      token: token,
+      token: token
     });
+    setShowEditModal(false);
   };
 
   const handleDelete = (e) => {
@@ -103,7 +82,7 @@ function ProfileCard({
   return (
     <>
       {/* Profile Card, Name + Pic + Motto + Options */}
-      <div className="bg-gradient-to-r from-main-bg to-alt-bg flex justify-around h-1/3 my-14 mx-14 py-10 px-4 border-highlight-orange border-2 rounded-3xl">
+      <div className="bg-gradient-to-r from-main-bg to-alt-bg flex justify-around h-1/3 m-14 py-10 px-4 border-highlight-orange border-2 rounded-3xl">
         {/* Pic + Name */}
         <div className="flex justify-around w-auto">
           <img
@@ -149,41 +128,58 @@ function ProfileCard({
                   <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                     Looks like your story has changed, Adventurer...
                   </h3>
-                  <div className="w-full flex justify-center">
-                    <Tooltip content="Can't be blank." placement="bottom">
-                      <div className="mb-2 block">
-                        <Label htmlFor="username" value="Your username:" />
-                      </div>
-
-                      <input
-                        id="edit-username"
-                        name="edit-username"
-                        placeholder="Adventurer"
-                        required={true}
-                        value={editUsername}
-                        onChange={onEditUsernameChange}
-                        className={`text-black p-2 mt-4 rounded text-center w-full`}
-                      />
-                    </Tooltip>
+                  <p className="text-gray-900 dark:text-white">Feel free to only change the fields you want updated!</p>
+                  <div className="w-full">
+                    <div className="mb-2 block">
+                      <Label htmlFor="username" value="New username:" />
+                    </div>
+                    <input
+                      id="edit-username"
+                      name="edit-username"
+                      placeholder="Adventurer"
+                      value={editUsername}
+                      onChange={onEditUsernameChange}
+                      className={`text-black p-2 mt-4 rounded text-center w-full`}
+                    />
                   </div>
-                  <div className="w-full flex justify-center">
-                    <Tooltip
-                      content="Must be a valid email."
-                      placement="bottom"
-                    >
-                      <div className="mb-2 block">
-                        <Label htmlFor="email" value="Your email:" />
-                      </div>
-                      <input
-                        id="edit-email"
-                        name="edit-email"
-                        placeholder="adventurer@mail.com"
-                        required={true}
-                        value={editEmail}
-                        onChange={onEditEmailChange}
-                        className={`text-black p-2 mt-4 rounded text-center w-full`}
-                      />
-                    </Tooltip>
+                  <div className="w-full">
+                    <div className="mb-2 block">
+                      <Label htmlFor="email" value="New email:" />
+                    </div>
+                    <input
+                      id="edit-email"
+                      name="edit-email"
+                      placeholder="adventurer@mail.com"
+                      value={editEmail}
+                      onChange={onEditEmailChange}
+                      className={`text-black p-2 mt-4 rounded text-center w-full`}
+                    />
+                  </div>
+                  <div className="w-full">
+                    <div className="mb-2 block">
+                      <Label htmlFor="name" value="New name:" />
+                    </div>
+                    <input
+                      id="edit-name"
+                      name="edit-name"
+                      placeholder="Bob Bobson"
+                      value={editName}
+                      onChange={onEditNameChange}
+                      className={`text-black p-2 mt-4 rounded text-center w-full`}
+                    />
+                  </div>
+                  <div className="w-full">
+                    <div className="mb-2 block">
+                      <Label htmlFor="motto" value="New motto:" />
+                    </div>
+                    <input
+                      id="edit-motto"
+                      name="edit-motto"
+                      placeholder="Something lemonade?"
+                      value={editMotto}
+                      onChange={onEditMottoChange}
+                      className={`text-black p-2 mt-4 rounded text-center w-full`}
+                    />
                   </div>
                   <h3>Save these edits?</h3>
                   <div className="flex justify-center gap-4">
