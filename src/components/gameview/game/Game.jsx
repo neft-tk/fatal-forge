@@ -192,7 +192,7 @@ export default function Game({ deckId, size, gameId, setView}) {
               <h1 style={{backgroundColor:x.color}} className={`absolute -top-5 border border-neutral-900 border-4 rounded-t-xl py-1 px-3 ${i ? 'text-end -right-1 rounded-bl-xl' : '-left-1 rounded-br-xl'}`}>{x.userData.username}</h1>
               <h1 className='mt-4 font-alt-text-f'>{getScore(x.color)}</h1>
             </div>
-            {!i && <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting'}</h1>}
+            {!i && <h1 className='text-4xl font-display-text-f'>{myTurn ? 'Your Turn' : 'Waiting'}</h1>}
           </>
           )}
         </div>

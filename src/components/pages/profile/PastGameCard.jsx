@@ -5,19 +5,18 @@ function PastGameCard({ deck }) {
     <>
       {/* TODO: Only model first card, map over victory/defeats from user. */}
       <div className="bg-main-bg border-red-600 flex flex-col m-6 items-center border-2 justify-around rounded">
-        <h3 className="text-red-600 text-2xl font-bold mb-4">Defeat...</h3>
+        <h3 className="text-red-600 text-2xl font-bold mb-4 font-display-text-f">Defeat...</h3>
         <div className="flex justify-around items-center w-full">
           <div className="flex flex-col items-center">
-            <h3 className="text-main-text text-lg mb-2">Deck Used: </h3>
             <img
-              className="border-black w-16 h-16 mb-2 border-2  rounded-lg"
+              className="border-black w-28 h-28 mb-2 border-2  rounded-lg"
               src={`${Static.serverUrl}/api/images/${deck[0].imagePath}`}
               alt="Deck's Back of Card"
             />
-            <h3 className="text-main-text text-lg">{deck[0].deckName}</h3>
+            <h3 className="text-main-text text-lg font-alt-text-f">{deck[0].deckName}</h3>
           </div>
           <div>
-            <h3 className="text-main-text text-center text-2xl font-bold">
+            <h3 className="text-main-text text-center text-2xl font-bold font-alt-text-f">
               VS.
             </h3>
           </div>
@@ -27,7 +26,7 @@ function PastGameCard({ deck }) {
               src={`${Static.serverUrl}/api/images/profile/Vkorn.png`}
               alt="Opponent's picture"
             ></img>
-            <p className="text-lg">VKorn</p>
+            <p className="text-lg font-alt-text-f">VKorn</p>
           </div>
         </div>
       </div>
