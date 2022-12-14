@@ -25,11 +25,15 @@
     }
 
     .cards-container {
-        @apply bg-gradient-to-r from-main-bg to-alt-bg border-gray-300 text-main-bg w-full h-full p-6 border-4 rounded;
+        @apply text-main-bg w-full h-auto p-6 rounded;
     }
 
     .card-style {
-        @apply bg-main-text border-main-orange flex flex-col p-2 m-2 rounded-2xl border-2;
+        @apply bg-alt-bg text-main-text border-main-orange flex flex-col p-2 m-2 rounded-2xl border-2;
+    }
+
+    .gl-scrollbar {
+        @apply scrollbar-thin scrollbar-track-alt-bg scrollbar-thumb-highlight-orange;
     }
 
 }

@@ -29,7 +29,7 @@ function FriendCard({ friendId, userId, friend, token, handleDeleteFriend }) {
           alt="Deck's Back of Card"
         ></img>
         <div className="flex flex-col">
-          <h3 className="mt-2 mx-4 text-xl">{friend.username}</h3>
+          <h3 className="mt-2 mx-4 text-xl font-alt-text-f">{friend.username}</h3>
           <h4 className="mt-2 mx-4 text-md">{friend.motto}</h4>
         </div>
       </div>
