@@ -13,7 +13,7 @@
     }
 
     .navbar-tooltip {
-        @apply bg-gray-900 text-white absolute w-auto p-2 m-2 min-w-max left-20 rounded-md shadow-md text-xs font-bold transition-all duration-100 scale-0 origin-left;
+        @apply bg-gray-900 text-white absolute w-auto p-2 m-2 min-w-max top-20 md:left-20 md:top-0 rounded-md shadow-md text-xs font-bold transition-all duration-100 scale-0 origin-left;
     }
 
     .error-input {
