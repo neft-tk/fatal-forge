@@ -15,8 +15,8 @@ function DeckEditView({ setDeckData, deckData }) {
 
 
     useEffect(() => {
-        console.log('data',deckData)
-    },[deckData]);
+        console.log('data', deckData);
+    }, [deckData]);
 
 
     return (
