@@ -9,7 +9,7 @@ module.exports = {
       // Colors by use case.
       colors: {
         'main-bg': '#222',
-        'alt-bg': '#444',
+        'alt-bg': '#333',
         'main-text': '#eee',
         'alt-text': '#ccc',
         'highlight': '#c0ffee',
