@@ -152,7 +152,7 @@ export default function Initialize(props) {
         </form>
 
         {/* All Players */}
-        <div className='w-1/3 flex flex-col justify-between'>
+        <div className='w-1/3 flex flex-col justify-between bg-main-bg'>
           <h2 className='font-semibold text-3xl font-main-text-f'>Players</h2>
           {renderUsers(connectedUsers)}
         </div>

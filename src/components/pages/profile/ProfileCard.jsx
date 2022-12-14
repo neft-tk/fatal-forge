@@ -112,7 +112,7 @@ function ProfileCard({
             alt="Profile Picture"
           />
           <div className="flex flex-col ml-4 justify-center">
-            <h2 className="text-4xl mb-4">{user.username}</h2>
+            <h2 className="text-4xl mb-4 font-display-text-f">{user.username}</h2>
             <h3 className="text-sm mb-2">
               Aka:{' '}
               <span className="italic font-semibold tracking-wide ml-2">

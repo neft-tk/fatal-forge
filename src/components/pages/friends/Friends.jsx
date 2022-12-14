@@ -108,7 +108,7 @@ function Friends({ userId, token }) {
   return (
     <div className='flex justify-evenly text-center h-screen'>
       <div className=" text-main-text font-main-text-f overflow-auto gl-scrollbar w-1/2">
-        <h2 className="m-4 text-2xl">Friends List</h2>
+        <h2 className="m-4 text-2xl font-display-text-f">Friends List</h2>
         {user ? (
           <div className="cards-container grid grid-cols-1">
             {friends.map((friend) => (
@@ -127,7 +127,7 @@ function Friends({ userId, token }) {
         )}
       </div>
       <div className="text-main-text font-main-text-f overflow-auto gl-scrollbar w-1/2">
-        <h2 className="m-4 text-2xl">All Users</h2>
+        <h2 className="m-4 text-2xl font-display-text-f">All Users</h2>
         {users ? (
           <div className="cards-container grid grid-cols-1">
             {users.map((user) => (

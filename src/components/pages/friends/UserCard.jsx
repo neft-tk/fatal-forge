@@ -28,7 +28,7 @@ function UserCard({ user, userId, token, handleAddFriend }) {
           alt="Deck's Back of Card"
         ></img>
         <div className="flex flex-col">
-          <h3 className="mt-2 mx-4 text-xl">{user.username}</h3>
+          <h3 className="mt-2 mx-4 text-xl font-alt-text-f">{user.username}</h3>
           <h4 className="mt-2 mx-4 text-md">{user.motto}</h4>
         </div>
       </div>
