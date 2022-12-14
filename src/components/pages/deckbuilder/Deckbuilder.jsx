@@ -13,6 +13,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
   const [deck, setDeck] = useState();
   const [decks, setDecks] = useState([]);
   const [deckChoice, setDeckChoice] = useState();
+  const [deckChoiceName, setDeckChoiceName] = useState("")
   const [deckTitleData, setDeckTitleData] = useState("");
   const [deckBackData, setDeckBackData] = useState("");
 
@@ -41,14 +42,14 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
   async function getSelectedDeck() {
     const submittedDeck = await fetch(`${Static.serverUrl}/api/decks/${deckChoice}`)
     const deckInfo = await submittedDeck.json()
-    const deckCards = deckInfo.Cards.map((card) => {
+    const deckCards = await deckInfo.Cards.map((card) => {
       return {
         name: card.cardName,
         id: card.id,
       }
     })
-    console.log(deckCards)
     setDeckData(deckCards)
+    setDeckChoiceName(deckInfo.deckName)
     // const deconstructedDeck = await 
   }
 
@@ -57,6 +58,13 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
     const submittedDeck = await API.deleteDeck(deckChoice, token)
     console.log("deck deleted")
   }
+
+  // async function findOneDeck() {
+  //   const selectedDeck = await API.getSingleDeck(deckChoice)
+  //   const deconstructedDeck = await selectedDeck.json()
+  //   console.log(deckChoice)
+  //   setDeckChoiceName(deckChoice)
+  // }
 
   const handleDeckTitleSubmit = (e) => {
     setDeckTitleData(e.target.value);
@@ -74,7 +82,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
       return card.id;
     });
 
-    if (idData.length < 10) {
+    if (idData.length < 15) {
       return alert("Please make sure your deck is 10 cards");
     } else {
       handleDeckCreate({
@@ -88,9 +96,8 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
 
   return (
     <>
-      <div className="text-center">Deckbuilder</div>
-      <h1 className="text-center">Welcome to the Deckbuilder!</h1>
-      <h1 className="text-center">Select an old deck to edit here:</h1>
+      <h1 className="text-center text-4xl font-main-text-f m-6">Welcome to the Deckbuilder!</h1>
+      <h1 className="text-center text-3xl font-main-text-f">Select an old deck to edit here:</h1>
 
       {/* Deck Choice */}
       <div className="flex flex-row justify-evenly items-center">
@@ -127,10 +134,10 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
         </div>
       </div>
 
-      <h1 className="text-center">Create a New Deck Below:</h1>
-      <div className="flex flex-row justify-evenly">
+      <h1 className="text-center text-3xl font-main-text-f">Create a New Deck Below:</h1>
+      <div className="flex flex-row justify-items-stretch">
         <div className="flex flex-col deck-editor p-4">
-          <h2>All Cards:</h2>
+          <h2 className="text-2xl font-main-text-f">All Cards:</h2>
           <div className="flex flex-col justify-start overflow-auto max-h-40 max-w-md">
             <CardView
               setDeckData={setDeckData}
@@ -140,14 +147,14 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
           </div>
         </div>
         <div className="flex flex-col deck-editor p-4">
-          <h2>Deck Title:</h2>
+          <h2 className="text-2xl font-main-text-f">Deck Title:</h2>
           <input
             type="textarea"
             value={deckTitleData}
             onChange={handleDeckTitleSubmit}
           />
-          <h2>Current Deck Build:</h2>
-          <div className="flex flex-col justify-start overflow-auto">
+          <h2 className="text-2xl font-main-text-f">Current Deck Build: {deckChoiceName}</h2>
+          <div className="flex flex-col justify-start overflow-auto gl-scrollbar">
             <DeckEditView setDeckData={setDeckData} deckData={deckData} />
           </div>
           <h2>Select Your Deck Back:</h2>
@@ -198,7 +205,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
           </div>
           <button
             type="button"
-            className="border m-10"
+            className="border m-10 bg-yellow-500"
             onClick={handleDeckSubmit}
           >
             Submit Your Deck
