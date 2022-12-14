@@ -47,7 +47,7 @@ function DeckCard({ deck }) {
           src={`${Static.serverUrl}/api/images/${deck.imagePath}`}
           alt="Deck's Back of Card"
         />
-        <h3 className="mt-4">{deck.deckName}</h3>
+        <h3 className="mt-4 font-alt-text-f">{deck.deckName}</h3>
       </div>
       {/* Sample */}
       {/* <div className="ml-4 flex flex-col justify-center items-center">
