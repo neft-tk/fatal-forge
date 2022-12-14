@@ -36,8 +36,6 @@ export default function Gameview() {
             <DndProvider backend={HTML5Backend}>
               <Game deckId={deck} size={size} gameId={gameId} setView={setView}/>
             </DndProvider>
-
-
         )
     }
   }
