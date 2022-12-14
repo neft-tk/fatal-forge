@@ -45,10 +45,8 @@ export default function Handslot({ drawCard, index }) {
   }, [])
 
   return (
-    <motion.div animate={currentAnimation} style={{ backgroundColor: Socket.IO.color }} className={`flex justify-center w-[20%] aspect-square mx-2`}>
-      <div className='border border-white/30 rounded w-full h-full shrink grow overflow-hidden'>
+    <motion.div animate={currentAnimation} style={{ backgroundColor: Socket.IO.color }} className={`flex justify-center h-full aspect-square`}>
       {currentCard ? <Card name={currentCard.name} compass={currentCard.compass} imagePath={currentCard.imagePath} removeAndDraw={removeAndDraw} inPlay={false} slotIndex={index} /> : ''}
-      </div>
     </motion.div>
   )
 }
