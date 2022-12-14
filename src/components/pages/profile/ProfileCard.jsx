@@ -6,7 +6,6 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import DeckView from './DeckView';
 import StatsView from './StatsView';
 import PastGamesView from './PastGamesView';
-// import API from '../../../utils/API';
 import Static from '../../../utils/staticHelper';
 
 function ProfileCard({
