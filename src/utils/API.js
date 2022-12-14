@@ -4,7 +4,6 @@ import Static from './staticHelper';
 const URL_PREFIX = Static.serverUrl;
 
 const API = {
-  
   // LOGIN/SIGNUP/TOKEN
   // @ api/users/login
   login: async (userObj) => {
@@ -15,10 +14,10 @@ const API = {
         'Content-Type': 'application/json',
       },
     });
-    console.log("Res: ", res);
-    if(res.status === 401) {
-      console.log("DENIED LOGIN!");
-      return await res.json({msg: 'invalid login credentials'});
+    console.log('Res: ', res);
+    if (res.status === 401) {
+      console.log('DENIED LOGIN!');
+      return await res.json({ msg: 'invalid login credentials' });
     }
     return await res.json();
   },
@@ -32,10 +31,10 @@ const API = {
         'Content-Type': 'application/json',
       },
     });
-    console.log("Res: ", res);
-    if(res.status === 500) {
-      console.log("ISSUE SIGNING UP!");
-      return await res.json({msg: 'invalid signup fields'});
+    console.log('Res: ', res);
+    if (res.status === 500) {
+      console.log('ISSUE SIGNING UP!');
+      return await res.json({ msg: 'invalid signup fields' });
     }
     return await res.json();
   },
@@ -45,7 +44,7 @@ const API = {
     const res = await fetch(`${URL_PREFIX}/api/users/readtoken`, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return await res.json();
@@ -58,7 +57,7 @@ const API = {
       method: 'GET',
       headers: {
         'Content-Type': 'Application/json',
-      }
+      },
     });
     return await res.json();
   },
@@ -69,7 +68,7 @@ const API = {
       method: 'GET',
       headers: {
         'Content-Type': 'Application/json',
-      }
+      },
     });
     return await res.json();
   },
@@ -80,7 +79,7 @@ const API = {
       method: 'GET',
       headers: {
         'Content-Type': 'Application/json',
-      }
+      },
     });
     return await res.json();
   },
@@ -91,7 +90,7 @@ const API = {
       method: 'GET',
       headers: {
         'Content-Type': 'Application/json',
-      }
+      },
     });
     return await res.json();
   },
@@ -102,7 +101,7 @@ const API = {
       method: 'GET',
       headers: {
         'Content-Type': 'Application/json',
-      }
+      },
     });
     return await res.json();
   },
@@ -113,11 +112,28 @@ const API = {
       method: 'GET',
       headers: {
         'Content-Type': 'Application/json',
-      }
+      },
     });
     return await res.json();
   },
 
+  // TODO: FIX BUG FOR GETTING PROFILE IMAGE
+  // @ api/images/:pathName
+  getUserPicture: async (pathName) => {
+    const res = await fetch(`${URL_PREFIX}/api/images/${pathName}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+    });
+    console.log('Res: ', res);
+    console.log('Res URL: ', res.url);
+    if (res.status === 404) {
+      console.log('NO PROFILE PIC!');
+      return res.json({ url: '' });
+    }
+    return res.json({ url: res.url});
+  },
   // getCardBackSprite: async (cardback) => {
   //   const res = await fetch(`${URL_PREFIX}/api/images/`, {
   //     method: 'GET',
@@ -144,29 +160,30 @@ const API = {
       headers: {
         'Content-Type': 'Application/json',
       },
-    })
-    return await res.json();
-  },
-
-  addFriend: async (userId, friendId, token) => {
-    const res = await fetch(`${URL_PREFIX}/api/users/${userId}/friends/${friendId}`, {
-      method: 'POST',
-      body:JSON.stringify({
-        userId,
-        friendId
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
     });
     return await res.json();
   },
 
-  // PUTs
-  editUser: async (token) => {
-
+  addFriend: async (userId, friendId, token) => {
+    const res = await fetch(
+      `${URL_PREFIX}/api/users/${userId}/friends/${friendId}`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          userId,
+          friendId,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return await res.json();
   },
+
+  // PUTs
+  editUser: async (token) => {},
 
   // DELETEs
   // @ api/users/:userId
@@ -174,7 +191,7 @@ const API = {
     const res = await fetch(`${URL_PREFIX}/api/users/${userId}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return await res.json();
@@ -187,7 +204,7 @@ const API = {
       {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -199,7 +216,7 @@ const API = {
     const res = await fetch(`${URL_PREFIX}/api/decks/${deckId}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return await res.json();

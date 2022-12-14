@@ -16,10 +16,10 @@ function DeckCard({ deck }) {
       const cardsData = data.Cards;
       for (let i = 0; i < 4; i++) {
         const card = cardsData[randomNumber()];
-        console.log('Random Card:');
-        console.log(card);
-        console.log(card.cardName);
-        console.log(card.imagePath);
+        // console.log('Random Card:');
+        // console.log(card);
+        // console.log(card.cardName);
+        // console.log(card.imagePath);
         cardsArray.push(card);
         // setCards((prevCards) => [...prevCards, card]);
       }

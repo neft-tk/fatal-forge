@@ -106,11 +106,11 @@ function Friends({ userId, token }) {
   };
 
   return (
-    <>
-      <div className="m-6 py-10 px-20 text-main-text font-main-text-f">
-        <h2 className="m-4 text-2xl">Friends List</h2>
+    <div className='flex justify-evenly text-center h-screen'>
+      <div className=" text-main-text font-main-text-f overflow-auto gl-scrollbar w-1/2">
+        <h2 className="m-4 text-2xl font-display-text-f">Friends List</h2>
         {user ? (
-          <div className="cards-container grid grid-cols-2">
+          <div className="cards-container grid grid-cols-1">
             {friends.map((friend) => (
               <FriendCard
                 key={friend.id}
@@ -126,11 +126,11 @@ function Friends({ userId, token }) {
           ''
         )}
       </div>
-      <div className="m-6 px-20 text-main-text font-main-text-f">
-        <h2 className="m-4 text-2xl">Other Users</h2>
+      <div className="text-main-text font-main-text-f overflow-auto gl-scrollbar w-1/2">
+        <h2 className="m-4 text-2xl font-display-text-f">All Users</h2>
         {users ? (
-          <div className="cards-container grid grid-cols-2">
-            {users.map((user) => (
+          <div className="cards-container grid grid-cols-1">
+            {users.filter((user) => user.id !== userId).map((user) => (
               <UserCard
                 key={users.id}
                 user={user}
@@ -144,7 +144,7 @@ function Friends({ userId, token }) {
           ''
         )}
       </div>
-    </>
+    </div>
   );
 };
 

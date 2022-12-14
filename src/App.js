@@ -130,7 +130,7 @@ function App() {
     return (
       <>
         <Router>
-          <div className="flex w-screen h-screen">
+          <div className="flex flex-col md:flex-row w-screen h-screen">
             <Nav view={view} setView={setView} handleLogout={handleLogout} />
             <div id="routeContainer" className="w-full h-full">
               <Particles

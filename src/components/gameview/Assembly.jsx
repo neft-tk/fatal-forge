@@ -109,28 +109,33 @@ function Assembly({ setView, setGameId }) {
 
   return (
     <>
-    <div className='flex flex-col h-full items-center align-middle justify-evenly'>
-      <h3 className='text-4xl font-display-text-f'>Join or Create a room to play!</h3>
-      <form action="" className='h-4/5 w-2/5 flex justify-between items-center'>
-        <div className='flex flex-col h-3/5 items-center justify-between font-main-text-f'>
-          <label htmlFor="joinRoomInput" className='text-2xl font-semibold alt-text-f'>Join</label>
-          <input type="text" id='joinRoomInput' placeholder='Room ID' className='font-main-text-f shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={joinRoom} onChange={e => setJoinRoom(e.target.value)} />
-          <button id='join-room' className='font-main-text-f bg-highlight-orange hover:bg-active-orange text-white font-bold py-2 px-4 rounded' onClick={handleFormSubmit}>Join Room</button>
-        </div>
-        <div className='flex flex-col h-3/5 items-center justify-between font-main-text-f'>
-          <label htmlFor="createRoomInput" className='text-2xl font-semibold'>Create</label>
-          <input type='text' id='createRoomInput' placeholder="New Room ID" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={createRoom} onChange={e => setCreateRoom(e.target.value)} />
-          <div className='flex flex-col justify-between h-1/4'>
-            <label htmlFor="gridSize" className='text-2xl font-semibold alt-text-f'>Grid Size</label>
-            <select id='gridSize' className='bg-alt-bg font-alt-text-f' defaultValue={3} onChange={(e) => { setGridSize(e.target.value) }}>
-              <option className='font-alt-text-f' value={3}>3x3</option>
-              <option className='font-alt-text-f' value={4}>4x4</option>
-              <option className='font-alt-text-f' value={5}>5x5</option>
-            </select>
+    <div className='flex flex-col h-full w-full justify-center items-center'>
+      
+
+        <h3 className='text-4xl font-display-text-f mb-6'>Join or Create a room to play!</h3>
+        <form action="" className='flex flex-col md:flex-row justify-around items-around w-fit gap-6'>
+          
+          <div className='flex flex-col items-center justify-between font-main-text-f bg-black/25 p-4 rounded-2xl gap-2 h-full'>
+            <label htmlFor="joinRoomInput" className='text-2xl font-semibold alt-text-f'>Join</label>
+            <input type="text" id='joinRoomInput' placeholder='Room ID' className='font-main-text-f shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={joinRoom} onChange={e => setJoinRoom(e.target.value)} />
+            <button id='join-room' className='font-main-text-f bg-highlight-orange hover:bg-active-orange text-white font-bold py-2 px-4 rounded' onClick={handleFormSubmit}>Join Room</button>
           </div>
-          <button id='create-room' className='bg-highlight-orange hover:bg-active-orange text-white font-bold py-2 px-4 rounded' onClick={handleFormSubmit}>Create Room</button>
-        </div>
-      </form>
+          <div className='flex flex-col items-center justify-between font-main-text-f bg-black/25 p-4 rounded-2xl gap-2'>
+            <label htmlFor="createRoomInput" className='text-2xl font-semibold'>Create</label>
+            <div className='relative'>
+              <input type='text' id='createRoomInput' placeholder="New Room ID" className='shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={createRoom} onChange={e => setCreateRoom(e.target.value)} />
+              <select id='gridSize' className='bg-alt-bg font-alt-text-f absolute right-0 h-full rounded-r border-none' defaultValue={3} onChange={(e) => { setGridSize(e.target.value) }}>
+                <option value={3}>3x3</option>
+                <option value={4}>4x4</option>
+                <option value={5}>5x5</option>
+              </select>
+            </div>
+
+            <button id='create-room' className='bg-highlight-orange hover:bg-active-orange text-white font-bold py-2 px-4 rounded' onClick={handleFormSubmit}>Create Room</button>
+          
+          </div>
+        </form>
+
     </div>
     {renderModal(message)}
   </>
