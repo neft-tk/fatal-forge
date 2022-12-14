@@ -33,7 +33,7 @@ function PastGameCard({ deck }) {
       </div>
 
       {/* TODO: Delete these placeholders when real data comes in. */}
-      <div className="flex flex-col m-6 items-center border-2 border-green-900 justify-around rounded bg-main-bg">
+      {/* <div className="flex flex-col m-6 items-center border-2 border-green-900 justify-around rounded bg-main-bg">
         <h3 className="text-green-900 text-2xl font-bold mb-4">Victory!</h3>
         <div className="flex justify-around items-center w-full">
           <div className="flex flex-col items-center">
@@ -59,7 +59,7 @@ function PastGameCard({ deck }) {
             <p className="text-lg">VKorn</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

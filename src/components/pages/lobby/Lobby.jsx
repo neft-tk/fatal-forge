@@ -8,7 +8,7 @@ import gllogo from '../../../assets/png/gridlocke1.png'
 export default function Lobby({ userId }) {
 
   return (
-    <div className='flex flex-col justify-evenly items-center h-screen'>
+    <div className='flex flex-col items-center h-screen'>
       {/* Hero */}
       <img src={gllogo} alt="Gridlocke logo" className='w-1/4 mx-auto my-0' />
       {/* Bio */}

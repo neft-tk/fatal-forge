@@ -51,7 +51,7 @@ function ProfileCard({
   return (
     <>
       {/* Profile Card, Name + Pic + Motto + Options */}
-      <div className="bg-gradient-to-r from-main-bg to-alt-bg flex justify-around h-1/3 my-8 mx-14 border-highlight-orange border-2 rounded-3xl">
+      <div className="bg-gradient-to-r from-main-bg to-alt-bg flex justify-around h-1/3 my-8 mx-auto border-highlight-orange border-2 rounded-3xl w-4/5">
         {/* Pic + Name */}
         <div className="flex justify-around w-auto">
           <img
