@@ -151,6 +151,7 @@ function App() {
                     <Deckbuilder
                       userId={userId}
                       handleDeckCreate={handleDeckCreate}
+                      token={token}
                     />
                   }
                 />

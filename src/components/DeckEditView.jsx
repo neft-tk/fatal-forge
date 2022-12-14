@@ -20,7 +20,7 @@ function DeckEditView({ setDeckData, deckData }) {
 
 
     return (
-        <div>
+        <div className="flex flex-col">
             {deckData.map((card, index) => 
             <button className="border" key={index} onClick={removeCard}>    
                 <div className="border">
