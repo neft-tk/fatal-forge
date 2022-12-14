@@ -10,7 +10,7 @@ function DeckCard({ deck }) {
     async function fetchCards() {
       // console.log('Here');
       // console.log(deck);
-      const data = await API.getDeckCards(deck.id);
+      const data = await API.getSingleDeck(deck.id);
       // console.log(data);
       // console.log(data.Cards);
       const cardsData = data.Cards;

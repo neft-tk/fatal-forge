@@ -5,16 +5,33 @@
 @layer components {
 
     .navbar-icon {
-        @apply relative flex items-center justify-center h-16 w-16 my-2 mx-auto bg-gray-800 text-main-orange hover:bg-highlight-orange active:bg-active-orange hover:text-white active:text-white focus:ring-4 focus:ring-blue-300 rounded-3xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer;
+        @apply bg-gray-800 hover:bg-highlight-orange active:bg-active-orange focus:ring-blue-300 text-main-orange hover:text-white active:text-white relative flex items-center justify-center h-16 w-16 my-2 mx-auto focus:ring-4 rounded-3xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer;
     }
 
     .profile-icon {
-        @apply justify-center text-center items-center bg-gray-800 text-main-orange hover:bg-highlight-orange active:bg-active-orange hover:text-white active:text-white rounded-3xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer focus:ring-4 focus:ring-blue-300 font-medium text-sm p-8 w-28 h-28 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800;
+        @apply bg-gray-800 hover:bg-highlight-orange active:bg-active-orange focus:ring-blue-300 text-main-orange hover:text-white active:text-white justify-center text-center items-center rounded-3xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer focus:ring-4 font-medium text-sm p-8 w-28 h-28 focus:outline-none;
     }
 
     .navbar-tooltip {
-        @apply absolute w-auto p-2 m-2 min-w-max left-20 rounded-md shadow-md text-white bg-gray-900 text-xs font-bold transition-all duration-100 scale-0 origin-left;
+        @apply bg-gray-900 text-white absolute w-auto p-2 m-2 min-w-max left-20 rounded-md shadow-md text-xs font-bold transition-all duration-100 scale-0 origin-left;
     }
+
+    .error-input {
+        @apply bg-red-50 focus:ring-red-500 text-red-900 placeholder-red-700 border-red-500 focus:border-red-500 rounded border block;
+    }
+
+    .button-style {
+        @apply bg-main-orange hover:bg-active-orange focus:ring-4 focus:ring-blue-800 text-black m-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none;
+    }
+
+    .cards-container {
+        @apply bg-gradient-to-r from-main-bg to-alt-bg border-gray-300 text-main-bg w-full h-full p-6 border-4 rounded;
+    }
+
+    .card-style {
+        @apply bg-main-text border-main-orange grid grid-cols-3 p-4 m-4 rounded-2xl border-2;
+    }
+
 }
 
 body {

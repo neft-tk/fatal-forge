@@ -16,7 +16,7 @@ export default function Deckbuilder({ userId, handleDeckCreate }) {
 
   useEffect(() => {
     async function fetchCards() {
-      const data = await API.getCards();
+      const data = await API.getAllCards();
       for (let i = 0; i < data.length; i++) {
         const card = data[i];
         setCardData((prevCards) => [...prevCards, card]);
