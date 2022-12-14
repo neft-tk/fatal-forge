@@ -1,8 +1,16 @@
 import React, { useState } from "react";
+import { Button, Modal} from 'flowbite-react';
 // import Deckbuilder, { addCard } from "./pages/deckbuilder/Deckbuilder";
 
 function CardView({ cardData, setDeckData, deckData}) {
+  const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState('hi');
 
+  const Alert = (msg) =>{
+    setMessage(msg);
+    console.log(msg);
+    setShowModal(true);
+  };
 
   const addCard = (e) => {
     e.preventDefault();
@@ -15,8 +23,8 @@ function CardView({ cardData, setDeckData, deckData}) {
     if(deckData.filter((card) => 
       newCard.id == card.id
     ).length === 1) {
-      alert('Cannot have more than one card with the same unique id.')
-      return
+      Alert('Cannot have more than one of the same card.');
+      return;
     }
 
     const newDeck = [...deckData];
@@ -25,18 +33,47 @@ function CardView({ cardData, setDeckData, deckData}) {
     // console.log(deckData);
   };
 
-  return (
-    <div>
-      {cardData.map((card, index) => (
-        <button className="block min-w-full" key={index} onClick={addCard}>
-          <div className="text-start border text-xl font-main-text-f">
-            <p>
-              {card.id}, {card.cardName}, L:{card.leftAttack}, R:{card.rightAttack}, T:{card.topAttack}, B:{card.bottomAttack}
-            </p>
+  function renderModal(){
+    return(    <Modal
+      show={showModal}
+      size="md"
+      popup={true}
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
+            <h3 className="mb-5 text-lg font-normal text-gray-400">
+              {message}
+            </h3>
+            <div className="flex justify-center gap-4">
+              <Button
+                color="gray"
+                onClick={()=>{setShowModal(false)}}
+              >
+                OK
+              </Button>
+            </div>
           </div>
-        </button>
-      ))}
-    </div>
+        </Modal.Body>
+      </Modal>)
+  };
+
+  return (
+    <>
+      <div>
+        {cardData.map((card, index) => (
+          <button className="block min-w-full" key={index} onClick={addCard}>
+            <div className="text-start border text-xl font-main-text-f">
+              <p>
+                {card.id}, {card.cardName}, L:{card.leftAttack}, R:{card.rightAttack}, T:{card.topAttack}, B:{card.bottomAttack}
+              </p>
+            </div>
+          </button>
+        ))}
+      </div>
+      {renderModal(message)}
+    </>
   );
 }
 

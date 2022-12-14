@@ -12,8 +12,6 @@ module.exports = {
         'alt-bg': '#333',
         'main-text': '#eee',
         'alt-text': '#ccc',
-        'highlight': '#c0ffee',
-        'alt-highlight': 'yellow',
         'main-orange': '#f25939',
         'highlight-orange': '#fe6601',
         'active-orange': '#f2956a',

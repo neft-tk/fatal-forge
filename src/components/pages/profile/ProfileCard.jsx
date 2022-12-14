@@ -120,6 +120,7 @@ function ProfileCard({
             size="md"
             popup={true}
             onClose={onEditModalClose}
+            className="p-12"
           >
             <Modal.Header className="bg-slate-600" />
             <Modal.Body className="bg-slate-500">
@@ -130,7 +131,7 @@ function ProfileCard({
                   </h3>
                   <p className="text-gray-900 dark:text-white">Feel free to only change the fields you want updated!</p>
                   <div className="w-full">
-                    <div className="mb-2 block">
+                    <div className="block">
                       <Label htmlFor="username" value="New username:" />
                     </div>
                     <input
@@ -143,7 +144,7 @@ function ProfileCard({
                     />
                   </div>
                   <div className="w-full">
-                    <div className="mb-2 block">
+                    <div className="block">
                       <Label htmlFor="email" value="New email:" />
                     </div>
                     <input
@@ -156,7 +157,7 @@ function ProfileCard({
                     />
                   </div>
                   <div className="w-full">
-                    <div className="mb-2 block">
+                    <div className="block">
                       <Label htmlFor="name" value="New name:" />
                     </div>
                     <input
@@ -169,7 +170,7 @@ function ProfileCard({
                     />
                   </div>
                   <div className="w-full">
-                    <div className="mb-2 block">
+                    <div className="block">
                       <Label htmlFor="motto" value="New motto:" />
                     </div>
                     <input
