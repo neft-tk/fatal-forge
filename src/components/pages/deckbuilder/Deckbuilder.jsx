@@ -85,7 +85,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
     });
 
     if (idData.length < 15) {
-      return alert("Please make sure your deck is 10 cards");
+      return alert("Please make sure your deck is at least 15 cards");
     } else {
       handleDeckCreate({
         cardIds: idData,
@@ -137,6 +137,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
       </div>
 
       <h1 className="text-center text-3xl font-main-text-f">Create a New Deck Below:</h1>
+      <p className="text-center text-3xl font-main-text-f m-2">Each deck must have at least 15 unique cards. You can only have one copy of each card.</p>
       
       <h2 className="text-center text-2xl font-main-text-f mx-10">Deck Title:
           <input
@@ -148,7 +149,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
       </h2>
 
 
-      <div className="flex flex-row justify-items-stretch">
+      <div className="flex flex-col md:flex-row justify-items-stretch">
         <div className="flex flex-col deck-editor p-4">
           <h2 className="text-2xl font-main-text-f">All Cards:</h2>
           <div className="flex flex-col justify-start overflow-auto max-h-40 max-w-md">
