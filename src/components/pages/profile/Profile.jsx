@@ -34,13 +34,36 @@ function Profile({ userId, token, setIsLoggedIn }) {
   }, []);
 
   const handleEditUser = async (editObj) => {
-    const { userId, token } = editObj;
-    // console.log('Editing...');
-    // console.log('Edit this user.');
-    // console.log('User ID: ', userId);
-    // console.log('Token: ', token);
-    // const editMessage = await API.editUser(userId, token)
-    // console.log(editMessage);
+    const { username, email, name, motto, userId, token } = editObj;
+    console.log('Editing...');
+    console.log('Edit this user.');
+    console.log('User ID: ', username);
+    console.log('User ID: ', email);
+    console.log('User ID: ', name);
+    console.log('User ID: ', motto);
+    console.log('User ID: ', userId);
+    console.log('Token: ', token);
+    const editMessage = await API.editUser({
+      username,
+      email,
+      name,
+      motto,
+      userId,
+      token
+    });
+    console.log(editMessage);
+    const data = await API.getSingleUser(userId);
+    setUser({
+      username: data.username,
+      email: data.email,
+      name: data.name,
+      motto: data.motto,
+      decks: data.Decks,
+      friends: data.FavoriteUser,
+      imagePath: data.imagePath,
+      decks: data.Decks,
+      friends: data.FavoriteUser,
+    });
   };
 
   const handleDeleteUser = async (delObj) => {
