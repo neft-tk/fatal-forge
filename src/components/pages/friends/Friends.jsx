@@ -110,7 +110,7 @@ function Friends({ userId, token }) {
       <div className="m-6 py-10 px-20 text-main-text font-main-text-f">
         <h2 className="m-4 text-2xl">Friends List</h2>
         {user ? (
-          <div className="cards-container grid grid-cols-2">
+          <div className="cards-container grid grid-cols-1 lg:grid-cols-2">
             {friends.map((friend) => (
               <FriendCard
                 key={friend.id}
@@ -129,8 +129,8 @@ function Friends({ userId, token }) {
       <div className="m-6 px-20 text-main-text font-main-text-f">
         <h2 className="m-4 text-2xl">Other Users</h2>
         {users ? (
-          <div className="cards-container grid grid-cols-2">
-            {users.map((user) => (
+          <div className="cards-container grid grid-cols-1 lg:grid-cols-2">
+            {users.filter((user) => user.id !== userId).map((user) => (
               <UserCard
                 key={users.id}
                 user={user}

@@ -56,7 +56,7 @@ function Profile({ userId, token, setIsLoggedIn }) {
   };
 
   return (
-    <div className="flex flex-col justify-evenly shrink">
+    <div className="flex flex-col justify-evenly h-auto">
       {user ? (
         <ProfileCard
           user={user}
