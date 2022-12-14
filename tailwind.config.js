@@ -8,14 +8,14 @@ module.exports = {
     extend: {
       // Colors by use case.
       colors: {
-        'main-bg': '#222',
+        'main-bg': '#171717',
         'alt-bg': '#333',
         'main-text': '#eee',
         'alt-text': '#ccc',
         'highlight': '#c0ffee',
         'alt-highlight': 'yellow',
-        'main-orange': '#f25939',
-        'highlight-orange': '#fe6601',
+        'main-orange': '#e5302d',
+        'highlight-orange': '#0c4a6e',
         'active-orange': '#f2956a',
       },
       // Fonts by use case.
