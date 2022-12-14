@@ -5,7 +5,7 @@
 @layer components {
 
     .navbar-icon {
-        @apply bg-gray-800 hover:bg-highlight-orange active:bg-active-orange focus:ring-blue-300 text-main-orange hover:text-white active:text-white relative flex items-center justify-center h-16 w-16 my-2 mx-auto focus:ring-4 rounded-3xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer;
+        @apply bg-neutral-700 hover:bg-cyan-700 active:bg-active-orange focus:ring-blue-300 text-neutral-200 hover:text-white active:text-white relative flex items-center justify-center w-12 h-12 my-2 mx-auto focus:ring-4 rounded-xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer;
     }
 
     .profile-icon {
@@ -21,7 +21,7 @@
     }
 
     .button-style {
-        @apply bg-main-orange hover:bg-active-orange focus:ring-4 focus:ring-blue-800 text-black m-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none;
+        @apply bg-sky-800 hover:bg-cyan-600 focus:ring-4 focus:ring-blue-800 text-black m-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none;
     }
 
     .cards-container {
@@ -39,7 +39,7 @@
 }
 
 body {
-    background-color: #222;
+    background-color: #171717;
     color: white;
 }
 
