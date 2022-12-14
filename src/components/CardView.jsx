@@ -28,8 +28,8 @@ function CardView({ cardData, setDeckData, deckData}) {
   return (
     <div>
       {cardData.map((card, index) => (
-        <button className="block" key={index} onClick={addCard}>
-          <div className="border">
+        <button className="block min-w-full" key={index} onClick={addCard}>
+          <div className="text-start border text-xl font-main-text-f">
             <p>
               {card.id}, {card.cardName}, L:{card.leftAttack}, R:{card.rightAttack}, T:{card.topAttack}, B:{card.bottomAttack}
             </p>

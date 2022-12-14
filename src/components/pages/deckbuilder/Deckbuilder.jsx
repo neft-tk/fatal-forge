@@ -6,6 +6,7 @@ import API from "../../../utils/API";
 import CardView from "../../CardView";
 import DeckEditView from "../../DeckEditView";
 import Static from "../../../utils/staticHelper";
+import { async } from "q";
 
 export default function Deckbuilder({ userId, handleDeckCreate, token }) {
   const [cardData, setCardData] = useState([]);
@@ -15,7 +16,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
   const [deckChoice, setDeckChoice] = useState();
   const [deckChoiceName, setDeckChoiceName] = useState("")
   const [deckTitleData, setDeckTitleData] = useState("");
-  const [deckBackData, setDeckBackData] = useState("");
+  const [deckBackData, setDeckBackData] = useState("Basic");
 
   useEffect(() => {
     async function fetchCards() {
@@ -57,6 +58,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
     console.log(deckChoice)
     const submittedDeck = await API.deleteDeck(deckChoice, token)
     console.log("deck deleted")
+    window.location.reload();
   }
 
   // async function findOneDeck() {
@@ -129,12 +131,23 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
         </select>
         </div>
         <div className="flex flex-col">
-        <button type="button" className="border m-2" onClick={getSelectedDeck}>Edit This Deck!</button>
-        <button type="button" className="border bg-red-800 m-2" onClick={deleteSelectedDeck}>DELETE This Deck!</button>
+        <button type="button" className="bg-highlight-orange hover:bg-active-orange text-white font-bold py-2 px-4 rounded m-2" onClick={getSelectedDeck}>Edit This Deck!</button>
+        <button type="button" className="bg-red-800 hover:bg-active-orange text-white font-bold py-2 px-4 rounded m-2" onClick={deleteSelectedDeck}>DELETE This Deck!</button>
         </div>
       </div>
 
       <h1 className="text-center text-3xl font-main-text-f">Create a New Deck Below:</h1>
+      
+      <h2 className="text-center text-2xl font-main-text-f mx-10">Deck Title:
+          <input
+            type="textarea"
+            className="mx-2 rounded-sm"
+            value={deckTitleData}
+            onChange={handleDeckTitleSubmit}
+          />
+      </h2>
+
+
       <div className="flex flex-row justify-items-stretch">
         <div className="flex flex-col deck-editor p-4">
           <h2 className="text-2xl font-main-text-f">All Cards:</h2>
@@ -147,55 +160,50 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
           </div>
         </div>
         <div className="flex flex-col deck-editor p-4">
-          <h2 className="text-2xl font-main-text-f">Deck Title:</h2>
-          <input
-            type="textarea"
-            value={deckTitleData}
-            onChange={handleDeckTitleSubmit}
-          />
           <h2 className="text-2xl font-main-text-f">Current Deck Build: {deckChoiceName}</h2>
           <div className="flex flex-col justify-start overflow-auto gl-scrollbar">
             <DeckEditView setDeckData={setDeckData} deckData={deckData} />
           </div>
-          <h2>Select Your Deck Back:</h2>
-          <h3>Currently Selected Deck Back: {deckBackData}</h3>
+          <h2 className="text-center text-2xl font-main-text-f">Select Your Deck Back:</h2>
+          <div className="flex flex-col items-center">
+          <h3 className="text-center text-2xl font-main-text-f">Currently Selected Deck Back:</h3> 
+          <h3 className="text-center text-2xl font-main-text-f">{deckBackData}</h3>
+          <img 
+          className="border-black w-20 h-20 m-2" 
+          src={`${Static.serverUrl}/api/images/cardback/${deckBackData}.png`}
+          alt={deckBackData}/>
+          </div>
           <div className="flex flex-row">
-            <li>Basic</li>
             <img
               className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Basic.png`}
               alt="Basic"
               onClick={handleDeckBackSubmit}
             />
-            <li>Cross</li>
             <img
               className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Cross.png`}
               alt="Cross"
               onClick={handleDeckBackSubmit}
             />
-            <li>Fluid-Rune</li>
             <img
               className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Fluid-Rune.png`}
               alt="Fluid-Rune"
               onClick={handleDeckBackSubmit}
             />
-            <li>Glowing-Rune</li>
             <img
               className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Glowing-Rune.png`}
               alt="Glowing-Rune"
               onClick={handleDeckBackSubmit}
             />
-            <li>Grounded-Rune</li>
             <img
               className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Grounded-Rune.png`}
               alt="Grounded-Rune"
               onClick={handleDeckBackSubmit}
             />
-            <li>Star</li>
             <img
               className="border-black w-20 h-20 m-2"
               src={`${Static.serverUrl}/api/images/cardback/Star.png`}
@@ -205,7 +213,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
           </div>
           <button
             type="button"
-            className="border m-10 bg-yellow-500"
+            className="bg-highlight-orange hover:bg-active-orange text-white font-bold py-2 px-4 rounded m-2"
             onClick={handleDeckSubmit}
           >
             Submit Your Deck
