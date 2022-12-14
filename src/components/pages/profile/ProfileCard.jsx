@@ -51,24 +51,25 @@ function ProfileCard({
   return (
     <>
       {/* Profile Card, Name + Pic + Motto + Options */}
-      <div className="flex justify-evenly w-full h-1/3">
+      <div className="bg-gradient-to-r from-main-bg to-alt-bg flex justify-around h-1/3 my-8 mx-14 border-highlight-orange border-2 rounded-3xl">
         {/* Pic + Name */}
-        <div className="flex justify-evenly w-1/3">
-          <div className="flex flex-col justify-evenly ">
-            <h2 className="text-4xl">{user.name}</h2>
-            <h3 className="text-sm mb-2 text-center">username: <span className='italic font-semibold tracking-wide'>{user.username}</span></h3>
-          </div>
+        <div className="flex justify-around w-auto">
           <img
-            className="w-40 h-40 rounded-full border-2 border-main-orange my-auto mx-0"
+            className="w-40 h-40 rounded-full border-2 border-main-orange my-auto ml-6"
             src={`${Static.serverUrl}/api/images/${user.imagePath}`}
             alt="Profile Picture"
           />
+          <div className="flex flex-col ml-4 justify-center">
+            <h2 className="text-4xl mb-4">{user.username}</h2>
+            <h3 className="text-sm mb-2">Aka: <span className='italic font-semibold tracking-wide ml-2'>{user.name}</span></h3>
+            <h3 className="text-sm">{user.motto}</h3>
+          </div>
         </div>
         {/* Motto */}
-        <div className=' w-1/3 flex flex-col justify-evenly items-center'>
+        {/* <div className=' w-1/3 flex flex-col justify-evenly items-center'>
           <h1 className='text-center'>Motto:</h1>
           <h3 className="text-sm text-center">{user.motto}</h3>
-        </div>
+        </div> */}
         {/* Profile Settings */}
         <div className='flex justify-evenly w-1/3 my-auto'>
           <button
@@ -107,7 +108,7 @@ function ProfileCard({
         </div>
       </div>
       {/* Decks, Matches, Stats */}
-      <div className="flex justify-evenly items-center h-2/3">
+      <div className="flex justify-evenly items-center h-full">
         {/* Decks */}
         <div className="w-1/4 h-4/5">
           <DeckView decks={user.decks} />

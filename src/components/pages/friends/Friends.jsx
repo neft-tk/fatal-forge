@@ -10,7 +10,7 @@ function Friends({ userId, token }) {
 
   useEffect(() => {
     async function fetchUser() {
-      const data = await API.getUser(userId);
+      const data = await API.getSingleUser(userId);
       // console.log(data);
       // console.log(data.username);
       // console.log(data.FavoriteUser);
@@ -64,7 +64,7 @@ function Friends({ userId, token }) {
     console.log(delMessage);
 
     // Reset friends after del
-    const data = await API.getUser(userId);
+    const data = await API.getSingleUser(userId);
     user = {
       username: data.username,
       email: data.email,
@@ -90,7 +90,7 @@ function Friends({ userId, token }) {
 
     // TODO: Only add users that are NOT friends.
     // Reset users after add
-    const data = await API.getUser(userId);
+    const data = await API.getSingleUser(userId);
     user = {
       username: data.username,
       email: data.email,
@@ -107,11 +107,10 @@ function Friends({ userId, token }) {
 
   return (
     <>
-      <div className="m-6 text-main-text font-main-text-f">
-        <h2 >Friends...</h2>
+      <div className="m-6 py-10 px-20 text-main-text font-main-text-f">
+        <h2 className="m-4 text-2xl">Friends List</h2>
         {user ? (
-          <div className="w-full h-full border-4 rounded border-gray-300 bg-gradient-to-r from-main-orange via-yellow-300 to-main-orange text-main-bg font-bold p-4">
-            <h2 className="text-center m-2">Your Friends!</h2>
+          <div className="cards-container grid grid-cols-2">
             {friends.map((friend) => (
               <FriendCard
                 key={friend.id}
@@ -127,11 +126,10 @@ function Friends({ userId, token }) {
           ''
         )}
       </div>
-      <div className="m-6 text-main-text font-main-text-f">
-        <h2 >Users...</h2>
+      <div className="m-6 px-20 text-main-text font-main-text-f">
+        <h2 className="m-4 text-2xl">Other Users</h2>
         {users ? (
-          <div className="w-full h-full border-4 rounded border-gray-300 bg-gradient-to-r from-main-orange via-yellow-300 to-main-orange text-main-bg font-bold p-4">
-            <h2 className="text-center m-2">All Players</h2>
+          <div className="cards-container grid grid-cols-2">
             {users.map((user) => (
               <UserCard
                 key={users.id}

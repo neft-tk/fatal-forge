@@ -30,9 +30,6 @@ export default function Nav({ view, setView, handleLogout }) {
 
   return (
     <div className="p-2 w-28 flex flex-col bg-main-bg justify-evenly">
-      {/* <Link to="/gameview">Play</Link>
-        <Link to="/deckbuilder">Decks</Link>
-        <Link to="/lobby">Friends</Link> */}
       <Link to="/lobby">
         <img src={gllogo} alt="Gridlocke logo" />
         {/* <NavBarIcon icon={<BsFillChatDotsFill size="40" />} text="Chat" /> */}

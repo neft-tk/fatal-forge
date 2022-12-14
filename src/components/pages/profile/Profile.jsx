@@ -7,7 +7,7 @@ function Profile({ userId, token, setIsLoggedIn }) {
 
   useEffect(() => {
     async function fetchUser() {
-      const data = await API.getUser(userId);
+      const data = await API.getSingleUser(userId);
       // console.log(data);
       // console.log(data.username);
       // console.log(data.Decks);
