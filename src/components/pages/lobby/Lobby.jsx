@@ -12,7 +12,7 @@ export default function Lobby({ userId }) {
       {/* Hero */}
       <img src={gllogo} alt="Gridlocke logo" className='w-1/4 mx-auto my-0' />
       {/* Bio */}
-      <p className='h-1/4 w-full mx-auto my-0 font-main-text-f text-center'>
+      <p className='h-1/4 w-full mx-auto my-0 font-main-text-f text-center text-2xl'>
         <span className='font-alt-text-f'>Welcome to <span className=' text-3xl font-bold text-highlight-orange'>GridLocke</span>, the deck-building tactical card game!</span>
         <br />
         <br />
