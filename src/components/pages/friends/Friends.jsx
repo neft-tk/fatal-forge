@@ -130,7 +130,7 @@ function Friends({ userId, token }) {
         <h2 className="m-4 text-2xl font-display-text-f">All Users</h2>
         {users ? (
           <div className="cards-container grid grid-cols-1">
-            {users.map((user) => (
+            {users.filter((user) => user.id !== userId).map((user) => (
               <UserCard
                 key={users.id}
                 user={user}
