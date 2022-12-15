@@ -115,12 +115,12 @@ function Assembly({ setView, setGameId }) {
         <h3 className='text-4xl font-display-text-f mb-6'>Join or Create a room to play!</h3>
         <form action="" className='flex flex-col md:flex-row justify-around items-around w-fit gap-6'>
           
-          <div className='flex flex-col items-center justify-between font-main-text-f bg-black/25 p-4 rounded-2xl gap-2 h-full'>
+          <div className='flex flex-col items-center justify-between font-main-text-f rounded-lg p-6 shadow-lg bg-main-bg shadow-black border border-neutral-800 gap-4 h-full'>
             <label htmlFor="joinRoomInput" className='text-2xl font-semibold alt-text-f'>Join</label>
             <input type="text" id='joinRoomInput' placeholder='Room ID' className='font-main-text-f shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={joinRoom} onChange={e => setJoinRoom(e.target.value)} />
             <button id='join-room' className='font-main-text-f bg-highlight-orange hover:bg-active-orange text-white font-bold py-2 px-4 rounded' onClick={handleFormSubmit}>Join Room</button>
           </div>
-          <div className='flex flex-col items-center justify-between font-main-text-f bg-black/25 p-4 rounded-2xl gap-2'>
+          <div className='flex flex-col items-center justify-between font-main-text-f rounded-lg p-6 shadow-lg bg-main-bg shadow-black border border-neutral-800 gap-4'>
             <label htmlFor="createRoomInput" className='text-2xl font-semibold'>Create</label>
             <div className='relative'>
               <input type='text' id='createRoomInput' placeholder="New Room ID" className='shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={createRoom} onChange={e => setCreateRoom(e.target.value)} />
