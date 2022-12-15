@@ -10,7 +10,7 @@ function Friends({ userId, token }) {
 
   useEffect(() => {
     async function fetchUser() {
-      const data = await API.getUser(userId);
+      const data = await API.getSingleUser(userId);
       // console.log(data);
       // console.log(data.username);
       // console.log(data.FavoriteUser);
@@ -37,7 +37,7 @@ function Friends({ userId, token }) {
 
     async function fetchUsers() {
       const data = await API.getAllUsers();
-      console.log(data);
+      // console.log(data);
       // console.log(data.username);
       // console.log(data.FavoriteUser);
       // console.log(friends);
@@ -61,10 +61,10 @@ function Friends({ userId, token }) {
     // console.log('Friend ID: ', friendId);
     // console.log('Token: ', token);
     const delMessage = await API.deleteFriend(userId, friendId, token)
-    console.log(delMessage);
+    // console.log(delMessage);
 
     // Reset friends after del
-    const data = await API.getUser(userId);
+    const data = await API.getSingleUser(userId);
     user = {
       username: data.username,
       email: data.email,
@@ -81,16 +81,16 @@ function Friends({ userId, token }) {
 
   const handleAddFriend = async (addObj) => {
     const { userId, friendId, token } = addObj
-    console.log('Add this friend.');
-    console.log('User ID: ', userId);
-    console.log('Friend ID: ', friendId);
-    console.log('Token: ', token);
+    // console.log('Add this friend.');
+    // console.log('User ID: ', userId);
+    // console.log('Friend ID: ', friendId);
+    // console.log('Token: ', token);
     const addMessage = await API.addFriend(userId, friendId, token)
-    console.log(addMessage);
+    // console.log(addMessage);
 
     // TODO: Only add users that are NOT friends.
     // Reset users after add
-    const data = await API.getUser(userId);
+    const data = await API.getSingleUser(userId);
     user = {
       username: data.username,
       email: data.email,
@@ -106,12 +106,11 @@ function Friends({ userId, token }) {
   };
 
   return (
-    <>
-      <div className="m-6 text-main-text font-main-text-f">
-        <h2 >Friends...</h2>
+    <div className='flex flex-col md:flex-row justify-evenly text-center h-screen'>
+      <div className="text-main-text font-main-text-f md:overflow-auto gl-scrollbar w-full md:w-1/2">
+        <h2 className="h2-text mt-12">Friends List</h2>
         {user ? (
-          <div className="w-full h-full border-4 rounded border-gray-300 bg-gradient-to-r from-main-orange via-yellow-300 to-main-orange text-main-bg font-bold p-4">
-            <h2 className="text-center m-2">Your Friends!</h2>
+          <div className="cards-container grid grid-cols-1">
             {friends.map((friend) => (
               <FriendCard
                 key={friend.id}
@@ -127,12 +126,11 @@ function Friends({ userId, token }) {
           ''
         )}
       </div>
-      <div className="m-6 text-main-text font-main-text-f">
-        <h2 >Users...</h2>
+      <div className="text-main-text font-main-text-f md:overflow-auto gl-scrollbar w-full md:w-1/2">
+        <h2 className="h2-text mt-12">All Users</h2>
         {users ? (
-          <div className="w-full h-full border-4 rounded border-gray-300 bg-gradient-to-r from-main-orange via-yellow-300 to-main-orange text-main-bg font-bold p-4">
-            <h2 className="text-center m-2">All Players</h2>
-            {users.map((user) => (
+          <div className="cards-container grid grid-cols-1">
+            {users.filter((user) => user.id !== userId).map((user) => (
               <UserCard
                 key={users.id}
                 user={user}
@@ -146,7 +144,7 @@ function Friends({ userId, token }) {
           ''
         )}
       </div>
-    </>
+    </div>
   );
 };
 

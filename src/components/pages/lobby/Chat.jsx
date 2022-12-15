@@ -8,9 +8,9 @@ export default function Chat({ userId }) {
 
 
   const findUser = async () => {
-    const data = await API.getUser(userId);
+    const data = await API.getSingleUser(userId);
     setUser(data.username)
-    console.log(user)
+    // console.log(user)
   }
 
   const handleFormSubmit = async (e) => {
@@ -27,8 +27,8 @@ export default function Chat({ userId }) {
   }, []);
 
   return (
-    <div className='h-3/4 flex flex-col justify-evenly align-middle items-center'>
-      <div className='bg-alt-bg w-2/5 h-2/5'>
+    <div className='h-full flex flex-col justify-evenly align-middle items-center'>
+      <div className='bg-alt-bg w-full h-full min-w-1/2 min-h-1/2'>
       </div>
       <form className='flex flex-col justify-evenly h-1/4 items-center w-2/5' onSubmit={handleFormSubmit}>
         <label htmlFor="message-input" className=''>Chat:</label>

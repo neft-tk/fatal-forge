@@ -8,15 +8,15 @@ module.exports = {
     extend: {
       // Colors by use case.
       colors: {
-        'main-bg': '#222',
-        'alt-bg': '#444',
+        'main-bg': '#171717',
+        'alt-bg': '#333',
+        'main-blue': '#075985',
+        'highlight-blue': '#4189e0',
+        'active-blue': '#0D3852',
+        'modal-gray': '#a1a1aa',
+        'modal-white': '#f4f4f5',
         'main-text': '#eee',
         'alt-text': '#ccc',
-        'highlight': '#c0ffee',
-        'alt-highlight': 'yellow',
-        'main-orange': '#f25939',
-        'highlight-orange': '#fe6601',
-        'active-orange': '#f2956a',
       },
       // Fonts by use case.
       fontFamily: {
@@ -27,6 +27,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('tailwind-scrollbar')
   ],
 }

@@ -109,11 +109,10 @@ export default function Game({ deckId, size, gameId, setView}) {
       size="md"
       popup={true}
       >
-        <Modal.Header />
-        <Modal.Body>
+        <Modal.Header className="modal-header"/>
+        <Modal.Body className="modal-body">
           <div className="text-center">
-            {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
-            <h3 className="mb-5 text-lg font-normal text-gray-400">
+            <h3 className="mb-5 text-lg font-normal">
               {message}
             </h3>
             <div className="flex justify-between gap-4">
@@ -154,20 +153,60 @@ export default function Game({ deckId, size, gameId, setView}) {
     );
   }
 
+  const getLocation = () =>{
+    if (!players.length !=2){
+      return '50'
+    }
+
+    const a = getScore(players[0].color);
+    const b = getScore(players[1].color);
+
+    const total = a + b;
+    console.log(total);
+
+    if (total){
+      setLoc(toString((a/total)*100)) ;
+    }else{
+      setLoc('50')
+    }
+
+    const middle = 50;
+    const ratioA = total/a;
+    const ratioB = total/b;
+  }
+
+  setInterval(()=>{
+    getLocation();
+  },1000)
+
+  const [loc, setLoc] = useState('50');
+
   return (
     <>
-      <div className='gameboard flex flex-col justify-center items-center h-full w-full border p-3'>
-        <Grid setIsMyTurn={setIsMyTurn} size={size} setPlayers={setPlayers} setGameEnd={setGameEnd}/>
-        <h1 className='text-4xl'>{myTurn ? 'Your Turn' : 'Waiting for opponent'}</h1>
-        {deck ? <Hand deck={deck} /> : ''}
-        <div className='flex w-full justify-around'>
-          {players.map((x,i)=>
-            <div key={i} style={{color:x.color}}>
-              <h1>{x.userData.username}</h1>
-              <h1>{getScore(x.color)}</h1>
-            </div>
-          )}
+      <div className='gameboard flex flex-col justify-between items-center h-full w-full p-3 grow shrink'>
+        <div className='w-full mb-2'> 
+          <div className='flex w-full justify-between'>
+            {players.map((x,i)=>
+            <>
+              <div key={i} style={{backgroundColor:x.color, opacity:0.75}} className={`rounded-full aspect-square h-14 border-neutral-900 border-4 relative mt-4 flex justify-center items-center font-display-text-f font-bold`}>
+                <h1 style={{backgroundColor:x.color}} className={`absolute -top-5 border-neutral-900 border-4 rounded-t-xl py-1 px-3 whitespace-nowrap ${i ? 'text-end -right-1 rounded-bl-xl' : '-left-1 rounded-br-xl'}`}>{x.userData.username}</h1>
+                <h1 className='mt-4 font-alt-text-f'>{getScore(x.color)}</h1>
+              </div>
+              {!i && <h1 className='text-4xl font-display-text-f'>{myTurn ? 'Your Turn' : 'Waiting'}</h1>}
+            </>
+            )}
+          </div>
+          {players[0] && <div style={{background: `linear-gradient(90deg, ${players[0].color} 0%, ${players[1].color} 100%)`}} className='h-2 w-full relative'>
+            {/* <div style={{left:`${loc}%`}} className='h-4 border w-2 absolute -top-1'></div> */}
+          </div>}
         </div>
+
+        <Grid setIsMyTurn={setIsMyTurn} size={size} setPlayers={setPlayers} setGameEnd={setGameEnd}/>
+        
+
+        {deck && <Hand deck={deck} />}
+
+
       </div>
       {renderModal()}
     </>

@@ -4,7 +4,8 @@ import Static from './staticHelper';
 const URL_PREFIX = Static.serverUrl;
 
 const API = {
-  // LOGIN/SIGNUP
+  // LOGIN/SIGNUP/TOKEN
+  // @ api/users/login
   login: async (userObj) => {
     const res = await fetch(`${URL_PREFIX}/api/users/login`, {
       method: 'POST',
@@ -13,8 +14,15 @@ const API = {
         'Content-Type': 'application/json',
       },
     });
+    // console.log('Res: ', res);
+    if (res.status === 401) {
+      // console.log('DENIED LOGIN!');
+      return await res.json({ msg: 'invalid login credentials' });
+    }
     return await res.json();
   },
+
+  // @ api/users
   signup: async (userObj) => {
     const res = await fetch(`${URL_PREFIX}/api/users/`, {
       method: 'POST',
@@ -23,18 +31,93 @@ const API = {
         'Content-Type': 'application/json',
       },
     });
+    // console.log('Res: ', res);
+    if (res.status === 500) {
+      // console.log('ISSUE SIGNING UP!');
+      return await res.json({ msg: 'invalid signup fields' });
+    }
     return await res.json();
   },
-  getCards: async (cardData) => {
+
+  // @ api/users/readtoken
+  getUserFromToken: async (token) => {
+    const res = await fetch(`${URL_PREFIX}/api/users/readtoken`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return await res.json();
+  },
+
+  // GETs
+  // @ api/cards
+  getAllCards: async () => {
     const res = await fetch(`${URL_PREFIX}/api/cards/`, {
       method: 'GET',
-      body: JSON.stringify(cardData),
       headers: {
         'Content-Type': 'Application/json',
       },
     });
     return await res.json();
   },
+
+  // @ api/cards/:cardId
+  getSingleCard: async (cardId) => {
+    const res = await fetch(`${URL_PREFIX}/api/cards/${cardId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+    });
+    return await res.json();
+  },
+
+  // @ api/decks
+  getAllDecks: async () => {
+    const res = await fetch(`${URL_PREFIX}/api/decks/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+    });
+    return await res.json();
+  },
+
+  // @ api/decks/:deckId
+  getSingleDeck: async (deckId) => {
+    const res = await fetch(`${URL_PREFIX}/api/decks/${deckId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+    });
+    return await res.json();
+  },
+
+  // @ api/users
+  getAllUsers: async () => {
+    const res = await fetch(`${URL_PREFIX}/api/users/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+    });
+    return await res.json();
+  },
+
+  // @ api/users/:userId
+  getSingleUser: async (userId) => {
+    const res = await fetch(`${URL_PREFIX}/api/users/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+    });
+    return await res.json();
+  },
+
+  // POSTs
   createDeck: async (deckData) => {
     const res = await fetch(`${URL_PREFIX}/api/decks/`, {
       method: 'POST',
@@ -42,67 +125,50 @@ const API = {
       headers: {
         'Content-Type': 'Application/json',
       },
-    })
-    return await res.json();
-  },
-  // getCardBackSprite: async (cardback) => {
-  //   const res = await fetch(`${URL_PREFIX}/api/images/`, {
-  //     method: 'GET',
-  //     body: JSON.stringify(cardback),
-  //     headers: {
-  //       'Content-Type': 'Application/json',
-  //     },
-  //   })
-  //   return await res.json();
-  // },
-  getUser: async (userId) => {
-    const res = await fetch(`${URL_PREFIX}/api/users/${userId}`);
-    return await res.json();
-  },
-  getAllUsers: async () => {
-    const res = await fetch(`${URL_PREFIX}/api/users/`);
-    return await res.json();
-  },
-  // getUserPicture: async () => {
-  //   const res = await fetch(`${URL_PREFIX}/api/images/`);
-  // },
-  // getUserFriend: async (userId, friendId) => {
-  //   const res = await fetch(`${URL_PREFIX}/api/users/${userId}/friends/${friendId}`);
-  //   return await res.json();
-  // },
-  getUserFromToken: async (token) => {
-    const res = await fetch(`${URL_PREFIX}/api/users/readtoken`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
     });
-    return await res.json();
-  },
-  getDeckCards: async (deckId) => {
-    const res = await fetch(`${URL_PREFIX}/api/decks/${deckId}`);
     return await res.json();
   },
 
-  // POSTs
   addFriend: async (userId, friendId, token) => {
-    const res = await fetch(`${URL_PREFIX}/api/users/${userId}/friends/${friendId}`, {
-      method: 'POST',
-      body:JSON.stringify({
-        userId,
-        friendId
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
+    const res = await fetch(
+      `${URL_PREFIX}/api/users/${userId}/friends/${friendId}`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          userId,
+          friendId,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return await res.json();
   },
 
   // PUTs
-  editUser: async (token) => {
-
+  editUser: async (editInfo) => {
+    // console.log("API edit info and userId:");
+    // console.log(editInfo.username);
+    // console.log(editInfo.email);
+    // console.log(editInfo.name);
+    // console.log(editInfo.motto);
+    // console.log(editInfo.userId);
+    const res = await fetch(`${URL_PREFIX}/api/users/${editInfo.userId}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        username: editInfo.username,
+        email: editInfo.email,
+        name: editInfo.name,
+        motto: editInfo.motto
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    // console.log('Res: ', res);
+    return await res.json();
   },
 
   // DELETEs
@@ -111,7 +177,7 @@ const API = {
     const res = await fetch(`${URL_PREFIX}/api/users/${userId}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return await res.json();
@@ -124,10 +190,21 @@ const API = {
       {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
+    return await res.json();
+  },
+
+  // @ api/decks/:deckId
+  deleteDeck: async (deckId, token) => {
+    const res = await fetch(`${URL_PREFIX}/api/decks/${deckId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return await res.json();
   },
 };

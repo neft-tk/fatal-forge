@@ -32,13 +32,10 @@ export default function Gameview() {
         return <Initialize setView={setView} gameId={gameId} setDeck={setDeck} setSize={setSize}/>
       case 'game':
         return (
-          <div className='max-h-screen h-screen border flex flex-col'>
 
             <DndProvider backend={HTML5Backend}>
               <Game deckId={deck} size={size} gameId={gameId} setView={setView}/>
             </DndProvider>
-          </div>
-
         )
     }
   }
