@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Label, Tooltip } from 'flowbite-react';
+import React, { useState } from 'react';
+import { Modal, Label } from 'flowbite-react';
 import { FaUserEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
@@ -82,23 +82,23 @@ function ProfileCard({
   return (
     <>
       {/* Profile Card, Name + Pic + Motto + Options */}
-      <div className="bg-gradient-to-r from-main-bg to-alt-bg border-highlight-blue flex justify-around h-1/3 m-14 my-12 py-10 px-4  border-2 rounded-3xl">
+      <div className="card-background flex justify-around h-1/3 mx-14 my-12 py-4 md:py-10 px-4 border-2 rounded-3xl">
         {/* Pic + Name */}
-        <div className="flex justify-around w-auto">
+        <div className="flex justify-around w-auto gap-6">
           <img
-            className="w-40 h-40 rounded-full border-2 border-highlight-blue my-auto ml-6"
+            className="w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-40 rounded-full border-2 border-highlight-blue my-auto ml-6 object-cover"
             src={`${Static.serverUrl}/api/images/${user.imagePath}`}
             alt="Profile Picture"
           />
-          <div className="flex flex-col ml-4 justify-center">
-            <h2 className="text-4xl mb-4">{user.username}</h2>
-            <h3 className="text-sm mb-2">
+          <div className="flex flex-col justify-center">
+            <h2 className="text-xl md:text-2xl lg:text-4xl mb-4">{user.username}</h2>
+            <h3 className="text-xs md:text-sm mb-2">
               Aka:{' '}
               <span className="italic font-semibold tracking-wide ml-2">
                 {user.name}
               </span>
             </h3>
-            <h3 className="text-sm">{user.motto}</h3>
+            <h3 className="text-xs md:text-sm">{user.motto}</h3>
           </div>
         </div>
         {/* Motto */}
@@ -107,13 +107,13 @@ function ProfileCard({
           <h3 className="text-sm text-center">{user.motto}</h3>
         </div> */}
         {/* Profile Settings */}
-        <div className="flex justify-evenly w-1/3 my-auto">
+        <div className="flex flex-col md:flex-row justify-evenly w-1/3 my-auto">
           <button
             type="button"
-            className="profile-icon m-4"
+            className="profile-button m-4"
             onClick={onEditModalClick}
           >
-            <FaUserEdit size="48" />
+            <FaUserEdit className='profile-icon' />
           </button>
           <Modal
             show={showEditModal}
@@ -125,7 +125,7 @@ function ProfileCard({
             <Modal.Header className="modal-header" />
             <Modal.Body className="modal-body">
               <div className="text-center">
-                <div className="flex flex-col space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8 justify-center items-center text-center">
+                <div className="flex flex-col space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8 center-all">
                   <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                     Looks like your story has changed, Adventurer...
                   </h3>
@@ -202,10 +202,10 @@ function ProfileCard({
           </Modal>
           <button
             type="button"
-            className="profile-icon m-4"
+            className="profile-button m-4"
             onClick={onDeleteModalClick}
           >
-            <MdDelete size="48" className="" />
+            <MdDelete className="profile-icon" />
           </button>
           <Modal
             show={showDeleteModal}
@@ -237,17 +237,17 @@ function ProfileCard({
         </div>
       </div>
       {/* Decks, Matches, Stats */}
-      <div className="flex justify-evenly items-start mb-6">
+      <div className="card-flex center-all md:flex-row md:justify-evenly md:items-start mx-14 mb-6 gap-6">
         {/* Decks */}
-        <div className="w-1/4">
+        <div className="w-4/5 md:w-1/3">
           <DeckView decks={user.decks} />
         </div>
         {/* Stats */}
-        <div className="w-1/4">
+        <div className="w-4/5 md:w-1/3">
           <StatsView />
         </div>
         {/* Matches */}
-        <div className="w-1/4">
+        <div className="w-4/5 md:w-1/3">
           <PastGamesView decks={user.decks} />
         </div>
       </div>

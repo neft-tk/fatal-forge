@@ -15,7 +15,7 @@ function DeckEditView({ setDeckData, deckData }) {
 
 
     return (
-        <div className="flex flex-wrap gap-2 overflow-y-auto overflow-x-hidden p-2 gl-scrollbar h-full bg-main-bg">
+        <div className="flex flex-wrap gap-2 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full bg-main-bg">
             {deckData.map((card, index) => 
             <button className="relative w-24 h-24 bg-neutral-700 hover:scale-125 hover:z-10 hover:border-2 hover:border-sky-500" key={index} onClick={(e)=>{ e.preventDefault();removeCard(card.id)}}>    
                                  <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[50%] top-[11%] text-center z-10 text-black font-bold'>{card.topAttack}</h3>

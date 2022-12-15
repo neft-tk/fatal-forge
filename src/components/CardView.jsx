@@ -38,8 +38,7 @@ function CardView({ cardData, setDeckData, deckData}) {
         <Modal.Header className="modal-header"/>
         <Modal.Body className="modal-body">
           <div className="text-center">
-            {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
-            <h3 className="mb-5 text-lg font-normal text-gray-400">
+            <h3 className="mb-5 text-lg font-normal">
               {message}
             </h3>
             <div className="flex justify-center gap-4">
@@ -57,7 +56,7 @@ function CardView({ cardData, setDeckData, deckData}) {
 
   return (
     <>
-      <div className="flex flex-wrap justify-center items-center gap-2 overflow-y-auto overflow-x-hidden p-2 gl-scrollbar h-full bg-main-bg">
+      <div className="flex flex-wrap justify-center items-center gap-2 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full bg-main-bg">
         {cardData.map((card, index) => (
           <button className="relative w-24 h-24 bg-neutral-700 hover:scale-125 hover:z-10 hover:border-2 hover:border-sky-500" key={index} 
           onClick={
