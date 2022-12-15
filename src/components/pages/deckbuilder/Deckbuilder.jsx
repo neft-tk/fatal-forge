@@ -173,8 +173,8 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
 
         </div>
         
-        <div className='flex gap-4 flex-wrap justify-center'>
-        <div className='border flex items-center border-neutral-700 p-4 rounded-lg bg-neutral-800 gap-4'>
+        <div className='flex gap-4 flex-wrap justify-center w-full'>
+        <div className='border flex flex-col md:flex-row items-center border-neutral-700 p-4 rounded-lg bg-neutral-800 gap-4'>
             <div className='border rounded-lg border-neutral-800'>
                 <h2 className="text-center text-2xl font-main-text-f">
                 Select Your Deck Back
@@ -237,9 +237,8 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
                 />
                 </div>
                 </div>
-            </div>
 
-            <div className='flex flex-col justify-around items-center border rounded-lg border-neutral-700 bg-neutral-800'>
+                <div className='flex flex-col justify-around items-center border rounded-lg border-neutral-700 bg-neutral-800'>
                 <h2 className="h2-text">
                 Deck Name:
 
@@ -258,6 +257,9 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
                     Create
                 </button>
             </div>
+            </div>
+
+
 
         {/* Deck Choice */}
         <div className="flex flex-col justify-around items-center border border-gray-700 rounded-lg bg-gray-800 p-3">
