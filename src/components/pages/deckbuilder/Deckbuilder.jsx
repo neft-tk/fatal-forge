@@ -156,7 +156,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
             <div className="flex flex-col md:flex-row p-4 h-[80vh] md:h-[55vh] gap-4">
 
               <div className="flex flex-col w-full h-1/2 md:h-full md:w-1/2 border border-neutral-700 p-4 rounded-lg bg-neutral-800">
-                <h1>Pool</h1>
+                <h1 className='text-2xl font-main-text-f'>Pool</h1>
                 <CardView
                   setDeckData={setDeckData}
                   cardData={cardData}
@@ -165,7 +165,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
               </div>
 
               <div className="flex flex-col w-full h-1/2 md:h-full md:w-1/2 border border-neutral-700 p-4 rounded-lg bg-neutral-800">
-                <h1>Current Build</h1>
+                <h1 className='text-2xl font-main-text-f'>Current Build</h1>
                 <DeckEditView setDeckData={setDeckData} deckData={deckData} />
               </div>
 
