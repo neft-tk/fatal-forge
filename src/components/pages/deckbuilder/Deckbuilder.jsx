@@ -111,11 +111,10 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
   function renderModal() {
     return (
       <Modal show={showModal} size="md" popup={true}>
-        <Modal.Header />
-        <Modal.Body>
+        <Modal.Header className="modal-header"/>
+        <Modal.Body className="modal-body">
           <div className="text-center">
-            {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
-            <h3 className="mb-5 text-lg font-normal text-gray-400">
+            <h3 className="mb-5 text-lg font-normal">
               {message}
             </h3>
             <div className="flex justify-center gap-4">
@@ -135,11 +134,11 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
   }
 
   return (
-    <div className="m-8 flex flex-col justify-center items-center">
-      <h1 className="text-center text-4xl font-main-text-f m-6">
+    <div className="m-12 flex flex-col justify-center items-center">
+      <h1 className="title-text">
         Welcome to the Deckbuilder!
       </h1>
-      <h1 className="text-center text-3xl font-main-text-f">
+      <h1 className="heading-text">
         Edit an Existing Deck:
       </h1>
 
@@ -148,7 +147,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
         <div>
           <label
             htmlFor="deckChoice"
-            className="m-2 font-bold text-2xl font-main-text-f"
+            className="h2-text mx-6"
           >
             Choose Your Deck:
           </label>
@@ -175,14 +174,14 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
         <div className="flex flex-col">
           <button
             type="button"
-            className="bg-highlight-orange hover:bg-active-orange text-white font-bold py-2 px-4 rounded m-2"
+            className="button-style"
             onClick={getSelectedDeck}
           >
             EDIT This Deck!
           </button>
           <button
             type="button"
-            className="bg-red-800 hover:bg-active-orange text-white font-bold py-2 px-4 rounded m-2"
+            className="delete-button-style"
             onClick={deleteSelectedDeck}
           >
             DELETE This Deck!
@@ -191,7 +190,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
       </div>
 
       <div className="p-2">
-        <h1 className="text-center text-3xl font-main-text-f">
+        <h1 className="heading-text">
           Create a New Deck:
         </h1>
         <p className="text-center text-xl font-main-text-f my-6">
@@ -199,7 +198,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
           copy of each card.
         </p>
 
-        <h2 className="text-center text-2xl font-main-text-f mx-10">
+        <h2 className="h2-text mx-10">
           Deck Name:
           <input
             type="textarea"
@@ -210,7 +209,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
         </h2>
 
         <div className="flex flex-col my-8 justify-center items-center text-center">
-          <h2 className="text-2xl font-main-text-f">
+          <h2 className="heading-text">
             Current Deck Build: {deckChoiceName}
           </h2>
           <div className="flex justify-between">
@@ -286,7 +285,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
           </div>
           <button
             type="button"
-            className="bg-highlight-orange hover:bg-active-orange text-white font-bold p-6 rounded my-6"
+            className="button-style p-6"
             onClick={handleDeckSubmit}
           >
             Submit Your Deck

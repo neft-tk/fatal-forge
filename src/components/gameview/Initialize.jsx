@@ -99,11 +99,10 @@ export default function Initialize(props) {
       size="md"
       popup={true}
       >
-        <Modal.Header />
-        <Modal.Body>
+        <Modal.Header className="modal-header"/>
+        <Modal.Body className="modal-body">
           <div className="text-center">
-            {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
-            <h3 className="mb-5 text-lg font-normal text-gray-400">
+            <h3 className="mb-5 text-lg font-normal">
               {message}
             </h3>
             <div className="flex justify-center gap-4">
@@ -148,7 +147,7 @@ export default function Initialize(props) {
             <CirclePicker className='flex justify-evenly items-center w-full' onChange={(c, e) => { Socket.Game.PickColor(c.hex); Socket.IO.color = c.hex }} />
           </div>
           {/* Ready */}
-          <button className='bg-main-orange hover:bg-active-orange text-white font-bold py-2 px-4 rounded w-1/5' type='submit' onClick={handleFormSubmit}>Ready</button>
+          <button className='bg-main-blue hover:bg-active-blue text-white font-bold py-2 px-4 rounded w-1/5' type='submit' onClick={handleFormSubmit}>Ready</button>
         </form>
 
         {/* All Players */}

@@ -64,7 +64,7 @@ function ProfileCard({
       name: editName,
       motto: editMotto,
       userId: userId,
-      token: token
+      token: token,
     });
     setShowEditModal(false);
   };
@@ -82,11 +82,11 @@ function ProfileCard({
   return (
     <>
       {/* Profile Card, Name + Pic + Motto + Options */}
-      <div className="bg-gradient-to-r from-main-bg to-alt-bg flex justify-around h-1/3 m-14 py-10 px-4 border-highlight-orange border-2 rounded-3xl">
+      <div className="bg-gradient-to-r from-main-bg to-alt-bg border-highlight-blue flex justify-around h-1/3 m-14 my-12 py-10 px-4  border-2 rounded-3xl">
         {/* Pic + Name */}
         <div className="flex justify-around w-auto">
           <img
-            className="w-40 h-40 rounded-full border-2 border-main-orange my-auto ml-6"
+            className="w-40 h-40 rounded-full border-2 border-highlight-blue my-auto ml-6"
             src={`${Static.serverUrl}/api/images/${user.imagePath}`}
             alt="Profile Picture"
           />
@@ -122,14 +122,16 @@ function ProfileCard({
             onClose={onEditModalClose}
             className="p-12"
           >
-            <Modal.Header className="bg-slate-600" />
-            <Modal.Body className="bg-slate-500">
+            <Modal.Header className="modal-header" />
+            <Modal.Body className="modal-body">
               <div className="text-center">
                 <div className="flex flex-col space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8 justify-center items-center text-center">
                   <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                     Looks like your story has changed, Adventurer...
                   </h3>
-                  <p className="text-gray-900 dark:text-white">Feel free to only change the fields you want updated!</p>
+                  <p className="text-gray-900 dark:text-white">
+                    Feel free to only change the fields you want updated!
+                  </p>
                   <div className="w-full">
                     <div className="block">
                       <Label htmlFor="username" value="New username:" />
@@ -182,14 +184,17 @@ function ProfileCard({
                       className={`text-black p-2 mt-4 rounded text-center w-full`}
                     />
                   </div>
-                  <h3>Save these edits?</h3>
+                  <h3 className="text-active-blue">Save these edits?</h3>
                   <div className="flex justify-center gap-4">
-                    <Button color="success" onClick={handleEdit}>
+                    <button
+                      className="confirm-button-style"
+                      onClick={handleEdit}
+                    >
                       Yes, I'm sure
-                    </Button>
-                    <Button color="gray" onClick={onEditModalClose}>
+                    </button>
+                    <button className="button-style" onClick={onEditModalClose}>
                       No, cancel
-                    </Button>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -208,20 +213,23 @@ function ProfileCard({
             popup={true}
             onClose={onDeleteModalClose}
           >
-            <Modal.Header className="bg-slate-600" />
-            <Modal.Body className="bg-slate-500">
+            <Modal.Header className="modal-header" />
+            <Modal.Body className="modal-body">
               <div className="text-center">
-                <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-white dark:text-gray-200" />
-                <h3 className="mb-5 text-lg font-normal text-white dark:text-gray-400">
+                <HiOutlineExclamationCircle className="mx-auto mb-4 p-2 h-14 w-14 text-red-900" />
+                <h3 className="mb-5 text-lg font-normal">
                   Are you sure you want to delete your profile?
                 </h3>
                 <div className="flex justify-center gap-4">
-                  <Button color="failure" onClick={handleDelete}>
+                  <button
+                    className="delete-button-style"
+                    onClick={handleDelete}
+                  >
                     Yes, I'm sure
-                  </Button>
-                  <Button color="gray" onClick={onDeleteModalClose}>
+                  </button>
+                  <button className="button-style" onClick={onDeleteModalClose}>
                     No, cancel
-                  </Button>
+                  </button>
                 </div>
               </div>
             </Modal.Body>
