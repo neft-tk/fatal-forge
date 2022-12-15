@@ -102,18 +102,20 @@ function Friends({ userId, token }) {
       decks: data.Decks,
       friends: data.FavoriteUser,
     };
+    console.log(data.FavoriteUser);
+    console.log(data.Decks);
     setFriends(data.FavoriteUser);
   };
 
   return (
-    <div className='flex flex-col md:flex-row justify-evenly text-center h-screen'>
-      <div className="text-main-text font-main-text-f md:overflow-auto gl-scrollbar w-full md:w-1/2">
+    <div className='flex flex-col lg:flex-row justify-evenly text-center h-screen'>
+      <div className="text-main-text font-main-text-f gl-scrollbar w-full h-1/2 lg:h-full lg:overflow-auto lg:w-1/2">
         <h2 className="h2-text mt-12">Friends List</h2>
         {user ? (
           <div className="cards-container grid grid-cols-1">
-            {friends.map((friend) => (
+            {friends.map((friend, index) => (
               <FriendCard
-                key={friend.id}
+                key={index}
                 friendId={friend.id}
                 userId={userId}
                 friend={friend}
@@ -126,13 +128,13 @@ function Friends({ userId, token }) {
           ''
         )}
       </div>
-      <div className="text-main-text font-main-text-f md:overflow-auto gl-scrollbar w-full md:w-1/2">
+      <div className="text-main-text font-main-text-f gl-scrollbar w-full h-1/2 lg:h-full lg:overflow-auto lg:w-1/2">
         <h2 className="h2-text mt-12">All Users</h2>
         {users ? (
-          <div className="cards-container grid grid-cols-1">
-            {users.filter((user) => user.id !== userId).map((user) => (
+          <div className="cards-container grid grid-cols-2 gap-2">
+            {users.filter((user) => user.id !== userId).map((user, index) => (
               <UserCard
-                key={users.id}
+                key={index}
                 user={user}
                 userId={userId}
                 token={token}

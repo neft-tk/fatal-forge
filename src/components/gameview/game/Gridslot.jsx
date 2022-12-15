@@ -104,8 +104,8 @@ export default function Gridslot({index, action, size}) {
 
   return (
     <motion.div ref={dropRef} animate={currentAnimation} width={width} className={`aspect-square p-1`} style={{ width:width}}>
-      <div className={`${!card ? 'border' : ''} border-white/30 rounded w-full h-full overflow-hidden relative`} >
-        <div className='absolute w-[98%] h-[98%]' style={{backgroundColor:isOver ? 'yellow' : faction}}></div>
+      <div className={`${!card ? 'border' : ''} border-white/30 rounded w-full h-full overflow-hidden relative`} style={{ boxShadow: isOver ? '0px 0px 8px rgba(44, 190, 239, 1) inset, 0px 0px 8px rgba(44, 190, 239, 1)'  : 'none'}}>
+        <div className='absolute w-[98%] h-[98%]' style={{backgroundColor:faction}}></div>
         {card && <Card inPlay={true} name={card.name} compass={card.compass} imagePath={card.imagePath}/>}
       </div>
     </motion.div>

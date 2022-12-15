@@ -134,22 +134,141 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
   }
 
   return (
-    <div className="m-12 flex flex-col justify-center items-center">
-      <h1 className="title-text">
+    <div className="flex flex-col justify-center p-3 overflow-x-hidden gl-scrollbar">
+      <h1 className="title-text mt-8">
         Welcome to the Deckbuilder!
       </h1>
-      <h1 className="heading-text">
-        Edit an Existing Deck:
-      </h1>
 
-      {/* Deck Choice */}
-      <div className="flex flex-row justify-around items-center my-12 w-1/2">
+        <h1 className="heading-text">
+          Create a New Deck:
+        </h1>
+        <p className="text-center text-xl font-main-text-f ">
+          Each deck must have at least 15 unique cards. You can only have one
+          copy of each card.
+        </p>
+
+
+
+        <div className="flex flex-col justify-center items-center text-center">
+
+          <div className="flex justify-between">
+
+            <div className="flex flex-col md:flex-row p-4 h-[80vh] md:h-[55vh] gap-4">
+
+              <div className="flex flex-col w-full h-1/2 md:h-full md:w-1/2 border border-neutral-700 p-4 rounded-lg bg-neutral-800">
+                <h1 className='text-2xl font-main-text-f'>Pool</h1>
+                <CardView
+                  setDeckData={setDeckData}
+                  cardData={cardData}
+                  deckData={deckData}
+                />
+              </div>
+
+              <div className="flex flex-col w-full h-1/2 md:h-full md:w-1/2 border border-neutral-700 p-4 rounded-lg bg-neutral-800">
+                <h1 className='text-2xl font-main-text-f'>Current Build</h1>
+                <DeckEditView setDeckData={setDeckData} deckData={deckData} />
+              </div>
+
+            </div>
+
+        </div>
+        
+        <div className='flex gap-4 flex-wrap justify-center w-full'>
+        <div className='border flex flex-col md:flex-row items-center border-neutral-700 p-4 rounded-lg bg-neutral-800 gap-4'>
+            <div className='border rounded-lg border-neutral-800'>
+                <h2 className="text-center text-2xl font-main-text-f">
+                Select Your Deck Back
+                </h2>
+                <div className="flex flex-row flex-wrap justify-center items-center gap-2 p-4">
+                <img
+                  className="border-black w-16 h-16 hover:scale-125 z-10"
+                  src={`${Static.serverUrl}/api/images/cardback/Basic.png`}
+                  alt="Basic"
+                  onClick={handleDeckBackSubmit}
+                />
+                <img
+                  className="border-black w-16 h-16 hover:scale-125 z-10"
+                  src={`${Static.serverUrl}/api/images/cardback/Cross.png`}
+                  alt="Cross"
+                  onClick={handleDeckBackSubmit}
+                />
+                <img
+                  className="border-black w-16 h-16 hover:scale-125 z-10"
+                  src={`${Static.serverUrl}/api/images/cardback/Fluid-Rune.png`}
+                  alt="Fluid-Rune"
+                  onClick={handleDeckBackSubmit}
+                />
+                <img
+                  className="border-black w-16 h-16 hover:scale-125 z-10"
+                  src={`${Static.serverUrl}/api/images/cardback/Glowing-Rune.png`}
+                  alt="Glowing-Rune"
+                  onClick={handleDeckBackSubmit}
+                />
+                <img
+                  className="border-black w-16 h-16 hover:scale-125 z-10"
+                  src={`${Static.serverUrl}/api/images/cardback/Grounded-Rune.png`}
+                  alt="Grounded-Rune"
+                  onClick={handleDeckBackSubmit}
+                />
+                <img
+                  className="border-black w-16 h-16 hover:scale-125 z-10"
+                  src={`${Static.serverUrl}/api/images/cardback/Star.png`}
+                  alt="Star"
+                  onClick={handleDeckBackSubmit}
+                />
+            </div>
+
+            
+            </div>
+
+
+            <div className="flex flex-col deck-editor p-4 border rounded-lg border border-neutral-800 ">
+                <div className="flex flex-col items-center">
+                <h3 className="text-center text-2xl font-main-text-f">
+                    Active:
+                </h3>
+                {/* <h3 className="text-center text-2xl font-main-text-f">
+                    {deckBackData}
+                </h3> */}
+                <img
+                    className="border-black w-20 h-20 m-2"
+                    src={`${Static.serverUrl}/api/images/cardback/${deckBackData}.png`}
+                    alt={deckBackData}
+                />
+                </div>
+                </div>
+
+                <div className='flex flex-col justify-around items-center border rounded-lg border-neutral-700 bg-neutral-800'>
+                <h2 className="h2-text">
+                Deck Name:
+
+                </h2>
+                <input
+                    type="textarea"
+                    className="mx-4 rounded-sm"
+                    value={deckTitleData}
+                    onChange={handleDeckTitleSubmit}
+                />
+                    <button
+                    type="button"
+                    className="button-style"
+                    onClick={handleDeckSubmit}
+                >
+                    Create
+                </button>
+            </div>
+            </div>
+
+
+
+        {/* Deck Choice */}
+        <div className="flex flex-col justify-around items-center border border-gray-700 rounded-lg bg-gray-800 p-3">
         <div>
           <label
             htmlFor="deckChoice"
             className="h2-text mx-6"
           >
-            Choose Your Deck:
+            Modify:
           </label>
           <select
             name="deck-choice"
@@ -171,127 +290,30 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
             })}
           </select>
         </div>
-        <div className="flex flex-col">
+        
+        <div className="flex">
           <button
             type="button"
             className="button-style"
             onClick={getSelectedDeck}
           >
-            EDIT This Deck!
+            EDIT
           </button>
           <button
             type="button"
             className="delete-button-style"
             onClick={deleteSelectedDeck}
           >
-            DELETE This Deck!
+            DELETE
           </button>
         </div>
       </div>
-
-      <div className="p-2">
-        <h1 className="heading-text">
-          Create a New Deck:
-        </h1>
-        <p className="text-center text-xl font-main-text-f my-6">
-          Each deck must have at least 15 unique cards. You can only have one
-          copy of each card.
-        </p>
-
-        <h2 className="h2-text mx-10">
-          Deck Name:
-          <input
-            type="textarea"
-            className="mx-4 rounded-sm"
-            value={deckTitleData}
-            onChange={handleDeckTitleSubmit}
-          />
-        </h2>
-
-        <div className="flex flex-col my-8 justify-center items-center text-center">
-          <h2 className="heading-text">
-            Current Deck Build: {deckChoiceName}
-          </h2>
-          <div className="flex justify-between">
-            <div className="flex flex-col deck-editor p-4">
-              <h2 className="text-2xl font-main-text-f my-8">All Cards:</h2>
-              <div className="flex flex-col justify-start overflow-auto max-h-72 max-w-md">
-                <CardView
-                  setDeckData={setDeckData}
-                  cardData={cardData}
-                  deckData={deckData}
-                />
-              </div>
-            </div>
-            <div className="flex flex-col deck-editor p-4">
-              <div className="flex flex-col justify-start overflow-auto gl-scrollbar">
-                <DeckEditView setDeckData={setDeckData} deckData={deckData} />
-              </div>
-              <h2 className="text-center text-2xl font-main-text-f my-8">
-                Select Your Deck Back
-              </h2>
-              <div className="flex flex-col items-center">
-                <h3 className="text-center text-2xl font-main-text-f">
-                  Currently Selected:
-                </h3>
-                <h3 className="text-center text-2xl font-main-text-f">
-                  {deckBackData}
-                </h3>
-                <img
-                  className="border-black w-20 h-20 m-2"
-                  src={`${Static.serverUrl}/api/images/cardback/${deckBackData}.png`}
-                  alt={deckBackData}
-                />
-              </div>
-              <div className="flex flex-row my-6">
-                <img
-                  className="border-black w-20 h-20 m-2"
-                  src={`${Static.serverUrl}/api/images/cardback/Basic.png`}
-                  alt="Basic"
-                  onClick={handleDeckBackSubmit}
-                />
-                <img
-                  className="border-black w-20 h-20 m-2"
-                  src={`${Static.serverUrl}/api/images/cardback/Cross.png`}
-                  alt="Cross"
-                  onClick={handleDeckBackSubmit}
-                />
-                <img
-                  className="border-black w-20 h-20 m-2"
-                  src={`${Static.serverUrl}/api/images/cardback/Fluid-Rune.png`}
-                  alt="Fluid-Rune"
-                  onClick={handleDeckBackSubmit}
-                />
-                <img
-                  className="border-black w-20 h-20 m-2"
-                  src={`${Static.serverUrl}/api/images/cardback/Glowing-Rune.png`}
-                  alt="Glowing-Rune"
-                  onClick={handleDeckBackSubmit}
-                />
-                <img
-                  className="border-black w-20 h-20 m-2"
-                  src={`${Static.serverUrl}/api/images/cardback/Grounded-Rune.png`}
-                  alt="Grounded-Rune"
-                  onClick={handleDeckBackSubmit}
-                />
-                <img
-                  className="border-black w-20 h-20 m-2"
-                  src={`${Static.serverUrl}/api/images/cardback/Star.png`}
-                  alt="Star"
-                  onClick={handleDeckBackSubmit}
-                />
-              </div>
-            </div>
-          </div>
-          <button
-            type="button"
-            className="button-style p-6"
-            onClick={handleDeckSubmit}
-          >
-            Submit Your Deck
-          </button>
         </div>
-      </div>
+
+    </div>
+
+
+
       {renderModal(message)}
     </div>
   );
