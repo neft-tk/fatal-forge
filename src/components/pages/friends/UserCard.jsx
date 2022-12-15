@@ -20,28 +20,28 @@ function UserCard({ user, userId, token, handleAddFriend }) {
   };
 
   return (
-    <div className="card-style card-flex mx-8">
-      <div className="flex m-2 p-2">
+    <div className="card-background card-style flex gap-4 justify-around">
+      <div className="card-flex center-all">
         <img
-          className="w-28 h-28 rounded-3xl border-2 border-black"
+          className="w-20 h-20 rounded-3xl border-2 border-black"
           src={`${Static.serverUrl}/api/images/${user.imagePath}`}
           alt="Deck's Back of Card"
         ></img>
-        <div className="flex flex-col">
-          <h3 className="mt-2 mx-4 text-xl font-alt-text-f">{user.username}</h3>
-          <h4 className="mt-2 mx-4 text-md">{user.motto}</h4>
+        <div className="flex flex-col justify-start">
+          <h3 className="mt-2 text-xl font-alt-text-f">{user.username}</h3>
+          <h4 className="mt-2 text-md">{user.motto}</h4>
         </div>
       </div>
 
-      <div className="flex justify-around">
-        <button className="navbar-icon" onClick={handleProfile}>
-          <FaUserAlt size="28" />
+      <div className="card-flex justify-around">
+        <button className="user-button icon-button-style" onClick={handleProfile}>
+          <FaUserAlt className='user-icon' />
         </button>
-        <button className="navbar-icon" onClick={handleMessage}>
-          <BsFillChatDotsFill size="28" />
+        <button className="user-button icon-button-style" onClick={handleMessage}>
+          <BsFillChatDotsFill className='user-icon' />
         </button>
-        <button className="navbar-icon" onClick={handleAdd}>
-          <FaUserPlus size="28" />
+        <button className="user-button icon-button-style" onClick={handleAdd}>
+          <FaUserPlus className='user-icon' />
         </button>
       </div>
     </div>
