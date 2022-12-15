@@ -59,10 +59,12 @@ export default function Initialize(props) {
 
   const renderUsers = (users) => {
     return (
-      <div id='usersContainer' className='flex flex-col justify-evenly h-4/5 rounded-lg p-10 shadow-xl shadow-black'>
+      <div id='usersContainer' className='flex flex-col flex-wrap justify-between items-center rounded-lg p-6 shadow-lg bg-main-bg shadow-black border border-neutral-800 gap-4 w-fit self-center'>
+        <h1 className='text-gray-300 text-4xl rounded-md font-main-text-f self-center'>Room: <span className='font-bold font-alt-text-f text-white text-3xl m-3'>{props.gameId}</span></h1>
+        <div className='flex flex-col md:flex-row justify-center w-fit gap-2'>
         {users.map((x, i) => {
           return (
-            <div className='text-center border rounded-lg h-1/3 hover:scale-105 transition-all' key={i} style={{ borderColor: x.color }}>
+            <div className='text-center border rounded-lg w-72 h-24 hover:scale-105 transition-all' key={i} style={{ borderColor: x.color }}>
               <div className='flex justify-evenly items-center h-3/5'>
                 <h3 className='font-semibold text-main-text font-main-text-f text-xl'>{x.userData.username}</h3>
                 <div className='border p-1 rounded-full w-1/5 h-1/5' style={{ backgroundColor: x.color }}></div>
@@ -72,6 +74,8 @@ export default function Initialize(props) {
           )
 
         })}
+        </div>
+
       </div>
     )
   }
@@ -121,46 +125,39 @@ export default function Initialize(props) {
   return (
     <>
 
-    <div className='text-center h-full flex flex-col justify-evenly align-center'>
+    <div className='text-center h-full flex flex-col justify-center gap-10 items-around'>
 
-      <h1 className='text-4xl font-display-text-f'>Game Setup</h1>
-
+      {/* <h1 className='text-4xl font-display-text-f'>Game Setup</h1> */}
+      
+              {/* All Players */}
+              {renderUsers(connectedUsers)}
       {/* Options + Players Div */}
-      <div className='flex justify-evenly h-3/5'>
 
         {/* Game Options Form */}
-        <form action="" className='flex flex-col justify-between items-center w-2/5'>
+        <form action="" className='flex flex-wrap justify-center items-around gap-10 w-full'>
+          
+          {/* Color Choice*/}
+          <div className='flex flex-col justify-between items-between gap-6 shadow-lg bg-main-bg shadow-black border border-neutral-800 p-6 rounded-lg'>
+            <label className='font-bold text-2xl font-main-text-f'>Choose Your Color</label>
+            <CirclePicker className='flex justify-evenly items-center' onChange={(c, e) => { Socket.Game.PickColor(c.hex); Socket.IO.color = c.hex }} />
+          </div>
 
           {/* Deck Choice */}
-          <div className='flex flex-col justify-evenly items-center'>
-            <label htmlFor="deckChoice" className='m-5 font-bold text-2xl font-main-text-f'>Choose Your Deck</label>
+          <div className='flex flex-col justify-evenly items-center shadow-lg bg-main-bg shadow-black border border-neutral-800 p-6 rounded-lg gap-2 w-fit'>
+            <label htmlFor="deckChoice" className='font-bold text-2xl font-main-text-f'>Choose Your Deck</label>
             <select name="deck-choice" id="deckChoice" className='bg-black font-alt-text-f rounded' required onChange={e => {
               props.setDeck(e.target.value); setDeckChoice(e.target.value); console.log(e.target.value)
             }}>
               {decks.map((x, i) => { return (<option className='font-alt-text-f' value={x.id} key={i} >{x.name}</option>) })}
             </select>
+            <button className='button-style' type='submit' onClick={handleFormSubmit}>Ready</button>
           </div>
 
-          {/* Color Choice*/}
-          <div className='flex flex-col justify-evenly items-center'>
-            <label className='m-5 font-bold text-2xl font-main-text-f'>Choose Your Color</label>
-            <CirclePicker className='flex justify-evenly items-center w-full' onChange={(c, e) => { Socket.Game.PickColor(c.hex); Socket.IO.color = c.hex }} />
-          </div>
+
           {/* Ready */}
-          <button className='bg-main-blue hover:bg-active-blue text-white font-bold py-2 px-4 rounded w-1/5' type='submit' onClick={handleFormSubmit}>Ready</button>
+         
         </form>
 
-        {/* All Players */}
-        <div className='w-1/3 flex flex-col justify-between bg-main-bg'>
-          <h2 className='font-semibold text-3xl font-main-text-f'>Players</h2>
-          {renderUsers(connectedUsers)}
-        </div>
-
-      </div>
-      {/* Game ID Div */}
-      <div className='h-1/5 flex flex-col justify-around items-center '>
-        <h1 className='text-gray-300 text-4xl rounded-md w-1/5 p-3 font-main-text-f'>Room ID: <span className='font-bold font-alt-text-f text-white m-3'>{props.gameId}</span></h1>
-      </div>
     </div>
     {renderModal()}
 </>
