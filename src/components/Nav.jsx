@@ -9,7 +9,6 @@ import { BsFillChatDotsFill, BsQuestionLg } from 'react-icons/bs';
 import { GiCardAceSpades } from 'react-icons/gi';
 import { RiLogoutBoxFill } from 'react-icons/ri';
 import { Modal } from 'flowbite-react';
-import HomeIcon from '.././assets/svg/homeIcon.svg';
 import NavBarIcon from './NavBarIcon';
 import gllogo from '../assets/png/gridlocke1.png';
 
@@ -35,25 +34,25 @@ export default function Nav({ view, setView, handleLogout }) {
         {/* <NavBarIcon icon={<BsFillChatDotsFill size="40" />} text="Chat" /> */}
       </Link>
       <Link to="/gameview">
-        <NavBarIcon icon={<FaGamepad size="40" />} text="Game" />
+        <NavBarIcon icon={<FaGamepad className='navbar-icon' />} text="Game" />
       </Link>
       <Link to="/deckbuilder">
-        <NavBarIcon icon={<GiCardAceSpades size="40" />} text="Deck Builder" />
+        <NavBarIcon icon={<GiCardAceSpades className='navbar-icon' />} text="Deck Builder" />
       </Link>
       <Link to="/profile">
-        <NavBarIcon icon={<FaUserAlt size="40" />} text="Profile" />
+        <NavBarIcon icon={<FaUserAlt className='navbar-icon' />} text="Profile" />
       </Link>
       <Link to="/friends">
-        <NavBarIcon icon={<FaUserFriends size="40" />} text="Friends" />
+        <NavBarIcon icon={<FaUserFriends className='navbar-icon' />} text="Friends" />
       </Link>
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Stats'/> */}
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Channels'/> */}
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Settings'/> */}
       <button onClick={onModalClick}>
-        <NavBarIcon icon={<BsQuestionLg size="40" />} text="How To Play" />{' '}
+        <NavBarIcon icon={<BsQuestionLg className='navbar-icon' />} text="How To Play" />{' '}
       </button>
       <button onClick={onLogoutClick}>
-        <NavBarIcon icon={<RiLogoutBoxFill size="40" />} text="Logout" />{' '}
+        <NavBarIcon icon={<RiLogoutBoxFill className='navbar-icon' />} text="Logout" />{' '}
       </button>
       <Modal show={showModal} size="xl" popup={true} onClose={onModalClose}>
         <Modal.Header className="bg-main-bg" />
