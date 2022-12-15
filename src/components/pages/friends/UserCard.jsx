@@ -20,7 +20,7 @@ function UserCard({ user, userId, token, handleAddFriend }) {
   };
 
   return (
-    <div className="card-style">
+    <div className="card-style card-flex mx-8">
       <div className="flex m-2 p-2">
         <img
           className="w-28 h-28 rounded-3xl border-2 border-black"

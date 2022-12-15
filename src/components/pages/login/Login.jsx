@@ -83,7 +83,7 @@ export default function Login({
     <div className="h-full w-2/3 flex lg:flex-row flex-col justify-between mx-auto my-0">
       <div className="ml-8 flex flex-col justify-center items-center text-center lg:w-1/4 w-full">
         <form onSubmit={handleLoginSubmit} className="flex flex-col w-full">
-          <h3 className="pt-6 text-main-orange font-display-text-f">Login</h3>
+          <h3 className="text-highlight-blue pt-6 font-display-text-f text-xl">Login</h3>
 
           <input
             id="login-email"
@@ -137,7 +137,7 @@ export default function Login({
             <span className="mr-4">New here?</span>
             <span
               onClick={onSignupModalClick}
-              className="text-highlight-orange hover:text-active-orange transition hover:text-lg duration-300 ease-in-out cursor-pointer"
+              className="text-highlight-blue transition hover:text-lg duration-300 ease-in-out cursor-pointer"
             >
               Sign up to play!
             </span>
@@ -148,10 +148,10 @@ export default function Login({
             popup={true}
             onClose={onSignupModalClose}
           >
-            <Modal.Header className="bg-slate-600" />
-            <Modal.Body className="bg-slate-300">
+            <Modal.Header className="modal-header"/>
+            <Modal.Body className="modal-body">
               <div className="flex flex-col space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8 justify-center items-center text-center">
-                <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
+                <h3 className="mt-4 text-lg font-medium text-gray-900">
                   Welcome Adventurer! Tell us about yourself...
                 </h3>
                 <div className="w-full flex justify-center">

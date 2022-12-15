@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 @layer components {
+    .navbar-main {
+        @apply bg-black/25 flex h-20 w-screen justify-around items-center md:flex-col md:w-24 md:h-screen grow-0 shrink-0 fixed top-0 p-4;
+    }
 
     .navbar-icon {
-        @apply bg-neutral-700 hover:bg-cyan-700 active:bg-active-orange focus:ring-blue-300 text-neutral-200 hover:text-white active:text-white relative flex items-center justify-center w-12 h-12 my-2 mx-auto focus:ring-4 rounded-xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer;
+        @apply bg-neutral-700 hover:bg-main-blue active:bg-active-blue focus:ring-blue-300 text-neutral-200 hover:text-white active:text-white relative flex items-center justify-center w-16 h-16 my-2 mx-auto focus:ring-4 rounded-xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer;
     }
 
     .profile-icon {
-        @apply bg-gray-800 hover:bg-highlight-orange active:bg-active-orange focus:ring-blue-300 text-main-orange hover:text-white active:text-white justify-center text-center items-center rounded-3xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer focus:ring-4 font-medium text-sm p-8 w-28 h-28 focus:outline-none;
+        @apply bg-gray-800 hover:bg-highlight-blue active:bg-active-blue focus:ring-blue-300 text-main-blue hover:text-white active:text-white justify-center text-center items-center rounded-3xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer focus:ring-4 font-medium text-sm p-8 w-28 h-28 focus:outline-none;
     }
 
     .navbar-tooltip {
@@ -21,7 +24,31 @@
     }
 
     .button-style {
-        @apply bg-sky-800 hover:bg-cyan-600 focus:ring-4 focus:ring-blue-800 text-black m-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none;
+        @apply bg-main-blue hover:bg-active-blue focus:ring-4 focus:ring-blue-800 text-black hover:text-main-text m-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none transition-all duration-300;
+    }
+
+    /* .modal-button-style {
+        @apply bg-modal-white hover:bg-active-blue focus:ring-4 focus:ring-blue-800 text-black hover:text-main-blue m-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none transition-all duration-300;
+    } */
+
+    .confirm-button-style {
+        @apply bg-green-700 hover:bg-green-900 focus:ring-4 focus:ring-blue-800 text-black hover:text-white m-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none transition-all duration-300;
+    }
+
+    .delete-button-style {
+        @apply bg-red-700 hover:bg-red-900 focus:ring-4 focus:ring-blue-800 text-black hover:text-white m-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none transition-all duration-300;
+    }
+
+    .title-text {
+        @apply text-center text-4xl font-display-text-f mb-6;
+    }
+
+    .heading-text {
+        @apply text-center text-3xl mb-2 font-main-text-f;
+    }
+
+    .h2-text {
+        @apply text-center text-2xl font-main-text-f;
     }
 
     .cards-container {
@@ -29,11 +56,23 @@
     }
 
     .card-style {
-        @apply bg-alt-bg text-main-text border-main-orange flex flex-col p-2 m-2 rounded-2xl border-2;
+        @apply bg-gradient-to-r from-main-bg to-alt-bg text-main-text border-highlight-blue p-8 m-2 rounded-2xl border-2;
+    }
+
+    .card-flex{
+        @apply flex flex-col;
+    }
+
+    .modal-header {
+        @apply bg-active-blue;
+    }
+
+    .modal-body {
+        @apply bg-modal-gray text-black;
     }
 
     .gl-scrollbar {
-        @apply scrollbar-thin scrollbar-track-alt-bg scrollbar-thumb-highlight-orange;
+        @apply scrollbar-thin scrollbar-track-alt-bg scrollbar-thumb-highlight-blue;
     }
 
 }

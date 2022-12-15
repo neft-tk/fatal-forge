@@ -109,11 +109,10 @@ export default function Game({ deckId, size, gameId, setView}) {
       size="md"
       popup={true}
       >
-        <Modal.Header />
-        <Modal.Body>
+        <Modal.Header className="modal-header"/>
+        <Modal.Body className="modal-body">
           <div className="text-center">
-            {/* <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" /> */}
-            <h3 className="mb-5 text-lg font-normal text-gray-400">
+            <h3 className="mb-5 text-lg font-normal">
               {message}
             </h3>
             <div className="flex justify-between gap-4">

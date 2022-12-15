@@ -10,13 +10,13 @@ module.exports = {
       colors: {
         'main-bg': '#171717',
         'alt-bg': '#333',
+        'main-blue': '#075985',
+        'highlight-blue': '#4189e0',
+        'active-blue': '#0D3852',
+        'modal-gray': '#a1a1aa',
+        'modal-white': '#f4f4f5',
         'main-text': '#eee',
         'alt-text': '#ccc',
-        'highlight': '#c0ffee',
-        'alt-highlight': 'yellow',
-        'main-orange': '#e5302d',
-        'highlight-orange': '#0c4a6e',
-        'active-orange': '#f2956a',
       },
       // Fonts by use case.
       fontFamily: {
