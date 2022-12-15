@@ -81,7 +81,7 @@ export default function Login({
 
   return (
     <div className="h-full w-2/3 flex lg:flex-row flex-col justify-between mx-auto my-0">
-      <div className="ml-8 flex flex-col justify-center items-center text-center lg:w-1/4 w-full">
+      <div className="ml-8 flex flex-col center-all lg:w-1/4 w-full">
         <form onSubmit={handleLoginSubmit} className="flex flex-col w-full">
           <h3 className="text-highlight-blue pt-6 font-display-text-f text-xl">Login</h3>
 
@@ -150,7 +150,7 @@ export default function Login({
           >
             <Modal.Header className="modal-header"/>
             <Modal.Body className="modal-body">
-              <div className="flex flex-col space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8 justify-center items-center text-center">
+              <div className="flex flex-col space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8 center-all">
                 <h3 className="mt-4 text-lg font-medium text-gray-900">
                   Welcome Adventurer! Tell us about yourself...
                 </h3>
@@ -232,7 +232,7 @@ export default function Login({
         </>
       </div>
 
-      <div className="flex justify-center items-center min-w-50 lg:ml-12">
+      <div className="flex center-all min-w-50 lg:ml-12">
         <img
           className="min-w-full"
           src={blacksmithGif}

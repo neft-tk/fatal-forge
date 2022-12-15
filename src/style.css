@@ -12,7 +12,11 @@
     }
 
     .profile-icon {
-        @apply bg-gray-800 hover:bg-highlight-blue active:bg-active-blue focus:ring-blue-300 text-main-blue hover:text-white active:text-white justify-center text-center items-center rounded-3xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer focus:ring-4 font-medium text-sm p-8 w-28 h-28 focus:outline-none;
+        @apply bg-gray-800 hover:bg-highlight-blue active:bg-active-blue focus:ring-blue-300 text-main-blue hover:text-white active:text-white justify-center text-center items-center rounded-3xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer focus:ring-4 font-medium text-sm p-8 w-16 h-16 focus:outline-none;
+    }
+
+    .icon-size {
+        @apply text-[48px];
     }
 
     .navbar-tooltip {
@@ -59,7 +63,7 @@
         @apply bg-gradient-to-r from-main-bg to-alt-bg text-main-text border-highlight-blue p-8 m-2 rounded-2xl border-2;
     }
 
-    .card-flex{
+    .card-flex {
         @apply flex flex-col;
     }
 
@@ -69,6 +73,10 @@
 
     .modal-body {
         @apply bg-modal-gray text-black;
+    }
+
+    .center-all {
+        @apply justify-center items-center text-center;
     }
 
     .gl-scrollbar {
