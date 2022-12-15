@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Label, Tooltip } from 'flowbite-react';
+import React, { useState } from 'react';
+import { Modal, Label } from 'flowbite-react';
 import { FaUserEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
@@ -86,7 +86,7 @@ function ProfileCard({
         {/* Pic + Name */}
         <div className="flex justify-around w-auto">
           <img
-            className="w-40 h-40 rounded-full border-2 border-highlight-blue my-auto ml-6"
+            className="w-28 h-28 lg:w-40 lg:h-40 rounded-full border-2 border-highlight-blue my-auto ml-6"
             src={`${Static.serverUrl}/api/images/${user.imagePath}`}
             alt="Profile Picture"
           />
@@ -113,7 +113,7 @@ function ProfileCard({
             className="profile-icon m-4"
             onClick={onEditModalClick}
           >
-            <FaUserEdit size="48" />
+            <FaUserEdit className='icon-size' />
           </button>
           <Modal
             show={showEditModal}
@@ -125,7 +125,7 @@ function ProfileCard({
             <Modal.Header className="modal-header" />
             <Modal.Body className="modal-body">
               <div className="text-center">
-                <div className="flex flex-col space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8 justify-center items-center text-center">
+                <div className="flex flex-col space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8 center-all">
                   <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                     Looks like your story has changed, Adventurer...
                   </h3>
@@ -205,7 +205,7 @@ function ProfileCard({
             className="profile-icon m-4"
             onClick={onDeleteModalClick}
           >
-            <MdDelete size="48" className="" />
+            <MdDelete className="icon-size" />
           </button>
           <Modal
             show={showDeleteModal}

@@ -134,7 +134,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
   }
 
   return (
-    <div className="m-12 flex flex-col justify-center items-center">
+    <div className="m-12 flex flex-col center-all">
       <h1 className="title-text">
         Welcome to the Deckbuilder!
       </h1>
@@ -208,7 +208,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
           />
         </h2>
 
-        <div className="flex flex-col my-8 justify-center items-center text-center">
+        <div className="center-all flex flex-col my-8">
           <h2 className="heading-text">
             Current Deck Build: {deckChoiceName}
           </h2>
