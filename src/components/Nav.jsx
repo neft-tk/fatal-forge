@@ -4,13 +4,17 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaGamepad, FaUserAlt, FaUserFriends } from 'react-icons/fa';
-import { BsFillChatDotsFill, BsQuestionLg } from 'react-icons/bs';
-import { GiCardAceSpades } from 'react-icons/gi';
-import { RiLogoutBoxFill } from 'react-icons/ri';
+import { FaGamepad, FaUserAlt, FaUserFriends} from 'react-icons/fa';
+import {GiCardPick,GiTabletopPlayers} from 'react-icons/gi'
+import { BsFillChatDotsFill, BsQuestionLg, BsFillGrid3X3GapFill,BsGrid3X3,BsGrid3X3Gap,BsGrid3X3GapFill} from 'react-icons/bs';
+import {FcGrid} from 'react-icons/fc'
+import { GiCardAceSpades,GiIdCard } from 'react-icons/gi';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 import { Modal } from 'flowbite-react';
 import NavBarIcon from './NavBarIcon';
 import gllogo from '../assets/png/gridlocke1.png';
+import {MdOutlineLiveHelp} from 'react-icons/md'
+import {ImProfile} from 'react-icons/im'
 
 export default function Nav({ view, setView, handleLogout }) {
   const [showModal, setShowModal] = useState(false);
@@ -28,19 +32,27 @@ export default function Nav({ view, setView, handleLogout }) {
   };
 
   return (
-    <div className="navbar-main">
+    <div className="bg-black/25 flex justify-around items-center md:flex-col md:h-screen grow-0 shrink-0 p-2 gap-1">
       <Link to="/lobby">
-        <img src={gllogo} alt="Gridlocke logo" className="h-[80px] w-auto" />
+        <img src={gllogo} alt="Gridlocke logo" className="h-[64px] w-auto" />
         {/* <NavBarIcon icon={<BsFillChatDotsFill size="40" />} text="Chat" /> */}
       </Link>
       <Link to="/gameview">
-        <NavBarIcon icon={<FaGamepad className='navbar-icon' />} text="Game" />
+        <div className='relative text-4xl md:text-5xl navbar-icon group'>
+
+        <GiTabletopPlayers className='text-neutral-200 absolute pointer-events-none z-10 scale-90'/>
+
+          <BsGrid3X3GapFill className='text-neutral-700 hover:scale-125 hover:text-sky-600'/>
+          <span className="navbar-tooltip group-hover:scale-100 text-xl">
+        Play
+      </span>
+        </div>
       </Link>
       <Link to="/deckbuilder">
-        <NavBarIcon icon={<GiCardAceSpades className='navbar-icon' />} text="Deck Builder" />
+        <NavBarIcon icon={<GiCardPick className='navbar-icon' />} text="Deck Builder" />
       </Link>
       <Link to="/profile">
-        <NavBarIcon icon={<FaUserAlt className='navbar-icon' />} text="Profile" />
+        <NavBarIcon icon={<GiIdCard className='navbar-icon' />} text="Profile" />
       </Link>
       <Link to="/friends">
         <NavBarIcon icon={<FaUserFriends className='navbar-icon' />} text="Friends" />
@@ -49,10 +61,10 @@ export default function Nav({ view, setView, handleLogout }) {
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Channels'/> */}
       {/* <NavBarIcon icon={<FaHome size="40" />} text='Settings'/> */}
       <button onClick={onModalClick}>
-        <NavBarIcon icon={<BsQuestionLg className='navbar-icon' />} text="How To Play" />{' '}
+        <NavBarIcon icon={<MdOutlineLiveHelp className='navbar-icon' />} text="How To Play" />{' '}
       </button>
       <button onClick={onLogoutClick}>
-        <NavBarIcon icon={<RiLogoutBoxFill className='navbar-icon' />} text="Logout" />{' '}
+        <NavBarIcon icon={<RiLogoutBoxLine className='navbar-icon' />} text="Logout" />{' '}
       </button>
       <Modal show={showModal} size="xl" popup={true} onClose={onModalClose}>
         <Modal.Header className="bg-main-bg" />

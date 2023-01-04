@@ -130,9 +130,8 @@ function App() {
     return (
       <>
         <Router>
-          <div className="flex flex-col md:flex-row w-screen h-screen">
+          <div className="flex flex-col md:flex-row w-screen h-screen overflow-hidden">
             <Nav view={view} setView={setView} handleLogout={handleLogout} />
-            <div className='w-full h-[80px] md:w-[80px] md:h-full grow-0 shrink-0'></div>
             <div id="routeContainer" className="w-full h-full overflow-x-hidden gl-scrollbar">
               <Particles
                 init={particlesInit}
