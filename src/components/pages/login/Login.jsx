@@ -52,7 +52,7 @@ export default function Login({
     setLoginEmail('');
     setLoginPassword('');
     handleLogin({
-      email: loginEmail,
+      email: loginEmail.toLowerCase(),
       password: loginPassword,
     });
   };
@@ -63,8 +63,8 @@ export default function Login({
     setSignupEmail('');
     setSignupPassword('');
     handleSignup({
-      username: signupUsername,
-      email: signupEmail,
+      username: signupUsername.toLowerCase(),
+      email: signupEmail.toLowerCase(),
       password: signupPassword,
     });
   };
