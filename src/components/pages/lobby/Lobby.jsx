@@ -7,18 +7,18 @@ import Chat from './Chat';
 import gllogo from '../../../assets/png/gridlocke1.png';
 export default function Lobby({ userId }) {
   return (
-    <div className="flex flex-col items-center h-screen">
+    <div className="flex flex-col items-center h-full w-full">
       {/* Hero */}
-      <img src={gllogo} alt="Gridlocke logo" className="w-1/4 mx-auto my-0 p-4" />
+      <img src={gllogo} alt="Gridlocke logo" className="h-[25vh]" />
       {/* Bio */}
-      <div className='p-8'>
-        <p className="h-1/4 w-full mx-auto my-0 font-main-text-f text-center text-2xl">
+      <div className='m-4 p-4 max-w-md border rounded-lg bg-neutral-900 border-neutral-800 shadow-md shadow-black'>
+        <p className="font-main-text-f text-center md:text-2xl">
           <span className="font-alt-text-f">
             Welcome to{' '}
-            <span className="ml-2 text-3xl font-bold text-highlight-blue">
+            <span className="ml-2 md:text-3xl font-bold text-highlight-blue">
               GridLocke
             </span>
-            <span className="text-3xl font-bold mx-2">-</span>The deck-building
+            <span className="md:text-3xl font-bold mx-2"><br/></span>The deck-building
             tactical card game!
           </span>
           <br />

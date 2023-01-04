@@ -2,16 +2,6 @@ import React, { useState } from 'react';
 import { Modal, Label, Tooltip } from 'flowbite-react';
 import blacksmithGif from '../../../assets/gif/blacksmith_nobg.gif';
 import visibilityIcon from '../../../assets/svg/visibilityIcon.svg';
-// The Login component provides a form and handler for users logging in.
-
-// import API from "./utils/API.js";
-
-/*
-this was all copy pasted stuff that erik pulled from joes example
-
-i passed the setlogin state function through the props from the app component..
-that's the only change i made.
-*/
 
 export default function Login({
   handleLogin,
@@ -62,7 +52,7 @@ export default function Login({
     setLoginEmail('');
     setLoginPassword('');
     handleLogin({
-      email: loginEmail,
+      email: loginEmail.toLowerCase(),
       password: loginPassword,
     });
   };
@@ -73,17 +63,17 @@ export default function Login({
     setSignupEmail('');
     setSignupPassword('');
     handleSignup({
-      username: signupUsername,
-      email: signupEmail,
+      username: signupUsername.toLowerCase(),
+      email: signupEmail.toLowerCase(),
       password: signupPassword,
     });
   };
 
   return (
-    <div className="h-full w-2/3 flex lg:flex-row flex-col justify-between mx-auto my-0">
-      <div className="ml-8 flex flex-col center-all lg:w-1/4 w-full">
+    <div className="h-full w-full flex md:flex-row flex-col justify-around items-center py-4">
+      <div className="flex flex-col center-all w-96 shrink-0">
         <form onSubmit={handleLoginSubmit} className="flex flex-col w-full">
-          <h3 className="text-highlight-blue pt-6 font-display-text-f text-xl">Login</h3>
+          
 
           <input
             id="login-email"
@@ -137,7 +127,7 @@ export default function Login({
             <span className="mr-4">New here?</span>
             <span
               onClick={onSignupModalClick}
-              className="text-highlight-blue transition hover:text-lg duration-300 ease-in-out cursor-pointer"
+              className="text-highlight-blue font-bold cursor-pointer"
             >
               Sign up to play!
             </span>
@@ -232,13 +222,13 @@ export default function Login({
         </>
       </div>
 
-      <div className="flex center-all min-w-50 lg:ml-12">
-        <img
-          className="min-w-full"
-          src={blacksmithGif}
-          alt="A blacksmith hard at work."
-        />
-      </div>
+
+      <img
+        className="flex shrink min-w-0 min-h-0"
+        src={blacksmithGif}
+        alt="A blacksmith hard at work."
+      />
+
     </div>
   );
 }

@@ -59,17 +59,18 @@ export default function Initialize(props) {
 
   const renderUsers = (users) => {
     return (
-      <div id='usersContainer' className='flex flex-col flex-wrap justify-between items-center rounded-lg p-6 shadow-lg bg-main-bg shadow-black border border-neutral-800 gap-4 w-fit self-center'>
-        <h1 className='text-gray-300 text-4xl rounded-md font-main-text-f self-center'>Room: <span className='font-bold font-alt-text-f text-white text-3xl m-3'>{props.gameId}</span></h1>
-        <div className='flex flex-col md:flex-row justify-center w-fit gap-2'>
+      <div id='usersContainer' className='flex flex-col flex-wrap justify-between items-center rounded-lg p-6 shadow-md bg-main-bg shadow-black border border-neutral-800 gap-4 w-fit self-center'>
+        <h1 className='text-gray-300 md:text-4xl rounded-md font-main-text-f self-center'>Room: <span className='font-bold font-alt-text-f text-white md:text-3xl m-3'>{props.gameId}</span></h1>
+        <div className='flex flex-row justify-center w-fit gap-2'>
         {users.map((x, i) => {
           return (
-            <div className='text-center border rounded-lg w-72 h-24 hover:scale-105 transition-all' key={i} style={{ borderColor: x.color }}>
-              <div className='flex justify-evenly items-center h-3/5'>
-                <h3 className='font-semibold text-main-text font-main-text-f text-xl'>{x.userData.username}</h3>
+            <div className='text-center border rounded-lg w-[33vw] sm:w-72 h-24 p-2' key={i} style={{ borderColor: x.color }}>
+              <div className='flex flex-col justify-around items-center h-full'>
+                <h3 className='font-semibold text-main-text font-main-text-f text-xl truncate'>{x.userData.username}</h3>
                 <div className='border p-1 rounded-full w-1/5 h-1/5' style={{ backgroundColor: x.color }}></div>
+                <h3 className='h-2/5 font-semibold text-alt-text font-alt-text-f'>{x.isReady ? 'Ready' : 'Preparing'}</h3>
               </div>
-              <h3 className='h-2/5 font-semibold text-alt-text font-alt-text-f'>{x.isReady ? 'Ready' : 'Preparing'}</h3>
+              
             </div>
           )
 
@@ -125,7 +126,7 @@ export default function Initialize(props) {
   return (
     <>
 
-    <div className='text-center h-full flex flex-col justify-center gap-10 items-around'>
+    <div className='text-center h-full flex flex-col justify-center gap-2 md:gap-10 items-around'>
 
       {/* <h1 className='text-4xl font-display-text-f'>Game Setup</h1> */}
       
@@ -134,23 +135,26 @@ export default function Initialize(props) {
       {/* Options + Players Div */}
 
         {/* Game Options Form */}
-        <form action="" className='flex flex-wrap justify-center items-around gap-10 w-full'>
+        <form action="" className='flex flex-wrap justify-center items-around gap-2 md:gap-10 w-full'>
           
           {/* Color Choice*/}
-          <div className='flex flex-col justify-between items-between gap-6 shadow-lg bg-main-bg shadow-black border border-neutral-800 p-6 rounded-lg'>
-            <label className='font-bold text-2xl font-main-text-f'>Choose Your Color</label>
+          <div className='flex flex-col justify-between items-between gap-6 shadow-md bg-main-bg shadow-black border border-neutral-800 p-6 rounded-lg'>
+            <label className='font-bold md:text-2xl font-main-text-f'>Choose Your Color</label>
             <CirclePicker className='flex justify-evenly items-center' onChange={(c, e) => { Socket.Game.PickColor(c.hex); Socket.IO.color = c.hex }} />
           </div>
 
           {/* Deck Choice */}
-          <div className='flex flex-col justify-evenly items-center shadow-lg bg-main-bg shadow-black border border-neutral-800 p-6 rounded-lg gap-2 w-fit'>
-            <label htmlFor="deckChoice" className='font-bold text-2xl font-main-text-f'>Choose Your Deck</label>
-            <select name="deck-choice" id="deckChoice" className='bg-black font-alt-text-f rounded' required onChange={e => {
-              props.setDeck(e.target.value); setDeckChoice(e.target.value); console.log(e.target.value)
-            }}>
-              {decks.map((x, i) => { return (<option className='font-alt-text-f' value={x.id} key={i} >{x.name}</option>) })}
-            </select>
-            <button className='button-style' type='submit' onClick={handleFormSubmit}>Ready</button>
+          <div className='flex flex-col justify-evenly items-center shadow-md bg-main-bg shadow-black border border-neutral-800 p-6 rounded-lg gap-2 w-fit'>
+            <label htmlFor="deckChoice" className='font-bold md:text-2xl font-main-text-f'>Choose Your Deck</label>
+            <div>
+              <select name="deck-choice" id="deckChoice" className='bg-black font-alt-text-f rounded' required onChange={e => {
+                props.setDeck(e.target.value); setDeckChoice(e.target.value); console.log(e.target.value)
+              }}>
+                {decks.map((x, i) => { return (<option className='font-alt-text-f' value={x.id} key={i} >{x.name}</option>) })}
+              </select>
+              <button className='button-style' type='submit' onClick={handleFormSubmit}>Ready</button>
+            </div>
+
           </div>
 
 

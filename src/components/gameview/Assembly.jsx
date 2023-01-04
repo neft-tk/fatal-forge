@@ -116,7 +116,7 @@ function Assembly({ setView, setGameId }) {
     <div className='flex flex-col h-full w-full justify-center items-center'>
       
 
-        <h3 className='text-4xl font-display-text-f mb-6'>Join or Create a room to play!</h3>
+        <h3 className='text-xl sm:text-4xl font-display-text-f mb-6'>Join or Create a room to play!</h3>
         <form action="" className='flex flex-col md:flex-row justify-around items-around w-fit gap-6'>
           
           <div className='flex flex-col items-center justify-between font-main-text-f rounded-lg p-6 shadow-lg bg-main-bg shadow-black border border-neutral-800 gap-4 h-full'>
@@ -144,6 +144,7 @@ function Assembly({ setView, setGameId }) {
             </button>
           </div>
         </form>
+        <p className='mt-4 text-neutral-400 text-center text-sm md:text-base'>This is currently only a multiplayer game. <br/> You must have a partner to play with.</p>
       </div>
       {renderModal(message)}
     </>
