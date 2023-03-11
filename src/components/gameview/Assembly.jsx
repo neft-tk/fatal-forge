@@ -1,11 +1,10 @@
-// The assembly component will handle players joining and creating rooms to play with others.
-
-// Once a player has joined a room, they will be taken to that room, in the initialize component.
-
 import React, { useEffect, useState } from 'react';
 import Socket from '../../utils/socket';
 import Static from '../../utils/staticHelper';
-import { Button, Modal, Label, TextInput } from 'flowbite-react';
+import { Button, Modal } from 'flowbite-react';
+
+// The assembly component will handle players joining and creating rooms to play with others.
+// Once a player has joined a room, they will be taken to that room, in the initialize component.
 
 function Assembly({ setView, setGameId }) {
   const [joinRoom, setJoinRoom] = useState('');
@@ -80,7 +79,11 @@ function Assembly({ setView, setGameId }) {
           }
         }
         break;
+      // TODO: Add better exception handling.
+      default:
+        break;
     }
+
     setCreateRoom('');
     setJoinRoom('');
   };
@@ -88,7 +91,7 @@ function Assembly({ setView, setGameId }) {
   function renderModal() {
     return (
       <Modal show={showModal} size="md" popup={true}>
-        <Modal.Header className='modal-header'/>
+        <Modal.Header className='modal-header' />
         <Modal.Body className='modal-body'>
           <div className="text-center">
             <h3 className="mb-5 text-lg font-normal">
@@ -112,12 +115,9 @@ function Assembly({ setView, setGameId }) {
 
   return (
     <>
-    <div className='flex flex-col h-full w-full justify-center items-center'>
-      
-
+      <div className='flex flex-col h-full w-full justify-center items-center'>
         <h3 className='text-xl sm:text-4xl font-display-text-f mb-6'>Join or Create a room to play!</h3>
         <form action="" className='flex flex-col md:flex-row justify-around items-around w-fit gap-6'>
-          
           <div className='flex flex-col items-center justify-between font-main-text-f rounded-lg p-6 shadow-lg bg-main-bg shadow-black border border-neutral-800 gap-4 h-full'>
             <label htmlFor="joinRoomInput" className='text-2xl font-semibold alt-text-f'>Join</label>
             <input type="text" id='joinRoomInput' placeholder='Room ID' className='font-main-text-f shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={joinRoom} onChange={e => setJoinRoom(e.target.value)} />
@@ -133,7 +133,6 @@ function Assembly({ setView, setGameId }) {
                 <option value={5}>5x5</option>
               </select>
             </div>
-
             <button
               id="create-room"
               className="button-style"
@@ -143,7 +142,7 @@ function Assembly({ setView, setGameId }) {
             </button>
           </div>
         </form>
-        <p className='mt-4 text-neutral-400 text-center text-sm md:text-base'>This is currently only a multiplayer game. <br/> You must have a partner to play with.</p>
+        <p className='mt-4 text-neutral-400 text-center text-sm md:text-base'>This is currently only a multiplayer game. <br /> You must have a partner to play with.</p>
       </div>
       {renderModal(message)}
     </>

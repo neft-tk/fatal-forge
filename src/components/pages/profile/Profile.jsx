@@ -16,8 +16,6 @@ function Profile({ userId, token, setIsLoggedIn }) {
         decks: data.Decks,
         friends: data.FavoriteUser,
         imagePath: data.imagePath,
-        decks: data.Decks,
-        friends: data.FriendsUser,
       });
     }
 
@@ -43,8 +41,6 @@ function Profile({ userId, token, setIsLoggedIn }) {
       decks: data.Decks,
       friends: data.FavoriteUser,
       imagePath: data.imagePath,
-      decks: data.Decks,
-      friends: data.FavoriteUser,
     });
   };
 
