@@ -62,20 +62,16 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
     });
     setDeckData(deckCards);
     setDeckChoiceName(deckInfo.deckName);
-    // const deconstructedDeck = await
   }
 
   async function deleteSelectedDeck() {
-    console.log(deckChoice);
     const submittedDeck = await API.deleteDeck(deckChoice, token);
-    console.log('deck deleted');
     window.location.reload();
   }
 
   // async function findOneDeck() {
   //   const selectedDeck = await API.getSingleDeck(deckChoice)
   //   const deconstructedDeck = await selectedDeck.json()
-  //   console.log(deckChoice)
   //   setDeckChoiceName(deckChoice)
   // }
 

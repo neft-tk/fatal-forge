@@ -44,7 +44,6 @@ export default function Game({ deckId, size, gameId, setView}) {
 
   const Alert = (msg) =>{
     setMessage(msg);
-    console.log(msg);
     setShowModal(true);
   }
 
@@ -53,8 +52,7 @@ export default function Game({ deckId, size, gameId, setView}) {
     Socket.IO.slots = Array(size*size).fill(null);
     Socket.IO.setSlot = (index,color)=>{
       Socket.IO.slots[index] = color;
-      setSlots([...Socket.IO.slots])
-      console.log(Socket.IO.slots);
+      setSlots([...Socket.IO.slots]);
     }
     setIsMyTurn(Socket.IO.myTurn)
     getHand();

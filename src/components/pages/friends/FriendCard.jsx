@@ -12,17 +12,9 @@ function FriendCard({ friendId, userId, friend, token, handleDeleteFriend }) {
       const data = await API.getSingleUser(friendId);
       const deckName = data.Decks[0].deckName;
       const deckPath = data.Decks[0].imagePath;
-      console.log(data);
-      console.log(data.Decks);
-      console.log(data.Decks[0]);
-      console.log(data.Decks[0].imagePath);
-      // console.log(data.FavoriteUser);
-      // console.log(friends);
       // const friendsData = data.FavoriteUser;
       // for (let i = 0; i < friendsData.length; i++) {
       //   const friend = friendsData[i];
-      //   console.log(friend);
-      //   console.log(friend.username);
       // }
       // user = {
       //   username: data.username,
@@ -44,10 +36,12 @@ function FriendCard({ friendId, userId, friend, token, handleDeleteFriend }) {
     fetchFriend();
   }, []);
 
+  // TODO: Add functionality
   const handleMessage = () => {
     console.log('Message me!');
   };
 
+  // TODO: Add functionality
   const handleProfile = () => {
     console.log('My profile!');
   };

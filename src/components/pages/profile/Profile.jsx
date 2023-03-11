@@ -8,14 +8,9 @@ function Profile({ userId, token, setIsLoggedIn }) {
   useEffect(() => {
     async function fetchUser() {
       const data = await API.getSingleUser(userId);
-      // console.log(data);
-      // console.log(data.username);
-      // console.log(data.Decks);
       // const decks = data.Decks;
       // for (let i = 0; i < decks.length; i++) {
       //   const deck = decks[i];
-      //   console.log(deck);
-      //   console.log(deck.deckName);
       // }
       setUser({
         username: data.username,
@@ -35,14 +30,6 @@ function Profile({ userId, token, setIsLoggedIn }) {
 
   const handleEditUser = async (editObj) => {
     const { username, email, name, motto, userId, token } = editObj;
-    // console.log('Editing...');
-    // console.log('Edit this user.');
-    // console.log('User ID: ', username);
-    // console.log('User ID: ', email);
-    // console.log('User ID: ', name);
-    // console.log('User ID: ', motto);
-    // console.log('User ID: ', userId);
-    // console.log('Token: ', token);
     const editMessage = await API.editUser({
       username,
       email,
@@ -51,7 +38,6 @@ function Profile({ userId, token, setIsLoggedIn }) {
       userId,
       token
     });
-    // console.log(editMessage);
     const data = await API.getSingleUser(userId);
     setUser({
       username: data.username,
@@ -68,12 +54,7 @@ function Profile({ userId, token, setIsLoggedIn }) {
 
   const handleDeleteUser = async (delObj) => {
     const { userId, token } = delObj;
-    // console.log('Deleting...');
-    // console.log('Delete this user.');
-    // console.log('User ID: ', userId);
-    // console.log('Token: ', token);
     const delMessage = await API.deleteUser(userId, token);
-    // console.log(delMessage);
     localStorage.removeItem('token');
     setIsLoggedIn(false);
   };

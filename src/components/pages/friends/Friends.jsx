@@ -11,15 +11,8 @@ function Friends({ userId, token }) {
   useEffect(() => {
     async function fetchUser() {
       const data = await API.getSingleUser(userId);
-      // console.log(data);
-      // console.log(data.username);
-      // console.log(data.FavoriteUser);
-      // console.log(friends);
-      // const friendsData = data.FavoriteUser;
       // for (let i = 0; i < friendsData.length; i++) {
       //   const friend = friendsData[i];
-      //   console.log(friend);
-      //   console.log(friend.username);
       // }
       user = {
         username: data.username,
@@ -37,15 +30,9 @@ function Friends({ userId, token }) {
 
     async function fetchUsers() {
       const data = await API.getAllUsers();
-      // console.log(data);
-      // console.log(data.username);
-      // console.log(data.FavoriteUser);
-      // console.log(friends);
       // const friendsData = data.FavoriteUser;
       // for (let i = 0; i < friendsData.length; i++) {
       //   const friend = friendsData[i];
-      //   console.log(friend);
-      //   console.log(friend.username);
       // }
       setUsers(data);
     };
@@ -56,12 +43,7 @@ function Friends({ userId, token }) {
 
   const handleDeleteFriend = async (delObj) => {
     const { userId, friendId, token } = delObj
-    // console.log('Delete this friend.');
-    // console.log('User ID: ', userId);
-    // console.log('Friend ID: ', friendId);
-    // console.log('Token: ', token);
     const delMessage = await API.deleteFriend(userId, friendId, token)
-    // console.log(delMessage);
 
     // Reset friends after del
     const data = await API.getSingleUser(userId);
@@ -81,12 +63,7 @@ function Friends({ userId, token }) {
 
   const handleAddFriend = async (addObj) => {
     const { userId, friendId, token } = addObj
-    // console.log('Add this friend.');
-    // console.log('User ID: ', userId);
-    // console.log('Friend ID: ', friendId);
-    // console.log('Token: ', token);
     const addMessage = await API.addFriend(userId, friendId, token)
-    // console.log(addMessage);
 
     // TODO: Only add users that are NOT friends.
     // Reset users after add
@@ -102,8 +79,6 @@ function Friends({ userId, token }) {
       decks: data.Decks,
       friends: data.FavoriteUser,
     };
-    console.log(data.FavoriteUser);
-    console.log(data.Decks);
     setFriends(data.FavoriteUser);
   };
 

@@ -16,7 +16,6 @@ function Assembly({ setView, setGameId }) {
 
   const Alert = (msg) => {
     setMessage(msg);
-    console.log(msg);
     setShowModal(true);
   };
 

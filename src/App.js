@@ -3,14 +3,12 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  BrowserRouter,
 } from 'react-router-dom';
 import API from './utils/API';
 import Nav from './components/Nav';
 import Login from './components/pages/login/Login';
 import Lobby from './components/pages/lobby/Lobby';
 import Gameview from './components/gameview/Gameview';
-import Assembly from './components/gameview/Assembly';
 import Settings from './components/pages/settings/Settings';
 import Deckbuilder from './components/pages/deckbuilder/Deckbuilder';
 import Profile from './components/pages/profile/Profile';
@@ -36,7 +34,6 @@ function App() {
     if (!isLoggedIn) {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
-        // console.log(storedToken);
         API.getUserFromToken(storedToken).then((data) => {
           if (data.user) {
             setToken(storedToken);
@@ -48,18 +45,14 @@ function App() {
           }
         });
       } else {
-        // console.log('no stored token');
+        // TODO: Handle exception.
       }
     }
   });
 
   const handleLogin = (userObj) => {
-    // console.log('APP Client side:');
-    // console.log(userObj);
     API.login(userObj).then((data) => {
-      // console.log('data:', data);
       if (data.msg === 'invalid login credentials') {
-        // console.log("Can't log in bub");
         setIsValidLogin(false);
       }
 
@@ -78,9 +71,7 @@ function App() {
 
   const handleSignup = (userObj) => {
     API.signup(userObj).then((data) => {
-      // console.log('data', data);
       if (data.msg === 'An error occurred creating a new user.') {
-        // console.log("Can't sign up bub");
         setIsValidSignup(false);
       }
 
@@ -99,7 +90,6 @@ function App() {
 
   const handleDeckCreate = (deckObj) => {
     API.createDeck(deckObj).then((data) => {
-      // console.log('data', data);
     });
   };
 
@@ -110,12 +100,10 @@ function App() {
     setToken('');
     setUserName('');
     setUserEmail('');
-    // TODO: Look into this tomorrow.
-    // Socket.Auth stuff?
+    // TODO: Socket.Auth stuff?
   };
 
   const particlesInit = useCallback(async (engine) => {
-    // console.log(engine);
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size

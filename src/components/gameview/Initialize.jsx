@@ -18,14 +18,12 @@ export default function Initialize(props) {
 
   const Alert = (msg) =>{
     setMessage(msg);
-    console.log(msg);
     setShowModal(true);
   }
 
   useEffect(() => {
     Socket.IO.off('game');
     Socket.Game.OnPlayerUpdate((players) => {
-      console.log(players);
       if (players.filter(x => x.isReady).length > 1) {
         props.setView('game');
       }
@@ -42,7 +40,6 @@ export default function Initialize(props) {
   async function syncUp() {
     const resp = await fetch(`${Static.serverUrl}/api/sockets/games/${props.gameId}`);
     const data = await resp.json();
-    console.log('size', data.size);
     props.setSize(data.size);
     setConnectedUsers(data.players);
 
@@ -148,7 +145,7 @@ export default function Initialize(props) {
             <label htmlFor="deckChoice" className='font-bold md:text-2xl font-main-text-f'>Choose Your Deck</label>
             <div>
               <select name="deck-choice" id="deckChoice" className='bg-black font-alt-text-f rounded' required onChange={e => {
-                props.setDeck(e.target.value); setDeckChoice(e.target.value); console.log(e.target.value)
+                props.setDeck(e.target.value); setDeckChoice(e.target.value);
               }}>
                 {decks.map((x, i) => { return (<option className='font-alt-text-f' value={x.id} key={i} >{x.name}</option>) })}
               </select>

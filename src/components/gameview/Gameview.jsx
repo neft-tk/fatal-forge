@@ -36,7 +36,6 @@ export default function Gameview() {
 
   useEffect(()=>{
     return ()=>{
-      console.log('unmount')
       Socket.Game.Leave();
     }
   },[])
