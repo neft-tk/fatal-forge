@@ -20,6 +20,7 @@ import { loadFull } from 'tsparticles';
 import options from './assets/particles/ember.json';
 
 function App() {
+
   const [isValidLogin, setIsValidLogin] = useState(true);
   const [isValidSignup, setIsValidSignup] = useState(true);
   const [userId, setUserId] = useState(0);
@@ -27,7 +28,6 @@ function App() {
   const [userEmail, setUserEmail] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('');
-
   const [view, setView] = useState('');
 
   useEffect(() => {
@@ -52,6 +52,7 @@ function App() {
 
   const handleLogin = (userObj) => {
     API.login(userObj).then((data) => {
+
       if (data.msg === 'invalid login credentials') {
         setIsValidLogin(false);
       }
@@ -71,6 +72,7 @@ function App() {
 
   const handleSignup = (userObj) => {
     API.signup(userObj).then((data) => {
+
       if (data.msg === 'An error occurred creating a new user.') {
         setIsValidSignup(false);
       }
@@ -101,6 +103,7 @@ function App() {
     setUserName('');
     setUserEmail('');
     // TODO: Socket.Auth stuff?
+    
   };
 
   const particlesInit = useCallback(async (engine) => {

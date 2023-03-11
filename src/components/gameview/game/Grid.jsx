@@ -24,6 +24,7 @@ export default function Grid({setIsMyTurn,size, setPlayers, setGameEnd}) {
           index
         }
       })
+      
       if (state.slots.filter(x=>x!=null).length == size*size){
         setTimeout(()=>{
           setGameEnd(true);
@@ -49,6 +50,7 @@ export default function Grid({setIsMyTurn,size, setPlayers, setGameEnd}) {
       }, total);
     })
   },[]);
+
   const slots = Array(size*size).fill(null);
 
   function minWidth(){

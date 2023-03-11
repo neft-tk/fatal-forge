@@ -1,4 +1,5 @@
 export const Game = (socket) => {
+
     let id;
 
     return {
@@ -20,12 +21,14 @@ export const Game = (socket) => {
             })
             id = gameId;
         },
+
         SetReady() {
             socket.emit('game', {
                 type: 'isReady',
                 gameId: id
             })
         },
+
         PickColor(color) {
             socket.emit('game', {
                 type: "pickColor",
@@ -34,6 +37,7 @@ export const Game = (socket) => {
             }
             )
         },
+
         OnPlayerUpdate(callback) {
             socket.on('game', data => {
                 if (data.type == 'playerUpdate') {
@@ -43,6 +47,7 @@ export const Game = (socket) => {
                 }
             })
         },
+
         PlaceCard(data) {
             socket.emit('game', {
                 type: 'placeCard',
@@ -50,6 +55,7 @@ export const Game = (socket) => {
                 data: data
             })
         },
+
         OnPlacedCard(callback) {
             socket.on('game', data => {
                 if (data.type == 'placeCard') {
@@ -59,6 +65,7 @@ export const Game = (socket) => {
                 }
             })
         },
+
         OnStart(callback) {
             socket.on('game', data => {
                 if (data.type == 'startTurn') {
@@ -68,6 +75,7 @@ export const Game = (socket) => {
                 }
             })
         },
+        
         Leave(){
             socket.emit('game', {
                 type:'leave',

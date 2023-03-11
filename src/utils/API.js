@@ -13,9 +13,11 @@ const API = {
         'Content-Type': 'application/json',
       },
     });
+
     if (res.status === 401) {
       return await res.json({ msg: 'invalid login credentials' });
     }
+
     return await res.json();
   },
 
@@ -28,9 +30,11 @@ const API = {
         'Content-Type': 'application/json',
       },
     });
+
     if (res.status === 500) {
       return await res.json({ msg: 'invalid signup fields' });
     }
+
     return await res.json();
   },
 
@@ -196,4 +200,5 @@ const API = {
     return await res.json();
   },
 };
+
 export default API;
