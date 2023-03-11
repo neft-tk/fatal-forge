@@ -1,6 +1,8 @@
 import 'chart.js/auto'
 import { Pie } from 'react-chartjs-2';
 
+// TODO: Add functionality to the chart.
+
 function PieChart() {
   const chartData = {
     labels: ['Wins', 'Loses', 'Ties'],

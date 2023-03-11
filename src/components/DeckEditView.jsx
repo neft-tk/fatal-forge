@@ -1,5 +1,4 @@
-// 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Static from '../utils/staticHelper'
 
 function DeckEditView({ setDeckData, deckData }) {
@@ -17,7 +16,7 @@ function DeckEditView({ setDeckData, deckData }) {
                     <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black font-bold'>{card.leftAttack}</h3>
                     <h3 className='absolute w-[20px] h-[20px] mr-[-10px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black font-bold'>{card.rightAttack}</h3>
                     <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mb-[-10px] left-[50%] bottom-[16%] text-center z-10 text-black font-bold'>{card.bottomAttack}</h3>
-                    <img src={`${Static.serverUrl}/api/images/${card.imagePath}`} className='w-1/2 h-1/2 absolute left-[25%] top-[25%]' alt=''></img>
+                    <img src={`${Static.serverUrl}/api/images/${card.imagePath}`} className='w-1/2 h-1/2 absolute left-[25%] top-[25%]' alt='Visual representation of the card in play.'></img>
                     <img src={`${Static.serverUrl}/api/images/cardsprite/Card-Face.png`} alt='card face.' />
                 </button>
             )}

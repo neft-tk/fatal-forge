@@ -9,7 +9,6 @@ import Nav from './components/Nav';
 import Login from './components/pages/login/Login';
 import Lobby from './components/pages/lobby/Lobby';
 import Gameview from './components/gameview/Gameview';
-import Settings from './components/pages/settings/Settings';
 import Deckbuilder from './components/pages/deckbuilder/Deckbuilder';
 import Profile from './components/pages/profile/Profile';
 import Friends from './components/pages/friends/Friends';
@@ -134,7 +133,6 @@ function App() {
                 <Route path="/" element={<Lobby />} />
                 <Route path="/lobby" element={<Lobby userId={userId} />} />
                 <Route path="/gameview" element={<Gameview />} />
-                <Route path="/settings" element={<Settings />} />
                 <Route
                   path="/deckbuilder"
                   element={
