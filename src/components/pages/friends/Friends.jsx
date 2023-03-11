@@ -11,9 +11,6 @@ function Friends({ userId, token }) {
   useEffect(() => {
     async function fetchUser() {
       const data = await API.getSingleUser(userId);
-      // for (let i = 0; i < friendsData.length; i++) {
-      //   const friend = friendsData[i];
-      // }
       user = {
         username: data.username,
         email: data.email,
@@ -22,18 +19,12 @@ function Friends({ userId, token }) {
         decks: data.Decks,
         friends: data.FavoriteUser,
         imagePath: data.imagePath,
-        decks: data.Decks,
-        friends: data.FavoriteUser,
       };
       setFriends(data.FavoriteUser);
     };
 
     async function fetchUsers() {
       const data = await API.getAllUsers();
-      // const friendsData = data.FavoriteUser;
-      // for (let i = 0; i < friendsData.length; i++) {
-      //   const friend = friendsData[i];
-      // }
       setUsers(data);
     };
 
@@ -55,8 +46,6 @@ function Friends({ userId, token }) {
       decks: data.Decks,
       friends: data.FavoriteUser,
       imagePath: data.imagePath,
-      decks: data.Decks,
-      friends: data.FavoriteUser,
     };
     setFriends(data.FavoriteUser);
   };
@@ -76,8 +65,6 @@ function Friends({ userId, token }) {
       decks: data.Decks,
       friends: data.FavoriteUser,
       imagePath: data.imagePath,
-      decks: data.Decks,
-      friends: data.FavoriteUser,
     };
     setFriends(data.FavoriteUser);
   };

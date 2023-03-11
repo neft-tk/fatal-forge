@@ -12,21 +12,6 @@ function FriendCard({ friendId, userId, friend, token, handleDeleteFriend }) {
       const data = await API.getSingleUser(friendId);
       const deckName = data.Decks[0].deckName;
       const deckPath = data.Decks[0].imagePath;
-      // const friendsData = data.FavoriteUser;
-      // for (let i = 0; i < friendsData.length; i++) {
-      //   const friend = friendsData[i];
-      // }
-      // user = {
-      //   username: data.username,
-      //   email: data.email,
-      //   name: data.name,
-      //   motto: data.motto,
-      //   decks: data.Decks,
-      //   friends: data.FavoriteUser,
-      //   imagePath: data.imagePath,
-      //   decks: data.Decks,
-      //   friends: data.FavoriteUser,
-      // };
       setFriendDeckData({
         deckName,
         deckPath
