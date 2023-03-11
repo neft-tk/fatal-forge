@@ -274,7 +274,6 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
             onChange={(e) => {
               setDeck(e.target.value);
               setDeckChoice(e.target.value);
-              console.log(e.target.value);
             }}
           >
             {decks.map((x, i) => {

@@ -12,8 +12,6 @@ export default function Grid({setIsMyTurn,size, setPlayers, setGameEnd}) {
   useState(()=>{
     Socket.Game.OnPlacedCard((data)=>{
       Socket.IO.myTurn = false;
-
-      console.log('onplacedata',data);
       const {card, index, changes, state} = data;
       
 
@@ -28,7 +26,6 @@ export default function Grid({setIsMyTurn,size, setPlayers, setGameEnd}) {
       })
       if (state.slots.filter(x=>x!=null).length == size*size){
         setTimeout(()=>{
-          console.log('gameend')
           setGameEnd(true);
         },total)
       }

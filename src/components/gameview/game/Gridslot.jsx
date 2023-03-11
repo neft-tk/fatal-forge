@@ -33,7 +33,6 @@ export default function Gridslot({index, action, size}) {
         if (action.data.index != index){
           return;
         }
-        console.log(action);
         setCard({
           name:card.name,
           compass:card.compass,
@@ -56,7 +55,6 @@ export default function Gridslot({index, action, size}) {
         if (change.index != index){
           return;
         }
-        console.log(change);
         setCurrentAnimation({
           scale: [1,0,1],
           backgroundColor: [faction, change.toFaction],

@@ -13,8 +13,6 @@ export default function Handslot({ drawCard, index }) {
 
   const draw = () => {
     const card = drawCard();
-
-    console.log(card);
     setCurrentCard(card);
     setAnimation(animation);
     setTimeout(() => setAnimation({ scale: 1 }), 500)

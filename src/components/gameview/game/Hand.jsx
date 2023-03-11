@@ -9,9 +9,7 @@ export default function Hand({ deck }) {
     const hand = [];
 
     const drawCard = () => {
-        console.log(deck);
         const rand = Math.floor(Math.random() * deck.length);
-        console.log(rand);
         const card = deck.splice(rand, 1)[0];
         return card;
     }

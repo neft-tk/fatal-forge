@@ -61,11 +61,9 @@ export default function Game({ deckId, size, gameId, setView}) {
   const setup = async() =>{
     const resp = await fetch(`${Static.serverUrl}/api/sockets/games/${gameId}`);
     const data = await resp.json();
-    console.log('this', data)
     const op = data.players.find(x=>x.userData.username != Socket.IO.userInfo.username);
     if (op){
       Socket.IO.opponent = op;
-      console.log('opponent',op);
     }
     setPlayers(data.players);
   }
@@ -87,7 +85,6 @@ export default function Game({ deckId, size, gameId, setView}) {
 
   useEffect(()=>{
     return ()=>{
-      console.log('unmount')
       Socket.Game.Leave();
     }
   },[])
@@ -135,10 +132,7 @@ export default function Game({ deckId, size, gameId, setView}) {
 
   async function getHand() {
     const res = await fetch(`${Static.serverUrl}/api/decks/${deckId}`);
-    console.log(deckId);
-    console.log(res);
     const data = await res.json();
-    console.log(data);
     setDeck(
       data.Cards.map((x) => {
         return {
@@ -160,7 +154,6 @@ export default function Game({ deckId, size, gameId, setView}) {
     const b = getScore(players[1].color);
 
     const total = a + b;
-    console.log(total);
 
     if (total){
       setLoc(toString((a/total)*100)) ;
