@@ -1,6 +1,7 @@
 import io from 'socket.io-client'
 import * as handlers from './handlers'
 import Static from '../staticHelper'
+
 const ClientSocket = () => {
     const socket = io(`${Static.serverUrl}`, { transports: ['websocket', 'polling', 'flashsocket'] });
     //const lobby = handlers.Lobby(socket);

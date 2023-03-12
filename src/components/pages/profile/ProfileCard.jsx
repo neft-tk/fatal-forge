@@ -55,9 +55,6 @@ function ProfileCard({
   };
 
   const handleEdit = (e) => {
-    // console.log('Edit clicked.');
-    // console.log('Will edit following user: ', user);
-    // console.log('With the following ID: ', userId);
     handleEditUser({
       username: editUsername,
       email: editEmail,
@@ -70,9 +67,6 @@ function ProfileCard({
   };
 
   const handleDelete = (e) => {
-    // console.log("Delete clicked.");
-    // console.log("Will delete following user: ", user);
-    // console.log("With the following ID: ", userId);
     handleDeleteUser({
       userId: userId,
       token: token,
@@ -88,7 +82,7 @@ function ProfileCard({
           <img
             className="w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-40 rounded-full border-2 border-highlight-blue my-auto ml-6 object-cover"
             src={`${Static.serverUrl}/api/images/${user.imagePath}`}
-            alt="Profile Picture"
+            alt="Profile"
           />
           <div className="flex flex-col justify-center">
             <h2 className="text-xl md:text-2xl lg:text-4xl mb-4">{user.username}</h2>

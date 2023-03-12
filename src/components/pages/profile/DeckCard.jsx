@@ -8,24 +8,13 @@ function DeckCard({ deck }) {
 
   useEffect(() => {
     async function fetchCards() {
-      // console.log('Here');
-      // console.log(deck);
       const data = await API.getSingleDeck(deck.id);
-      // console.log(data);
-      // console.log(data.Cards);
       const cardsData = data.Cards;
       for (let i = 0; i < 4; i++) {
         const card = cardsData[randomNumber()];
-        // console.log('Random Card:');
-        // console.log(card);
-        // console.log(card.cardName);
-        // console.log(card.imagePath);
         cardsArray.push(card);
-        // setCards((prevCards) => [...prevCards, card]);
       }
       setCards(cardsArray);
-      // console.log('Card Array: ', cardsArray);
-      // console.log('Card State: ', cards);
     }
 
     fetchCards();
@@ -49,22 +38,6 @@ function DeckCard({ deck }) {
         />
         <h3 className="mt-4 font-alt-text-f">{deck.deckName}</h3>
       </div>
-      {/* Sample */}
-      {/* <div className="ml-4 flex flex-col justify-center items-center">
-        <h3>Includes:</h3>
-        <div className="grid grid-cols-2 grid-rows-2 gap-2">
-          {cards.map((card) => (
-            <div key={card.id} className="flex flex-col col-span-1 row-span-1 text-center justify-center items-center">
-              <h4 className='text-sm'>{card.cardName}</h4>
-              <img
-                className="w-16 h-16 border-2 border-black rounded-lg"
-                src={`${Static.serverUrl}/api/images/${card.imagePath}`}
-                alt="Deck's Sprite"
-              />
-            </div>
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 }

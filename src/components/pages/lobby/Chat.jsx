@@ -10,7 +10,6 @@ export default function Chat({ userId }) {
   const findUser = async () => {
     const data = await API.getSingleUser(userId);
     setUser(data.username)
-    // console.log(user)
   }
 
   const handleFormSubmit = async (e) => {

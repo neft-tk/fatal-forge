@@ -1,4 +1,3 @@
-// in dev mode
 import Static from './staticHelper';
 
 const URL_PREFIX = Static.serverUrl;
@@ -14,11 +13,11 @@ const API = {
         'Content-Type': 'application/json',
       },
     });
-    // console.log('Res: ', res);
+
     if (res.status === 401) {
-      // console.log('DENIED LOGIN!');
       return await res.json({ msg: 'invalid login credentials' });
     }
+
     return await res.json();
   },
 
@@ -31,11 +30,11 @@ const API = {
         'Content-Type': 'application/json',
       },
     });
-    // console.log('Res: ', res);
+
     if (res.status === 500) {
-      // console.log('ISSUE SIGNING UP!');
       return await res.json({ msg: 'invalid signup fields' });
     }
+
     return await res.json();
   },
 
@@ -149,12 +148,6 @@ const API = {
 
   // PUTs
   editUser: async (editInfo) => {
-    // console.log("API edit info and userId:");
-    // console.log(editInfo.username);
-    // console.log(editInfo.email);
-    // console.log(editInfo.name);
-    // console.log(editInfo.motto);
-    // console.log(editInfo.userId);
     const res = await fetch(`${URL_PREFIX}/api/users/${editInfo.userId}`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -167,7 +160,6 @@ const API = {
         'Content-Type': 'application/json',
       },
     });
-    // console.log('Res: ', res);
     return await res.json();
   },
 
@@ -208,4 +200,5 @@ const API = {
     return await res.json();
   },
 };
+
 export default API;
