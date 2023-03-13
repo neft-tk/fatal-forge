@@ -6,6 +6,7 @@ import visibilityIcon from '../../../assets/svg/visibilityIcon.svg';
 export default function Login({ handleLogin, handleSignup, isValidLogin, isValidSignup }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showGuestModal, setGuestModal] = useState(false);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [signupUsername, setSignupUsername] = useState('');
@@ -39,6 +40,10 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
   const onSignupModalClose = (e) => {
     setShowSignupModal(false);
   };
+
+  const onGuestClick = (e) => {
+    setGuestModal(true);
+  }
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -111,6 +116,12 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
               className="text-highlight-blue font-bold cursor-pointer"
             >
               Sign up to play!
+            </span>
+            <span
+              onClick={onGuestClick}
+              className="text-highlight-blue font-bold cursor-pointer"
+            >
+              Play as a guest!
             </span>
           </h3>
           <Modal
