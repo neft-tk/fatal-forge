@@ -34,6 +34,10 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
     setSignupPassword(e.target.value);
   };
 
+  const onGuestNameChange = (e) => {
+    setGuestUsername(e.target.value)
+  }
+
   const onSignupModalClick = (e) => {
     setShowSignupModal(true);
   };
@@ -241,8 +245,8 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
                       name="signup-username"
                       placeholder="Adventurer"
                       required={true}
-                      value={signupUsername}
-                      onChange={onUsernameChange}
+                      value={guestUsername}
+                      onChange={onGuestNameChange}
                       className={`text-black p-2 mt-4 rounded text-center w-full ${isValidSignup ? '' : 'error-input'
                         }`}
                     />
