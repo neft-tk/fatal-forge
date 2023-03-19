@@ -82,7 +82,7 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
     let randNum = Math.floor(Math.random() * 10000);
     handleSignup({
       username: guestUsername.toLowerCase(),
-      email: randNum + "@gridlocke.net",
+      email: randNum + "@gridlocke.guest",
       password: "password",
     })
   }
