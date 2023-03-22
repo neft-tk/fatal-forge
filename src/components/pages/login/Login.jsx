@@ -6,11 +6,13 @@ import visibilityIcon from '../../../assets/svg/visibilityIcon.svg';
 export default function Login({ handleLogin, handleSignup, isValidLogin, isValidSignup }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showGuestModal, setShowGuestModal] = useState(false);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [signupUsername, setSignupUsername] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
+  const [guestUsername, setGuestUsername] = useState('');
 
   const onLoginEmailChange = (e) => {
     setLoginEmail(e.target.value);
@@ -32,6 +34,10 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
     setSignupPassword(e.target.value);
   };
 
+  const onGuestNameChange = (e) => {
+    setGuestUsername(e.target.value)
+  }
+
   const onSignupModalClick = (e) => {
     setShowSignupModal(true);
   };
@@ -39,6 +45,14 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
   const onSignupModalClose = (e) => {
     setShowSignupModal(false);
   };
+
+  const onGuestModalClick = (e) => {
+    setShowGuestModal(true);
+  }
+
+  const onGuestModalClose = (e) => {
+    setShowGuestModal(false);
+  }
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -61,6 +75,17 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
       password: signupPassword,
     });
   };
+
+  const handleGuestSignupSubmit = (e) => {
+    e.preventDefault();
+    setGuestUsername('');
+    let randNum = Math.floor(Math.random() * 10000);
+    handleSignup({
+      username: guestUsername.toLowerCase(),
+      email: randNum + "@gridlocke.guest",
+      password: "password",
+    })
+  }
 
   return (
     <div className="h-full w-full flex md:flex-row flex-col justify-around items-center py-4">
@@ -111,6 +136,12 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
               className="text-highlight-blue font-bold cursor-pointer"
             >
               Sign up to play!
+            </span>
+            <span
+              onClick={onGuestModalClick}
+              className="text-highlight-blue font-bold cursor-pointer"
+            >
+              Play as a guest!
             </span>
           </h3>
           <Modal
@@ -187,6 +218,55 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
                     className="button-style"
                   >
                     Sign Up!
+                  </button>
+                </div>
+              </div>
+            </Modal.Body>
+          </Modal>
+          <Modal
+            show={showGuestModal}
+            size="md"
+            popup={true}
+            onClose={onGuestModalClose}
+          >
+            <Modal.Header className="modal-header" />
+            <Modal.Body className="modal-body">
+              <div className="flex flex-col space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8 center-all">
+                <h3 className="mt-4 text-lg font-medium text-gray-900">
+                  Welcome Guest Adventurer! Tell us about yourself... You can commit to making your account later!
+                </h3>
+                <div className="w-full flex justify-center">
+                  <Tooltip content="Can't be blank." placement="bottom">
+                    <div className="mb-2 block">
+                      <Label htmlFor="username" value="Your username:" />
+                    </div>
+                    <input
+                      id="signup-username"
+                      name="signup-username"
+                      placeholder="Adventurer"
+                      required={true}
+                      value={guestUsername}
+                      onChange={onGuestNameChange}
+                      className={`text-black p-2 mt-4 rounded text-center w-full ${isValidSignup ? '' : 'error-input'
+                        }`}
+                    />
+                  </Tooltip>
+                </div>
+                <div className="w-full flex justify-center">
+                </div>
+                <div className="w-full flex justify-center">
+                </div>
+                <p className={`mt-2 text-sm text-red-600 dark:text-red-500 ${isValidSignup ? 'hidden' : 'block'}`}>
+                  {' '}
+                  Email or password didn't pass validation.
+                </p>
+                <div className="w-full">
+                  <button
+                    type="button"
+                    onClick={handleGuestSignupSubmit}
+                    className="button-style"
+                  >
+                    Sign Up as Guest!
                   </button>
                 </div>
               </div>
