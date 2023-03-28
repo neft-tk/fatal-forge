@@ -1,10 +1,10 @@
-// The Lobby component will house the bulk of Fatal Forge's social interaction.
-
-// Chat, friends tab, add friend, etc.
-
 import React from 'react';
 import Chat from './Chat';
 import gllogo from '../../../assets/png/gridlocke1.png';
+
+// The Lobby component will house the bulk of Fatal Forge's social interaction.
+// Chat, friends tab, add friend, etc.
+
 export default function Lobby({ userId }) {
   return (
     <div className="flex flex-col items-center h-full w-full">
@@ -18,7 +18,7 @@ export default function Lobby({ userId }) {
             <span className="ml-2 md:text-3xl font-bold text-highlight-blue">
               GridLocke
             </span>
-            <span className="md:text-3xl font-bold mx-2"><br/></span>The deck-building
+            <span className="md:text-3xl font-bold mx-2"><br /></span>The deck-building
             tactical card game!
           </span>
           <br />

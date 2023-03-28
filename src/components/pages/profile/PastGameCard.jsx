@@ -24,7 +24,7 @@ function PastGameCard({ deck }) {
             <img
               className="w-12 h-12 md:w-16 md:h-16 2xl:w-24 2xl:h-24 mb-4 border-2 border-black rounded-lg"
               src={`${Static.serverUrl}/api/images/profile/username.png`}
-              alt="Opponent's picture"
+              alt="Opponent's visual representation"
             ></img>
             <p className="text-md md:text-lg font-alt-text-f">SomeGuy</p>
           </div>
@@ -50,7 +50,7 @@ function PastGameCard({ deck }) {
             <img
               className="w-12 h-12 md:w-16 md:h-16 2xl:w-24 2xl:h-24 mb-4 border-2 border-black rounded-lg"
               src={`${Static.serverUrl}/api/images/profile/username.png`}
-              alt="Opponent's picture"
+              alt="Opponent's visual representation"
             ></img>
             <p className="text-md md:text-lg font-alt-text-f">SomeGuy</p>
           </div>

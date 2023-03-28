@@ -1,27 +1,23 @@
-// The Handslot component represents any one slot where a card could be in the players hand.
-
-// The Handslot component will never(?) be empty because players draw a new card when they play one from hand.
-
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Card from '../../Card'
 import Socket from '../../../utils/socket'
 import state from '../../../utils/staticHelper';
 
+// The Handslot component represents any one slot where a card could be in the players hand.
+// The Handslot component will never(?) be empty because players draw a new card when they play one from hand.
+
 export default function Handslot({ drawCard, index }) {
   const [currentCard, setCurrentCard] = useState(null);
 
   const draw = () => {
     const card = drawCard();
-
-    console.log(card);
     setCurrentCard(card);
     setAnimation(animation);
     setTimeout(() => setAnimation({ scale: 1 }), 500)
 
-
     setTimeout(() => {
-      //todo: this timeout is a hack, should reconsider how properly change this
+      //TODO: this timeout is a hack, should reconsider how properly change this
       state.hand.set(index, card);
     }, 2000)
   }
@@ -44,15 +40,15 @@ export default function Handslot({ drawCard, index }) {
     draw();
   }, [])
 
-  const [size,setSize] = useState({x:100,y:100})
+  const [size, setSize] = useState({ x: 100, y: 100 })
 
-  useEffect(()=>{
+  useEffect(() => {
     const div = document.querySelector(`#hand-${index}`)
-    if (div){
+    if (div) {
       const rect = div.getBoundingClientRect();
-      setSize({x:rect.width,y:rect.height})
+      setSize({ x: rect.width, y: rect.height })
     }
-  },[])
+  }, [])
 
   return (
     <motion.div id={`hand-${index}`} animate={currentAnimation} whileHover={{ scale: 1.2 }} style={{ backgroundColor: Socket.IO.color }} className={`flex justify-center h-full aspect-square hover:scale-125`}>
