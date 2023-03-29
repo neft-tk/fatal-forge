@@ -137,13 +137,13 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
             >
               Sign up to play!
             </span>
-            <span
+          </h3>
+          <span
               onClick={onGuestModalClick}
-              className="text-highlight-blue font-bold cursor-pointer"
+              className="button-style bg-blue-500"
             >
               Play as a guest!
             </span>
-          </h3>
           <Modal
             show={showSignupModal}
             size="md"
@@ -258,7 +258,7 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
                 </div>
                 <p className={`mt-2 text-sm text-red-600 dark:text-red-500 ${isValidSignup ? 'hidden' : 'block'}`}>
                   {' '}
-                  Email or password didn't pass validation.
+                  Username is already in use, please choose another username.
                 </p>
                 <div className="w-full">
                   <button
@@ -266,7 +266,7 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
                     onClick={handleGuestSignupSubmit}
                     className="button-style"
                   >
-                    Sign Up as Guest!
+                    Sign Up as A Guest!
                   </button>
                 </div>
               </div>
