@@ -119,6 +119,10 @@
         @apply absolute w-[20px] h-[20px] ml-[-10px] mb-[-10px] left-[50%] bottom-[16%] text-center z-10 text-black;
     }
 
+    .tile-art {
+        @apply w-1/2 h-1/2 absolute left-[25%] top-[25%];
+    }
+
 }
 
 body {

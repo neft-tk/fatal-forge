@@ -70,7 +70,9 @@ function CardView({ cardData, setDeckData, deckData }) {
             <h3 className='tile-right'>{card.rightAttack}</h3>
             {/* Bottom Number */}
             <h3 className='tile-bottom'>{card.bottomAttack}</h3>
-            <img src={`${Static.serverUrl}/api/images/${card.imagePath}`} className='w-1/2 h-1/2 absolute left-[25%] top-[25%]' alt='Visual representation of the card in play.'></img>
+            {/* Art */}
+            <img src={`${Static.serverUrl}/api/images/${card.imagePath}`} className='tile-art' alt='Visual representation of the card in play.'></img>
+            {/* Card Frame */}
             <img src={`${Static.serverUrl}/api/images/cardsprite/Card-Face-2.svg`} className='w-full' alt='Card face.' />
           </button>
         ))}

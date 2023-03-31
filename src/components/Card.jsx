@@ -20,7 +20,9 @@ export default function Card({ name, compass, imagePath, inPlay, removeAndDraw, 
           <h3 className='tile-right'>{compass[1]}</h3>
           {/* Bottom Number */}
           <h3 className='tile-left'>{compass[2]}</h3>
-          <img src={`${Static.serverUrl}/api/images/${imagePath}`} className='w-1/2 h-1/2 absolute left-[25%] top-[25%]' alt='Visual representation of the card in play.'></img>
+          {/* Art */}
+          <img src={`${Static.serverUrl}/api/images/${imagePath}`} className='tile-art' alt='Visual representation of the card in play.'></img>
+          {/* Card Frame */}
           <img src={`${Static.serverUrl}/api/images/cardsprite/Card-Face-2.svg`} className='absolute w-full' alt='Card face.'/>
         </div>
       )
@@ -63,7 +65,9 @@ export default function Card({ name, compass, imagePath, inPlay, removeAndDraw, 
       <h3 className='tile-right'>{compass[1]}</h3>
       {/* Bottom Number */}
       <h3 className='tile-bottom'>{compass[2]}</h3>
-      <img src={`${Static.serverUrl}/api/images/${imagePath}`} className='w-1/2 h-1/2 absolute left-[25%] top-[25%]' alt='Visual representation of the card in play.'></img>
+      {/* Art */}
+      <img src={`${Static.serverUrl}/api/images/${imagePath}`} className='tile-art' alt='Visual representation of the card in play.'></img>
+      {/* Card Frame */}
       <img src={`${Static.serverUrl}/api/images/cardsprite/Card-Face-2.svg`} className='absolute w-full' alt='Card face.' />
     </div>
   )
