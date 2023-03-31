@@ -1,17 +1,23 @@
 import React from "react";
 import Static from '../../../utils/staticHelper'
 
+// DeckEditView is the view that displays the current deck being edited or created.
+// It handles the population of cards and the removal of cards from the deck.
+
 function DeckEditView({ setDeckData, deckData }) {
 
+    // Removes a card from the current deck using the card id.
     const removeCard = (id) => {
-        const newDeck = [...deckData.filter(x => x.id != id)];
+        // Filter out the card with the matching id.
+        const newDeck = [...deckData.filter(x => x.id !== id)];
+        // Set the new state of the deck.
         setDeckData(newDeck);
     }
 
     return (
-        <div className="flex flex-wrap gap-2 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full bg-main-bg">
+        <div className="flex flex-wrap gap-2 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full bg-main-bg rounded">
             {deckData.map((card, index) =>
-                <button className="relative w-24 h-24 bg-neutral-700 hover:scale-125 hover:z-10 hover:border-2 font-tile-text-f hover:border-sky-500" key={index} onClick={(e) => { e.preventDefault(); removeCard(card.id) }}>
+                <button className="relative w-24 h-24 bg-neutral-700 hover:scale-110 hover:z-10 hover:border-2 font-tile-text-f transition-all " key={index} onClick={(e) => { e.preventDefault(); removeCard(card.id) }}>
                     {/* Top Number*/}
                     <h3 className='tile-top'>{card.topAttack}</h3>
                     {/* Left Number */}

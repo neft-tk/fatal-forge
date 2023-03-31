@@ -53,7 +53,7 @@ function CardView({ cardData, setDeckData, deckData }) {
 
   return (
     <>
-      <div className="flex flex-wrap justify-center items-center gap-2 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full bg-main-bg">
+      <div className="flex flex-wrap justify-center items-center gap-3 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full rounded bg-main-bg">
         {cardData.map((card, index) => (
           <button className="relative w-24 h-24 bg-neutral-700 hover:scale-125 hover:z-10 hover:border-2 hover:border-sky-500 font-tile-text-f" key={index}
             onClick={

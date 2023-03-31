@@ -149,7 +149,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
             {/* Card Pool */}
             <div className="flex flex-col w-full h-1/2 md:h-full md:w-1/2 border border-neutral-700 p-4 rounded-lg bg-neutral-800">
               <h1 className='text-2xl font-main-text-f'>Pool</h1>
-              {/* CardView returns the cards. */}
+              {/* CardView returns all cards in the card pool. */}
               <CardView
                 setDeckData={setDeckData}
                 cardData={cardData}
@@ -159,6 +159,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
             {/* Current Deck */}
             <div className="flex flex-col w-full h-1/2 md:h-full md:w-1/2 border border-neutral-700 p-4 rounded-lg bg-neutral-800">
               <h1 className='text-2xl font-main-text-f'>Current Build</h1>
+              {/* DeckEditView shows the current cards in the deck */}
               <DeckEditView setDeckData={setDeckData} deckData={deckData} />
             </div>
           </div>

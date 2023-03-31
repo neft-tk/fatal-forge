@@ -56,7 +56,6 @@ export default function Card({ name, compass, imagePath, inPlay, removeAndDraw, 
 
   return (
     <div ref={dragRef} className='w-full h-full relative font-tile-text-f text-xl'>
-      {/* TODO: Redo how we space the numbers within the card. */}
       {/* Top Number */}
       <h3 className='tile-top'>{compass[0]}</h3>
       {/* Left Number */}
