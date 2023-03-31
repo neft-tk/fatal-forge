@@ -22,7 +22,7 @@ function DeckEditView({ setDeckData, deckData }) {
                     <h3 className='tile-bottom'>{card.bottomAttack}</h3>
                     {/* Art */}
                     <img src={`${Static.serverUrl}/api/images/${card.imagePath}`} className='tile-art' alt='Visual representation of the card in play.'></img>
-                    {/* Card Frame */}
+                    {/* Card  */}
                     <img src={`${Static.serverUrl}/api/images/cardsprite/Card-Face-2.svg`} className='w-full' alt='card face.' />
                 </button>
             )}

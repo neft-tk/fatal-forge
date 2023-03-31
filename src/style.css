@@ -101,28 +101,27 @@
         @apply scrollbar-thin scrollbar-track-alt-bg scrollbar-thumb-highlight-blue;
     }
 
-    /* Tile Styling (Ingame and deck editor.) */
+    /* Tile Styling (Ingame and Deck Editor.) */
 
     .tile-top {
-        @apply absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[50%] top-[11%] text-center z-10 text-black;
+        @apply absolute w-[20px] h-[20px] ml-[-11px] mt-[-12px] left-[50%] top-[11%] text-center z-10 text-black;
     }
 
     .tile-left {
-        @apply absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black;
+        @apply absolute w-[20px] h-[20px] ml-[-12px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black;
     }
 
     .tile-right {
-        @apply absolute w-[20px] h-[20px] mr-[-10px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black;
+        @apply absolute w-[20px] h-[20px] mr-[-12px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black;
     }
 
     .tile-bottom {
-        @apply absolute w-[20px] h-[20px] ml-[-10px] mb-[-10px] left-[50%] bottom-[16%] text-center z-10 text-black;
+        @apply absolute w-[20px] h-[20px] ml-[-10px] mb-[-12px] left-[50%] bottom-[16%] text-center z-10 text-black;
     }
 
     .tile-art {
         @apply w-1/2 h-1/2 absolute left-[25%] top-[25%];
     }
-
 }
 
 body {
