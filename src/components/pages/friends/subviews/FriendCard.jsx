@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { FaUserTimes, FaUserAlt } from 'react-icons/fa';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 // Helpers
-import API from '../../../utils/API';
-import Static from '../../../utils/staticHelper';
+import API from '../../../../utils/API';
+import Static from '../../../../utils/staticHelper';
 
 function FriendCard({ friendId, userId, friend, token, handleDeleteFriend }) {
   const [friendDeckData, setFriendDeckData] = useState({});

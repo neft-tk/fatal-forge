@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import API from '../../../utils/API';
-import FriendCard from './FriendCard';
-import UserCard from './UserCard';
+import FriendCard from './subviews/FriendCard';
+import UserCard from './subviews/UserCard';
 
 function Friends({ userId, token }) {
   let user = {};

@@ -1,6 +1,6 @@
 import { FaUserPlus, FaUserAlt } from 'react-icons/fa';
 import { BsFillChatDotsFill } from 'react-icons/bs';
-import Static from '../../../utils/staticHelper';
+import Static from '../../../../utils/staticHelper';
 
 function UserCard({ user, userId, token, handleAddFriend }) {
   const handleMessage = () => {

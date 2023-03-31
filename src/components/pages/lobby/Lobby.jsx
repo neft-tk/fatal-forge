@@ -1,5 +1,5 @@
 import React from 'react';
-import Chat from './Chat';
+import Chat from './subviews/Chat';
 import gllogo from '../../../assets/png/gridlocke1.png';
 
 // The Lobby component will house the bulk of Fatal Forge's social interaction.
