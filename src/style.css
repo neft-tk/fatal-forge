@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* TODO: Organize by page/component */
+
 @layer components {
     .navbar-main {
         @apply bg-black/25 flex h-20 w-screen justify-around items-center md: flex-col md:w-24 md:h-screen grow-0 shrink-0 fixed top-0 p-4 gap-1;
@@ -97,6 +99,24 @@
 
     .gl-scrollbar {
         @apply scrollbar-thin scrollbar-track-alt-bg scrollbar-thumb-highlight-blue;
+    }
+
+    /* Tile Styling (Ingame and deck editor.) */
+
+    .tile-top {
+        @apply bg-main-blue text-white text-center font-bold text-lg;
+    }
+
+    .tile-left {
+        @apply bg-main-blue text-white text-center font-bold text-lg;
+    }
+
+    .tile-right {
+        @apply bg-main-blue text-white text-center font-bold text-lg;
+    }
+
+    .tile-bottom {
+        @apply bg-main-blue text-white text-center font-bold text-lg;
     }
 
 }

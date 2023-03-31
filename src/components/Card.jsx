@@ -10,7 +10,8 @@ export default function Card({ name, compass, imagePath, inPlay, removeAndDraw, 
   const generatePreview = () => {
     if (size) {
       return (
-        <div className='fixed font-main-text-f text-xl' style={{ width: size.x, height: size.y }}>
+        // TODO: We are being inconsistent with how we are creating the card elements in different places, see DeckEditView
+        <div className='fixed font-tile-text-f text-xl' style={{ width: size.x, height: size.y }}>
           <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[50%] top-[11%] text-center z-10 text-black font-bold'>{compass[0]}</h3>
           <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black font-bold'>{compass[3]}</h3>
           <h3 className='absolute w-[20px] h-[20px] mr-[-10px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black font-bold'>{compass[1]}</h3>
@@ -48,7 +49,8 @@ export default function Card({ name, compass, imagePath, inPlay, removeAndDraw, 
 
 
   return (
-    <div ref={dragRef} className='w-full h-full relative font-main-text-f text-xl'>
+    <div ref={dragRef} className='w-full h-full relative font-tile-text-f text-xl'>
+      {/* TODO: Redo how we space the numbers within the card. */}
       <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[50%] top-[11%] text-center z-10 text-black font-bold'>{compass[0]}</h3>
       <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black font-bold'>{compass[3]}</h3>
       <h3 className='absolute w-[20px] h-[20px] mr-[-10px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black font-bold'>{compass[1]}</h3>
