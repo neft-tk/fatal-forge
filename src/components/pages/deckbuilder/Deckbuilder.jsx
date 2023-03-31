@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'flowbite-react';
 import API from '../../../utils/API';
-import CardView from '../../CardView';
-import DeckEditView from '../../DeckEditView';
+import CardView from './CardView';
+import DeckEditView from './DeckEditView';
 import Static from '../../../utils/staticHelper';
 
 // The Deckbuilder component will house any functionality relating to deck creation and submittal.`
@@ -128,33 +128,42 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
 
   return (
     <div className="flex flex-col justify-center p-3 overflow-x-hidden gl-scrollbar">
-      <h1 className="title-text mt-8">
-        Welcome to the Deckbuilder!
-      </h1>
-      <h1 className="heading-text">
-        Create a New Deck:
-      </h1>
-      <p className="text-center text-xl font-main-text-f ">
-        Each deck must have at least 15 unique cards. You can only have one
-        copy of each card.
-      </p>
+      {/* Page heading and instructions */}
+      <div>
+        <h1 className="title-text mt-8">
+          Welcome to the Deckbuilder!
+        </h1>
+        <h1 className="heading-text">
+          Create a New Deck:
+        </h1>
+        <p className="text-center text-xl font-main-text-f ">
+          Each deck must have at least 15 unique cards. You can only have one
+          copy of each card.
+        </p>
+      </div>
+      {/* Deckbuilder and Options UI */}
       <div className="flex flex-col justify-center items-center text-center">
+        {/* Deck Builder */}
         <div className="flex justify-between">
-          <div className="flex flex-col md:flex-row p-4 h-[80vh] md:h-[55vh] gap-4">
+          <div className="flex flex-col md:flex-row p-4 h-[80vh] md:h-[55vh] gap-6">
+            {/* Card Pool */}
             <div className="flex flex-col w-full h-1/2 md:h-full md:w-1/2 border border-neutral-700 p-4 rounded-lg bg-neutral-800">
               <h1 className='text-2xl font-main-text-f'>Pool</h1>
+              {/* CardView returns the cards. */}
               <CardView
                 setDeckData={setDeckData}
                 cardData={cardData}
                 deckData={deckData}
               />
             </div>
+            {/* Current Deck */}
             <div className="flex flex-col w-full h-1/2 md:h-full md:w-1/2 border border-neutral-700 p-4 rounded-lg bg-neutral-800">
               <h1 className='text-2xl font-main-text-f'>Current Build</h1>
               <DeckEditView setDeckData={setDeckData} deckData={deckData} />
             </div>
           </div>
         </div>
+        {/* Options */}
         <div className='flex gap-4 flex-wrap justify-center w-full'>
           <div className='border flex flex-col md:flex-row items-center border-neutral-700 p-4 rounded-lg bg-neutral-800 gap-4'>
             <div className='border rounded-lg border-neutral-800'>

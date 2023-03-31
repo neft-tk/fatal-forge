@@ -1,5 +1,5 @@
 import React from "react";
-import Static from '../utils/staticHelper'
+import Static from '../../../utils/staticHelper'
 
 function DeckEditView({ setDeckData, deckData }) {
 

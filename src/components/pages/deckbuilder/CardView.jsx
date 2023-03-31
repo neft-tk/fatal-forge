@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from 'flowbite-react';
-import Static from '../utils/staticHelper'
+import Static from '../../../utils/staticHelper'
 
 function CardView({ cardData, setDeckData, deckData }) {
   const [showModal, setShowModal] = useState(false);
