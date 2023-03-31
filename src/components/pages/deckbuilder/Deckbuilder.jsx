@@ -1,8 +1,12 @@
+// React + Components
 import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'flowbite-react';
-import API from '../../../utils/API';
 import CardView from './CardView';
 import DeckEditView from './DeckEditView';
+// Modal and Button are from the Flowbite React UI Library
+import { Button, Modal } from 'flowbite-react';
+// API calls
+import API from '../../../utils/API';
+// Server URL
 import Static from '../../../utils/staticHelper';
 
 // The Deckbuilder component will house any functionality relating to deck creation and submittal.`
