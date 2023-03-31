@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // Modal
 import { Button, Modal } from 'flowbite-react';
 // Server URL
-import Static from '../../../utils/staticHelper'
+import Static from '../../../../utils/staticHelper'
 
 // The CardView component contains a pool of cards from which the player can draw from when deck building.
 

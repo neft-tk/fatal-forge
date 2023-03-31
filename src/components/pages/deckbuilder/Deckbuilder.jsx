@@ -1,7 +1,7 @@
 // React + Components
 import React, { useEffect, useState } from 'react';
-import CardView from './CardView';
-import DeckEditView from './DeckEditView';
+import CardView from './subviews/CardView';
+import DeckEditView from './subviews/DeckEditView';
 // Modal and Button are from the Flowbite React UI Library
 import { Button, Modal } from 'flowbite-react';
 // API calls

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Static from '../../../utils/staticHelper';
-import API from '../../../utils/API';
+import Static from '../../../../utils/staticHelper';
+import API from '../../../../utils/API';
 
 function DeckCard({ deck }) {
   let cardsArray = [];

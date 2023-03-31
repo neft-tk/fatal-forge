@@ -1,6 +1,6 @@
 import React from "react";
 // Server URL
-import Static from '../../../utils/staticHelper'
+import Static from '../../../../utils/staticHelper'
 
 // DeckEditView is the view that displays the current deck being edited or created.
 // It handles the population of cards and the removal of cards from the deck.

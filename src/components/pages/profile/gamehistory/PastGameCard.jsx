@@ -1,4 +1,4 @@
-import Static from '../../../utils/staticHelper';
+import Static from '../../../../utils/staticHelper';
 
 function PastGameCard({ deck }) {
   return (
