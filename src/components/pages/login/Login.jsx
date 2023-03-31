@@ -123,7 +123,7 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
                 }`}
             />
             {/* Password Visibility Toggle */}
-            <img src={visibilityIcon} alt="show password" className="cursor-pointer absolute p-4 -top-2 -right-2" onClick={() => setShowPassword((prevState) => !prevState)}/>
+            <img src={visibilityIcon} alt="show password" className="cursor-pointer absolute p-4 -top-2 -right-2" onClick={() => setShowPassword((prevState) => !prevState)} />
           </div>
           {/* Login button submits the form */}
           <button type="submit" className="button-style">Login</button>
@@ -138,12 +138,7 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
             <span onClick={onSignupModalClick} className="text-highlight-blue font-bold cursor-pointer">Sign up to play!</span>
           </div>
           {/* Guest button opens the guest modal*/}
-          <span
-            onClick={onGuestModalClick}
-            className="button-style bg-blue-500"
-          >
-            Play as a guest!
-          </span>
+          <span onClick={onGuestModalClick} className="button-style bg-blue-500">Play as a guest!</span>
           {/* Signup Modal */}
           <Modal
             show={showSignupModal}
@@ -254,25 +249,15 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
                 {/* Shows a message if the username is already in use. */}
                 <p className={`mt-2 text-sm text-red-600 dark:text-red-500 ${isValidSignup ? 'hidden' : 'block'}`}>Username is already in use, please choose another username.</p>
                 <div className="w-full">
-                  <button
-                    type="button"
-                    onClick={handleGuestSignupSubmit}
-                    className="button-style"
-                  >
-                    Sign Up as A Guest!
-                  </button>
+                  <button type="button" onClick={handleGuestSignupSubmit} className="button-style">Sign Up as A Guest!</button>
                 </div>
               </div>
             </Modal.Body>
           </Modal>
         </>
       </div>
-      {/* Splash image to the right */}
-      <img
-        className="flex shrink min-w-0 min-h-0"
-        src={blacksmithGif}
-        alt="A blacksmith hard at work."
-      />
+      {/* Griddy the blacksmith */}
+      <img className="flex shrink min-w-0 min-h-0" src={blacksmithGif} alt="A blacksmith hard at work."/>
     </div>
   );
 }

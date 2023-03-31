@@ -26,8 +26,10 @@ import API from './utils/API';
 import Socket from './utils/socket';
 
 function App() {
+  // State for login and signup validation.
   const [isValidLogin, setIsValidLogin] = useState(true);
   const [isValidSignup, setIsValidSignup] = useState(true);
+  // userId is used to identify the user in the database.
   const [userId, setUserId] = useState(0);
   // Is the user logged in?
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -81,12 +83,10 @@ function App() {
   // Hit the signup endpoint to create and set the state accordingly.
   const handleSignup = (userObj) => {
     API.signup(userObj).then((data) => {
-
       // If we return an error, signup was not valid.
       if (data.msg === 'An error occurred creating a new user.') {
         setIsValidSignup(false);
       }
-
       // If we return a token, log in the user and reflect that in state and local storage.
       if (data.token) {
         setIsValidSignup(true);
@@ -114,9 +114,10 @@ function App() {
     setUserId(0);
     setToken('');
     // TODO: Socket.Auth stuff?
-    
+
   };
 
+  // Starts the particles engine.
   const particlesInit = useCallback(async (engine) => {
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -129,42 +130,28 @@ function App() {
   const renderRoutes = () => {
     return (
       <>
-      {/* Router links to nav for page traversal. */}
+        {/* Router links to nav for page traversal */}
         <Router>
           <div className="flex flex-col md:flex-row w-screen h-screen overflow-hidden">
+            {/* Navigation (Visible on every page.) */}
             <Nav view={view} setView={setView} handleLogout={handleLogout} />
+            {/* Main Content */}
             <div id="routeContainer" className="w-full h-full overflow-x-hidden gl-scrollbar">
-              <Particles
-                init={particlesInit}
-                options={options}
-              />
+              {/* Particles Component */}
+              <Particles init={particlesInit} options={options} />
+              {/* Page Routes */}
               <Routes>
-                {/* LOBBY: */}
+                {/* LOBBY */}
                 <Route path="/" element={<Lobby />} />
                 <Route path="/lobby" element={<Lobby userId={userId} />} />
+                {/* PLAY */}
                 <Route path="/gameview" element={<Gameview />} />
-                <Route path="/deckbuilder" element={
-                    <Deckbuilder
-                      userId={userId}
-                      handleDeckCreate={handleDeckCreate}
-                      token={token}
-                    />
-                  }
-                />
-                <Route
-                  path="/profile"
-                  element={
-                    <Profile
-                      userId={userId}
-                      token={token}
-                      setIsLoggedIn={setIsLoggedIn}
-                    />
-                  }
-                />
-                <Route
-                  path="/friends"
-                  element={<Friends userId={userId} token={token} />}
-                />
+                {/* DECKBUILDER */}
+                <Route path="/deckbuilder" element={ <Deckbuilder userId={userId} handleDeckCreate={handleDeckCreate} token={token} />} />
+                {/* PROFILE */}
+                <Route path="/profile" element={<Profile userId={userId} token={token} setIsLoggedIn={setIsLoggedIn} />} />
+                {/* FRIENDS */}
+                <Route path="/friends" element={<Friends userId={userId} token={token} />} />
               </Routes>
             </div>
           </div>
@@ -175,19 +162,13 @@ function App() {
 
   return (
     <div className="w-screen h-screen">
-      {/* If we are logged in, access the site. Else serve login screen */}
+      {/* If we are logged in, access the site, else serve login screen */}
       {isLoggedIn ? (renderRoutes()) : (
         <>
-          <Particles
-            init={particlesInit}
-            options={options}
-          />
-          <Login
-            handleLogin={handleLogin}
-            handleSignup={handleSignup}
-            isValidLogin={isValidLogin}
-            isValidSignup={isValidSignup}
-          />
+          {/* Particles */}
+          <Particles init={particlesInit} options={options} />
+          {/* Login Screen*/}
+          <Login handleLogin={handleLogin} handleSignup={handleSignup} isValidLogin={isValidLogin} isValidSignup={isValidSignup} />
         </>
       )}
     </div>
