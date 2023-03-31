@@ -1,4 +1,5 @@
 import React from "react";
+// Server URL
 import Static from '../../../utils/staticHelper'
 
 // DeckEditView is the view that displays the current deck being edited or created.
@@ -15,7 +16,7 @@ function DeckEditView({ setDeckData, deckData }) {
     }
 
     return (
-        <div className="flex flex-wrap gap-2 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full bg-main-bg rounded">
+        <div className="flex flex-wrap align-middle justify-evenly gap-3 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full bg-main-bg rounded">
             {deckData.map((card, index) =>
                 <button className="relative w-24 h-24 bg-neutral-700 hover:scale-110 hover:z-10 hover:border-2 font-tile-text-f transition-all " key={index} onClick={(e) => { e.preventDefault(); removeCard(card.id) }}>
                     {/* Top Number*/}

@@ -4,6 +4,8 @@ import { Button, Modal } from 'flowbite-react';
 // Server URL
 import Static from '../../../utils/staticHelper'
 
+// The CardView component contains a pool of cards from which the player can draw from when deck building.
+
 function CardView({ cardData, setDeckData, deckData }) {
   // showModal determines the visibility of the modal.
   const [showModal, setShowModal] = useState(false);
@@ -50,12 +52,12 @@ function CardView({ cardData, setDeckData, deckData }) {
 
   return (
     <>
-    {/* Container for the card pool */}
-      <div className="flex flex-wrap justify-center items-center gap-3 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full rounded bg-main-bg">
+      {/* Container for the card pool */}
+      <div className="flex flex-wrap justify-evenly items-center gap-3 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full rounded bg-main-bg">
         {cardData.map((card, index) => (
           // Map each card to a button, when clicked they will be added to deck.
           <button className="relative w-24 h-24 bg-neutral-700 hover:scale-125 hover:z-10 hover:border-2 hover:border-sky-500 font-tile-text-f" key={index}
-            onClick={(e) => { e.preventDefault(); addCard(card.id);}}>
+            onClick={(e) => { e.preventDefault(); addCard(card.id); }}>
             {/* Top Number */}
             <h3 className='tile-top'>{card.topAttack}</h3>
             {/* Left Number */}

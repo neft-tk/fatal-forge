@@ -9,56 +9,60 @@ import API from '../../../utils/API';
 // Server URL
 import Static from '../../../utils/staticHelper';
 
-// The Deckbuilder component will house any functionality relating to deck creation and submittal.`
+// The Deckbuilder component will house any functionality relating to deck creation and submittal.
+
+// TODO: BUG: Deckbuilder crashes server when deleting a users only deck.
 
 export default function Deckbuilder({ userId, handleDeckCreate, token }) {
+  // cardData keeps an array of all cards.
   const [cardData, setCardData] = useState([]);
   const [deckData, setDeckData] = useState([]);
-  const [deck, setDeck] = useState();
+  // decks keeps an array of all decks owned by the user.
   const [decks, setDecks] = useState([]);
   const [deckChoice, setDeckChoice] = useState();
-  const [deckChoiceName, setDeckChoiceName] = useState('');
   const [deckTitleData, setDeckTitleData] = useState('');
   const [deckBackData, setDeckBackData] = useState('Basic');
+  // showModal determines the visibility of the modal.
   const [showModal, setShowModal] = useState(false);
+  // The message to be displayed in the modal.
   const [message, setMessage] = useState('hi');
 
+  // Fetch cards and check user decks from the server on every rerender.
   useEffect(() => {
     async function fetchCards() {
       const data = await API.getAllCards();
-
       for (let i = 0; i < data.length; i++) {
         const card = data[i];
+        // Reflect the card data in the state.
         setCardData((prevCards) => [...prevCards, card]);
       }
     }
-
+    // Refresh the card data.
     fetchCards();
+    // Refresh the user deck data.
     syncUp();
   }, []);
 
+  // Opens a modal with the given message.
   const Alert = (msg) => {
     setMessage(msg);
-    console.log(msg);
     setShowModal(true);
   };
 
+  // Retrieves all user decks from the server.
   async function syncUp() {
-    const r = await fetch(`${Static.serverUrl}/api/users/${userId}`);
-    const d = await r.json();
-
-    const deckMap = d.Decks.map((x) => {
+    const response = await fetch(`${Static.serverUrl}/api/users/${userId}`);
+    const data = await response.json();
+    // Map the deck data to a more usable format.
+    const deckMap = data.Decks.map((x) => {
       return { name: x.deckName, id: x.id };
     });
-
+    // Reflect the deck data in the state.
     setDecks(deckMap);
   }
 
   async function getSelectedDeck() {
-    const submittedDeck = await fetch(
-      `${Static.serverUrl}/api/decks/${deckChoice}`
-    );
-
+    const submittedDeck = await fetch(`${Static.serverUrl}/api/decks/${deckChoice}`);
     const deckInfo = await submittedDeck.json();
     const deckCards = await deckInfo.Cards.map((card) => {
       return {
@@ -68,7 +72,6 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
     });
 
     setDeckData(deckCards);
-    setDeckChoiceName(deckInfo.deckName);
   }
 
   async function deleteSelectedDeck() {
@@ -261,7 +264,6 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
                 className="bg-black font-alt-text-f rounded"
                 required
                 onChange={(e) => {
-                  setDeck(e.target.value);
                   setDeckChoice(e.target.value);
                 }}
               >
