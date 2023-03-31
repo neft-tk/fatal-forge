@@ -104,19 +104,19 @@
     /* Tile Styling (Ingame and deck editor.) */
 
     .tile-top {
-        @apply bg-main-blue text-white text-center font-bold text-lg;
+        @apply absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[50%] top-[11%] text-center z-10 text-black;
     }
 
     .tile-left {
-        @apply bg-main-blue text-white text-center font-bold text-lg;
+        @apply absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black;
     }
 
     .tile-right {
-        @apply bg-main-blue text-white text-center font-bold text-lg;
+        @apply absolute w-[20px] h-[20px] mr-[-10px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black;
     }
 
     .tile-bottom {
-        @apply bg-main-blue text-white text-center font-bold text-lg;
+        @apply absolute w-[20px] h-[20px] ml-[-10px] mb-[-10px] left-[50%] bottom-[16%] text-center z-10 text-black;
     }
 
 }

@@ -12,10 +12,14 @@ function DeckEditView({ setDeckData, deckData }) {
         <div className="flex flex-wrap gap-2 overflow-y-auto overflow-x-hidden p-3 gl-scrollbar h-full bg-main-bg">
             {deckData.map((card, index) =>
                 <button className="relative w-24 h-24 bg-neutral-700 hover:scale-125 hover:z-10 hover:border-2 font-tile-text-f hover:border-sky-500" key={index} onClick={(e) => { e.preventDefault(); removeCard(card.id) }}>
-                    <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[50%] top-[11%] text-center z-10 text-black font-bold'>{card.topAttack}</h3>
-                    <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black font-bold'>{card.leftAttack}</h3>
-                    <h3 className='absolute w-[20px] h-[20px] mr-[-10px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black font-bold'>{card.rightAttack}</h3>
-                    <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mb-[-10px] left-[50%] bottom-[16%] text-center z-10 text-black font-bold'>{card.bottomAttack}</h3>
+                    {/* Top Number*/}
+                    <h3 className='tile-top'>{card.topAttack}</h3>
+                    {/* Left Number */}
+                    <h3 className='tile-left'>{card.leftAttack}</h3>
+                    {/* Right Number */}
+                    <h3 className='tile-right'>{card.rightAttack}</h3>
+                    {/* Bottom Number */}
+                    <h3 className='tile-bottom'>{card.bottomAttack}</h3>
                     <img src={`${Static.serverUrl}/api/images/${card.imagePath}`} className='w-1/2 h-1/2 absolute left-[25%] top-[25%]' alt='Visual representation of the card in play.'></img>
                     <img src={`${Static.serverUrl}/api/images/cardsprite/Card-Face-2.svg`} className='w-full' alt='card face.' />
                 </button>

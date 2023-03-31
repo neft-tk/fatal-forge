@@ -63,13 +63,13 @@ function CardView({ cardData, setDeckData, deckData }) {
               }}
           >
             {/* Top Number */}
-            <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[50%] top-[11%] text-center z-10 text-black'>{card.topAttack}</h3>
+            <h3 className='tile-top'>{card.topAttack}</h3>
             {/* Left Number */}
-            <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black'>{card.leftAttack}</h3>
+            <h3 className='tile-left'>{card.leftAttack}</h3>
             {/* Right Number */}
-            <h3 className='absolute w-[20px] h-[20px] mr-[-10px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black'>{card.rightAttack}</h3>
+            <h3 className='tile-right'>{card.rightAttack}</h3>
             {/* Bottom Number */}
-            <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mb-[-10px] left-[50%] bottom-[16%] text-center z-10 text-black'>{card.bottomAttack}</h3>
+            <h3 className='tile-bottom'>{card.bottomAttack}</h3>
             <img src={`${Static.serverUrl}/api/images/${card.imagePath}`} className='w-1/2 h-1/2 absolute left-[25%] top-[25%]' alt='Visual representation of the card in play.'></img>
             <img src={`${Static.serverUrl}/api/images/cardsprite/Card-Face-2.svg`} className='w-full' alt='Card face.' />
           </button>
