@@ -6,7 +6,7 @@ import {
   Route,
 } from 'react-router-dom';
 // Components ===============
-import Nav from './components/Nav';
+import Nav from './components/navigation/Nav';
 import Login from './components/pages/login/Login';
 import Lobby from './components/pages/lobby/Lobby';
 import Gameview from './components/gameview/Gameview';

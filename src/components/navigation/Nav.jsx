@@ -11,7 +11,7 @@ import { GiIdCard } from 'react-icons/gi';
 import { RiLogoutBoxLine } from 'react-icons/ri';
 import { Modal } from 'flowbite-react';
 import NavBarIcon from './NavBarIcon';
-import gllogo from '../assets/png/gridlocke1.png';
+import gllogo from '../../assets/png/gridlocke1.png';
 import { MdOutlineLiveHelp } from 'react-icons/md'
 
 export default function Nav({ view, setView, handleLogout }) {
