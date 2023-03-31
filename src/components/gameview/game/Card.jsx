@@ -1,9 +1,11 @@
-// The Card component represents and individual card with its stat values pulled from the backend.
-
 import React from 'react'
+// Drag and drop package
 import { useDrag } from 'react-dnd'
-import Socket from '../utils/socket';
-import Static from '../utils/staticHelper'
+// Utilities
+import Socket from '../../../utils/socket';
+import Static from '../../../utils/staticHelper'
+
+// The Card component represents and individual card with its stat values pulled from the backend.
 
 export default function Card({ name, compass, imagePath, inPlay, removeAndDraw, slotIndex, size }) {
 
@@ -51,8 +53,6 @@ export default function Card({ name, compass, imagePath, inPlay, removeAndDraw, 
       canDrag: () => { return !inPlay && Socket.IO.myTurn }
     })
   )
-
-
 
   return (
     <div ref={dragRef} className='w-full h-full relative font-tile-text-f text-xl'>

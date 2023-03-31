@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDrop } from 'react-dnd'
-import Socket from '../../../utils/socket'
+import Socket from '../../../../utils/socket'
 import { motion } from 'framer-motion'
-import Card from '../../Card';
-import state from '../../..//utils/staticHelper'
+import Card from '../Card';
+import state from '../../../../utils/staticHelper'
 
 // The Gridslot component represents any individual tile on the Grid.
 // The Gridslot component will either be contain a Card or be empty.

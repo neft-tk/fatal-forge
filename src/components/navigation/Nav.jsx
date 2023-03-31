@@ -1,18 +1,17 @@
-// The Nav component will house basic navigation links between the main sections of our game.
-
-// The Nav will contain: Lobby (lobby component), Deckbuilding (deckbuilding component), Play (assembly component)
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+// Icons
 import { FaUserFriends } from 'react-icons/fa';
-import { GiCardPick, GiTabletopPlayers } from 'react-icons/gi'
+import { GiCardPick, GiTabletopPlayers, GiIdCard } from 'react-icons/gi'
 import { BsGrid3X3GapFill } from 'react-icons/bs';
-import { GiIdCard } from 'react-icons/gi';
 import { RiLogoutBoxLine } from 'react-icons/ri';
-import { Modal } from 'flowbite-react';
 import NavBarIcon from './NavBarIcon';
 import gllogo from '../../assets/png/gridlocke1.png';
 import { MdOutlineLiveHelp } from 'react-icons/md'
+// Modal package
+import { Modal } from 'flowbite-react';
+
+// The Nav component will house basic navigation links between the main sections of our game.
 
 export default function Nav({ view, setView, handleLogout }) {
   const [showModal, setShowModal] = useState(false);

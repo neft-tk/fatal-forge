@@ -3,7 +3,7 @@
 // Cards will be placed on the grid via the gridslot component (where the actual data will be housed)
 
 import React, { useState } from 'react'
-import Socket from '../../../utils/socket';
+import Socket from '../../../../utils/socket';
 import Gridslot from './Gridslot';
 
 export default function Grid({ setIsMyTurn, size, setPlayers, setGameEnd }) {
