@@ -5,7 +5,7 @@ import Static from '../../../utils/staticHelper'
 // DeckEditView is the view that displays the current deck being edited or created.
 // It handles the population of cards and the removal of cards from the deck.
 
-function DeckEditView({ setDeckData, deckData }) {
+export default function DeckEditView({ setDeckData, deckData }) {
 
     // Removes a card from the current deck using the card id.
     const removeCard = (id) => {
@@ -29,7 +29,7 @@ function DeckEditView({ setDeckData, deckData }) {
                     <h3 className='tile-bottom'>{card.bottomAttack}</h3>
                     {/* Art */}
                     <img src={`${Static.serverUrl}/api/images/${card.imagePath}`} className='tile-art' alt='Visual representation of the card in play.'></img>
-                    {/* Card  */}
+                    {/* Card Frame */}
                     <img src={`${Static.serverUrl}/api/images/cardsprite/Card-Face-2.svg`} className='w-full' alt='card face.' />
                 </button>
             )}
@@ -37,5 +37,3 @@ function DeckEditView({ setDeckData, deckData }) {
     )
 
 }
-
-export default DeckEditView;
