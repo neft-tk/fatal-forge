@@ -4,9 +4,9 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {FaUserFriends } from 'react-icons/fa';
+import { FaUserFriends } from 'react-icons/fa';
 import { GiCardPick, GiTabletopPlayers } from 'react-icons/gi'
-import {BsGrid3X3GapFill } from 'react-icons/bs';
+import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { GiIdCard } from 'react-icons/gi';
 import { RiLogoutBoxLine } from 'react-icons/ri';
 import { Modal } from 'flowbite-react';

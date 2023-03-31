@@ -32,7 +32,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
   // The message to be displayed in the modal.
   const [message, setMessage] = useState('hi');
 
-  // Fetch cards and check user decks from the server on every rerender.
+  // Fetch cards and check user decks from the server when the component renders..
   useEffect(() => {
     async function fetchCards() {
       const data = await API.getAllCards();
