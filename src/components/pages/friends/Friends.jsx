@@ -1,78 +1,68 @@
 import { useState, useEffect } from 'react';
-import API from '../../../utils/API';
+// Sub-components
 import FriendCard from './subviews/FriendCard';
 import UserCard from './subviews/UserCard';
+// Utils
+import API from '../../../utils/API';
 
+// The friends component allows players to see all of their friends and add new friends.
+
+// TODO: Add personal chat, currently a dummy button.
+// TODO: Add ability to see friends profile, currently a dummy button.
+
+// Recieves userId and token from the parent component.
 function Friends({ userId, token }) {
-  let user = {};
+  // User object, updated on page load.
+  const [user, setUser] = useState({});
+  // User's friends, updated on page load.
   const [friends, setFriends] = useState([]);
+  // All users, updated on page load.
   const [users, setUsers] = useState([]);
 
+  // Once on load, get all users and the user's info.
   useEffect(() => {
-    async function fetchUser() {
-      const data = await API.getSingleUser(userId);
-      user = {
-        username: data.username,
-        email: data.email,
-        name: data.name,
-        motto: data.motto,
-        decks: data.Decks,
-        friends: data.FavoriteUser,
-        imagePath: data.imagePath,
-      };
-      setFriends(data.FavoriteUser);
-    };
-
+    // Get all users
     async function fetchUsers() {
       const data = await API.getAllUsers();
+      // Reflect in state.
       setUsers(data);
     };
-
-    fetchUser();
+    // Get the user's info and friends.
+    refreshUserInfo();
     fetchUsers();
   }, []);
 
+  // Refreshes the user's info in state, used when something changes.
+  const refreshUserInfo = async () => {
+    const data = await API.getSingleUser(userId);
+    setUser(data);
+    setFriends(data.FavoriteUser);
+  }
+
+  // Deletes a friend from the user's friend list.
   const handleDeleteFriend = async (delObj) => {
+    // Pass in the users id, the friend's id, and the token.
     const { userId, friendId, token } = delObj
     const delMessage = await API.deleteFriend(userId, friendId, token)
-
-    // Reset friends after del
-    const data = await API.getSingleUser(userId);
-    user = {
-      username: data.username,
-      email: data.email,
-      name: data.name,
-      motto: data.motto,
-      decks: data.Decks,
-      friends: data.FavoriteUser,
-      imagePath: data.imagePath,
-    };
-    setFriends(data.FavoriteUser);
+    // Update state.
+    refreshUserInfo();
   };
 
+  // Adds a friend to the user's friend list.
   const handleAddFriend = async (addObj) => {
+        // Pass in the users id, the friend's id, and the token.
     const { userId, friendId, token } = addObj
     const addMessage = await API.addFriend(userId, friendId, token)
-
-    // TODO: Only add users that are NOT friends.
-    // Reset users after add
-    const data = await API.getSingleUser(userId);
-    user = {
-      username: data.username,
-      email: data.email,
-      name: data.name,
-      motto: data.motto,
-      decks: data.Decks,
-      friends: data.FavoriteUser,
-      imagePath: data.imagePath,
-    };
-    setFriends(data.FavoriteUser);
+    // Update state.
+    refreshUserInfo();
   };
 
   return (
     <div className='flex flex-col lg:flex-row justify-evenly text-center h-screen'>
+      {/* Friends List */}
       <div className="text-main-text font-main-text-f gl-scrollbar w-full h-1/2 lg:h-full lg:overflow-auto lg:w-1/2">
         <h2 className="h2-text mt-12">Friends List</h2>
+        {/* For each friend of the user, map a card component into this div. */}
         {user ? (
           <div className="cards-container grid grid-cols-1">
             {friends.map((friend, index) => (
@@ -90,8 +80,10 @@ function Friends({ userId, token }) {
           ''
         )}
       </div>
+      {/* All Users */}
       <div className="text-main-text font-main-text-f gl-scrollbar w-full h-1/2 lg:h-full lg:overflow-auto lg:w-1/2">
         <h2 className="h2-text mt-12">All Users</h2>
+        {/* For each user found, map a card component into this div. */}
         {users ? (
           <div className="cards-container grid grid-cols-2 gap-2">
             {users.filter((user) => user.id !== userId).map((user, index) => (

@@ -6,7 +6,7 @@ import Static from '../../../../utils/staticHelper'
 
 // The CardView component contains a pool of cards from which the player can draw from when deck building.
 
-function CardView({ cardData, setDeckData, deckData }) {
+function CardPoolView({ cardData, setDeckData, deckData }) {
   // showModal determines the visibility of the modal.
   const [showModal, setShowModal] = useState(false);
   // The message to be displayed in the modal.
@@ -78,4 +78,4 @@ function CardView({ cardData, setDeckData, deckData }) {
   );
 }
 
-export default CardView;
+export default CardPoolView;

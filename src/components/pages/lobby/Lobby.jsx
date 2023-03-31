@@ -1,11 +1,11 @@
 import React from 'react';
-import Chat from './subviews/Chat';
 import gllogo from '../../../assets/png/gridlocke1.png';
 
-// The Lobby component will house the bulk of Fatal Forge's social interaction.
-// Chat, friends tab, add friend, etc.
+// The Lobby acts as a landing page and home screen for the game.
+// Currently contains a hero image, and a bio.
+// TODO: Add chat.
 
-export default function Lobby({ userId }) {
+export default function Lobby() {
   return (
     <div className="flex flex-col items-center h-full w-full">
       {/* Hero */}
@@ -35,15 +35,6 @@ export default function Lobby({ userId }) {
           aspects of your aptitude for battle.
         </p>
       </div>
-      {/* Chat + Active Players */}
-      {/* <div className='h-screen'>
-        <Chat userId={userId} />
-      </div> */}
-      {/* Chat */}
-      {/* Future Updates */}
-      {/* <div className='h-1/3'>
-          Future Updates:
-        </div> */}
     </div>
   );
 }
