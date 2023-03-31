@@ -68,7 +68,6 @@ function Friends({ userId, token }) {
             {friends.map((friend, index) => (
               <FriendCard
                 key={index}
-                friendId={friend.id}
                 userId={userId}
                 friend={friend}
                 token={token}

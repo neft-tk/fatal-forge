@@ -5,14 +5,15 @@ import { BsFillChatDotsFill } from 'react-icons/bs';
 import Static from '../../../../utils/staticHelper';
 
 // The UserCard component contains one user's info and buttons to add them as a friend, message them, or view their profile.
-// Each user populated in the Friends component is passed down as a prop.
 
 // Pass in the user object, the user's id, the token, and the handleAddFriend function.
 function UserCard({ user, userId, token, handleAddFriend }) {
+
   // TODO: Message button does nothing.
   const handleMessage = () => {
     console.log('Message me!');
   };
+
   // TODO: Profile button does nothing.
   const handleProfile = () => {
     console.log('My profile!');
