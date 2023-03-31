@@ -62,9 +62,9 @@ function Friends({ userId, token }) {
       {/* Friends List */}
       <div className="text-main-text font-main-text-f gl-scrollbar w-full h-1/2 lg:h-full lg:overflow-auto lg:w-1/2">
         <h2 className="h2-text mt-12">Friends List</h2>
-        {/* For each friend of the user, map a card component into this div. */}
         {user ? (
           <div className="cards-container grid grid-cols-1">
+            {/* For each friend of the user, map a card component into this div. */}
             {friends.map((friend, index) => (
               <FriendCard
                 key={index}
@@ -83,9 +83,9 @@ function Friends({ userId, token }) {
       {/* All Users */}
       <div className="text-main-text font-main-text-f gl-scrollbar w-full h-1/2 lg:h-full lg:overflow-auto lg:w-1/2">
         <h2 className="h2-text mt-12">All Users</h2>
-        {/* For each user found, map a card component into this div. */}
         {users ? (
           <div className="cards-container grid grid-cols-2 gap-2">
+            {/* For each user found, map a card component into this div. */}
             {users.filter((user) => user.id !== userId).map((user, index) => (
               <UserCard
                 key={index}
