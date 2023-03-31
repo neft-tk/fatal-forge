@@ -22,7 +22,8 @@ module.exports = {
       fontFamily: {
         'main-text-f': ['"Crimson Text"', 'serif'],
         'alt-text-f': ['"Lato"', 'sans-serif'],
-        'display-text-f': ['"Forum"', 'Copperstone']
+        'display-text-f': ['"Forum"', 'Copperstone'],
+        'tile-text-f': ['"Rubik"', 'sans-serif'],
       },
     },
   },

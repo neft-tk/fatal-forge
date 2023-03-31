@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Socket from '../../../utils/socket';
 import API from '../../../utils/API';
 
+// CURRENTLY NOT IN USE
+
 export default function Chat({ userId }) {
   const [message, setMessage] = useState("");
   const [user, setUser] = useState("");

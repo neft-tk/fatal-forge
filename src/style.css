@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* TODO: Organize by page/component */
+
 @layer components {
+
+    /* Navbar Styling */
+
     .navbar-main {
         @apply bg-black/25 flex h-20 w-screen justify-around items-center md: flex-col md:w-24 md:h-screen grow-0 shrink-0 fixed top-0 p-4 gap-1;
     }
@@ -10,6 +15,14 @@
     .navbar-button {
         @apply bg-neutral-700 hover:bg-main-blue active:bg-active-blue focus:ring-blue-300 text-neutral-200 hover:text-white active:text-white relative flex items-center justify-center w-12 h-12 md:w-16 md:h-16 my-2 mx-auto focus:ring-4 rounded-xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer;
     }
+
+    .navbar-tooltip {
+        @apply bg-gray-900 text-white absolute w-auto p-2 m-2 min-w-max -left-[50%] top-8 md:left-0 md:top-5 rounded-md shadow-md text-xs font-bold transition-all duration-100 scale-0 md:origin-center z-auto;
+    }
+
+    /* Deckbuilder Styling */
+    
+    /* Profile Styling */
 
     .profile-button {
         @apply bg-gray-800 hover:bg-highlight-blue active:bg-active-blue focus:ring-blue-300 text-main-blue hover:text-white active:text-white relative flex items-center justify-center rounded-3xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer focus:ring-4 w-20 h-20 lg:w-28 lg:h-28 focus:outline-none;
@@ -19,6 +32,8 @@
         @apply text-[34px] lg:text-[48px];
     }
 
+    /* Friends Styling */
+    
     .user-button {
         @apply relative flex items-center justify-center w-12 h-12 my-2 mx-auto focus:ring-4 rounded-xl hover:rounded-xl transition-all duration-300 ease-in-out cursor-pointer;
     }
@@ -27,8 +42,14 @@
         @apply text-[28px];
     }
 
-    .navbar-tooltip {
-        @apply bg-gray-900 text-white absolute w-auto p-2 m-2 min-w-max -left-[50%] top-8 md:left-0 md:top-5 rounded-md shadow-md text-xs font-bold transition-all duration-100 scale-0 md:origin-center z-auto;
+    /* Modal Styling */
+
+    .modal-header {
+        @apply bg-active-blue;
+    }
+
+    .modal-body {
+        @apply bg-modal-gray text-black;
     }
 
     .icon-button-style {
@@ -83,14 +104,6 @@
         @apply flex flex-col;
     }
 
-    .modal-header {
-        @apply bg-active-blue;
-    }
-
-    .modal-body {
-        @apply bg-modal-gray text-black;
-    }
-
     .center-all {
         @apply justify-center items-center text-center;
     }
@@ -99,6 +112,28 @@
         @apply scrollbar-thin scrollbar-track-alt-bg scrollbar-thumb-highlight-blue;
     }
 
+    /* Tile Styling (Ingame and Deck Editor.) */
+    /* TODO: Figure out a better solution for centering the number, might require component html changes. */
+
+    .tile-top {
+        @apply absolute w-[20px] h-[20px] ml-[-11px] mt-[-12px] left-[50%] top-[11%] text-center z-10 text-black;
+    }
+
+    .tile-left {
+        @apply absolute w-[20px] h-[20px] ml-[-12px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black;
+    }
+
+    .tile-right {
+        @apply absolute w-[20px] h-[20px] mr-[-12px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black;
+    }
+
+    .tile-bottom {
+        @apply absolute w-[20px] h-[20px] ml-[-10px] mb-[-12px] left-[50%] bottom-[16%] text-center z-10 text-black;
+    }
+
+    .tile-art {
+        @apply w-1/2 h-1/2 absolute left-[25%] top-[25%];
+    }
 }
 
 body {

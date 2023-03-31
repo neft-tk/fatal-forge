@@ -72,11 +72,9 @@ export default function Game({ deckId, size, gameId, setView }) {
     if (!gameEnd) {
       return;
     }
-    //todo: hit our endpoint to update gamehistory/stats
-
-    //todo: make a modal that gives choice to go to assembly or home
+    //TODO: hit our endpoint to update gamehistory/stats
+    //TODO: make a modal that gives choice to go to assembly or home
     Alert('game ended');
-
   }, [gameEnd])
 
   const getScore = (color) => {

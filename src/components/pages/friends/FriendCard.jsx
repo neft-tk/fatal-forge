@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+// React Icons
 import { FaUserTimes, FaUserAlt } from 'react-icons/fa';
 import { BsFillChatDotsFill } from 'react-icons/bs';
+// Helpers
 import API from '../../../utils/API';
 import Static from '../../../utils/staticHelper';
 

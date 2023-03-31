@@ -10,12 +10,19 @@ export default function Card({ name, compass, imagePath, inPlay, removeAndDraw, 
   const generatePreview = () => {
     if (size) {
       return (
-        <div className='fixed font-main-text-f text-xl' style={{ width: size.x, height: size.y }}>
-          <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[50%] top-[11%] text-center z-10 text-black font-bold'>{compass[0]}</h3>
-          <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black font-bold'>{compass[3]}</h3>
-          <h3 className='absolute w-[20px] h-[20px] mr-[-10px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black font-bold'>{compass[1]}</h3>
-          <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mb-[-10px] left-[50%] bottom-[16%] text-center z-10 text-black font-bold'>{compass[2]}</h3>
-          <img src={`${Static.serverUrl}/api/images/${imagePath}`} className='w-1/2 h-1/2 absolute left-[25%] top-[25%]' alt='Visual representation of the card in play.'></img>
+        // TODO: We are being inconsistent with how we are creating the card elements in different places, see DeckEditView
+        <div className='fixed font-tile-text-f text-xl' style={{ width: size.x, height: size.y }}>
+          {/* Top Number*/}
+          <h3 className='tile-top'>{compass[0]}</h3>
+          {/* Left Number */}
+          <h3 className='tile-left'>{compass[3]}</h3>
+          {/* Right Number */}
+          <h3 className='tile-right'>{compass[1]}</h3>
+          {/* Bottom Number */}
+          <h3 className='tile-left'>{compass[2]}</h3>
+          {/* Art */}
+          <img src={`${Static.serverUrl}/api/images/${imagePath}`} className='tile-art' alt='Visual representation of the card in play.'></img>
+          {/* Card Frame */}
           <img src={`${Static.serverUrl}/api/images/cardsprite/Card-Face-2.svg`} className='absolute w-full' alt='Card face.'/>
         </div>
       )
@@ -48,12 +55,18 @@ export default function Card({ name, compass, imagePath, inPlay, removeAndDraw, 
 
 
   return (
-    <div ref={dragRef} className='w-full h-full relative font-main-text-f text-xl'>
-      <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[50%] top-[11%] text-center z-10 text-black font-bold'>{compass[0]}</h3>
-      <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mt-[-10px] left-[14%] top-[48%] text-center z-10 text-black font-bold'>{compass[3]}</h3>
-      <h3 className='absolute w-[20px] h-[20px] mr-[-10px] mt-[-10px] right-[13%] top-[48%] text-center z-10 text-black font-bold'>{compass[1]}</h3>
-      <h3 className='absolute w-[20px] h-[20px] ml-[-10px] mb-[-10px] left-[50%] bottom-[16%] text-center z-10 text-black font-bold'>{compass[2]}</h3>
-      <img src={`${Static.serverUrl}/api/images/${imagePath}`} className='w-1/2 h-1/2 absolute left-[25%] top-[25%]' alt='Visual representation of the card in play.'></img>
+    <div ref={dragRef} className='w-full h-full relative font-tile-text-f text-xl'>
+      {/* Top Number */}
+      <h3 className='tile-top'>{compass[0]}</h3>
+      {/* Left Number */}
+      <h3 className='tile-left'>{compass[3]}</h3>
+      {/* Right Number */}
+      <h3 className='tile-right'>{compass[1]}</h3>
+      {/* Bottom Number */}
+      <h3 className='tile-bottom'>{compass[2]}</h3>
+      {/* Art */}
+      <img src={`${Static.serverUrl}/api/images/${imagePath}`} className='tile-art' alt='Visual representation of the card in play.'></img>
+      {/* Card Frame */}
       <img src={`${Static.serverUrl}/api/images/cardsprite/Card-Face-2.svg`} className='absolute w-full' alt='Card face.' />
     </div>
   )
