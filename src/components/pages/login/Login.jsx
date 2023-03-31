@@ -53,7 +53,7 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
     setShowGuestModal(false);
   }
 
-  // Reset login fields and pass login info to parent component
+  // Reset login fields and pass login info to parent component (App)
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     setLoginEmail('');
@@ -64,7 +64,7 @@ export default function Login({ handleLogin, handleSignup, isValidLogin, isValid
     });
   };
 
-  // Reset signup fields and pass signup info to parent component
+  // Reset signup fields and pass signup info to parent component (App)
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     setSignupUsername('');

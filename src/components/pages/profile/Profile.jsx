@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import API from '../../../utils/API';
 import ProfileCard from './ProfileCard';
+import API from '../../../utils/API';
+
+// The Profile components 
 
 function Profile({ userId, token, setIsLoggedIn }) {
   const [user, setUser] = useState(null);
@@ -51,6 +53,7 @@ function Profile({ userId, token, setIsLoggedIn }) {
     setIsLoggedIn(false);
   };
 
+  // If user is found, render the ProfileCard component, otherwise render a message to log in
   return (
     <div className="flex flex-col justify-evenly h-auto">
       {user ? (
@@ -61,6 +64,7 @@ function Profile({ userId, token, setIsLoggedIn }) {
           handleEditUser={handleEditUser}
           handleDeleteUser={handleDeleteUser}
         />
+        // TODO: This message should be bigger and centered at least.
       ) : (
         'Please Log In'
       )}
