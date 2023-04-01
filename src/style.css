@@ -116,7 +116,7 @@
     /* TODO: Figure out a better solution for centering the number, might require component html changes. */
 
     .tile-top {
-        @apply absolute w-[20px] h-[20px] ml-[-11px] mt-[-12px] left-[50%] top-[11%] text-center z-10 text-black;
+        @apply absolute w-[20px] h-[20px] ml-[-10px] mt-[-12px] left-[50%] top-[11%] text-center z-10 text-black;
     }
 
     .tile-left {

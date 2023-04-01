@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Socket from '../../utils/socket';
+// Color picker component.
 import { CirclePicker } from 'react-color';
-import Static from '../../utils/staticHelper'
+// Modal package
 import { Button, Modal } from 'flowbite-react';
+// Utilities
+import Socket from '../../utils/socket';
+import Static from '../../utils/staticHelper'
 
 // The initialize component will act as a pre-game lobby for players who have joined or created a particullar (socket) room.
 // Players will join the initialize component from the assembly component and leave for the game component once both player indicate they are ready.

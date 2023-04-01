@@ -1,7 +1,7 @@
 // React + Components
 import React, { useEffect, useState } from 'react';
-import CardView from './CardView';
-import DeckEditView from './DeckEditView';
+import CardPoolView from './subviews/CardPoolView';
+import DeckEditView from './subviews/DeckEditView';
 // Modal and Button are from the Flowbite React UI Library
 import { Button, Modal } from 'flowbite-react';
 // API calls
@@ -169,7 +169,7 @@ export default function Deckbuilder({ userId, handleDeckCreate, token }) {
             <div className="flex flex-col w-full h-1/2 md:h-full md:w-1/2 border border-neutral-700 p-4 rounded-lg bg-neutral-800">
               <h1 className='text-2xl font-main-text-f'>Pool</h1>
               {/* CardView returns all cards in the card pool. */}
-              <CardView setDeckData={setDeckData} cardData={cardData} deckData={deckData} />
+              <CardPoolView setDeckData={setDeckData} cardData={cardData} deckData={deckData} />
             </div>
             {/* Current Deck */}
             <div className="flex flex-col w-full h-1/2 md:h-full md:w-1/2 border border-neutral-700 p-4 rounded-lg bg-neutral-800">

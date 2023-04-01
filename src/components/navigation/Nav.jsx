@@ -1,39 +1,42 @@
-// The Nav component will house basic navigation links between the main sections of our game.
-
-// The Nav will contain: Lobby (lobby component), Deckbuilding (deckbuilding component), Play (assembly component)
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaUserFriends } from 'react-icons/fa';
-import { GiCardPick, GiTabletopPlayers } from 'react-icons/gi'
-import { BsGrid3X3GapFill } from 'react-icons/bs';
-import { GiIdCard } from 'react-icons/gi';
-import { RiLogoutBoxLine } from 'react-icons/ri';
-import { Modal } from 'flowbite-react';
 import NavBarIcon from './NavBarIcon';
-import gllogo from '../../assets/png/gridlocke1.png';
+// Icons
+import { FaUserFriends } from 'react-icons/fa';
+import { GiCardPick, GiTabletopPlayers, GiIdCard } from 'react-icons/gi'
+import { BsGrid3X3GapFill } from 'react-icons/bs';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 import { MdOutlineLiveHelp } from 'react-icons/md'
+import gllogo from '../../assets/png/gridlocke1.png';
+// Modal package
+import { Modal } from 'flowbite-react';
+
+// The Nav component will house basic navigation links between the main sections of our game.
 
 export default function Nav({ view, setView, handleLogout }) {
+  // Tracks whether the modal is open or closed
   const [showModal, setShowModal] = useState(false);
 
+  // Modal Control Functions
   const onModalClick = () => {
     setShowModal(true);
   };
-
   const onModalClose = () => {
     setShowModal(false);
   };
 
+  // Calls the handleLogout function passed in from the parent component
   const onLogoutClick = () => {
     handleLogout();
   };
 
   return (
     <div className="bg-black/25 flex justify-around items-center md:flex-col md:h-screen grow-0 shrink-0 p-2 gap-1">
+      {/* LOBBY/HOME */}
       <Link to="/lobby">
         <img src={gllogo} alt="Gridlocke logo" className="h-[64px] w-auto" />
       </Link>
+      {/* PLAY */}
       <Link to="/gameview">
         <div className='relative text-4xl md:text-5xl navbar-icon group'>
           <GiTabletopPlayers className='text-neutral-200 absolute pointer-events-none z-10 scale-90' />
@@ -43,21 +46,27 @@ export default function Nav({ view, setView, handleLogout }) {
           </span>
         </div>
       </Link>
+      {/* DECKBUILDER */}
       <Link to="/deckbuilder">
         <NavBarIcon icon={<GiCardPick className='navbar-icon' />} text="Deck Builder" />
       </Link>
+      {/* PROFILE */}
       <Link to="/profile">
         <NavBarIcon icon={<GiIdCard className='navbar-icon' />} text="Profile" />
       </Link>
+      {/* FRIENDS */}
       <Link to="/friends">
         <NavBarIcon icon={<FaUserFriends className='navbar-icon' />} text="Friends" />
       </Link>
+      {/* HOW TO PLAY */}
       <button onClick={onModalClick}>
         <NavBarIcon icon={<MdOutlineLiveHelp className='navbar-icon' />} text="How To Play" />{' '}
       </button>
+      {/* LOGOUT */}
       <button onClick={onLogoutClick}>
         <NavBarIcon icon={<RiLogoutBoxLine className='navbar-icon' />} text="Logout" />{' '}
       </button>
+      {/* HOW TO PLAY MODAL ELEMENT */}
       <Modal show={showModal} size="xl" popup={true} onClose={onModalClose}>
         <Modal.Header className="bg-main-bg" />
         <Modal.Body className="bg-main-bg max-h-90 min-w-full">

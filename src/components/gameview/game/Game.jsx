@@ -23,8 +23,8 @@
 //    qMVP: Take the players back to the play screen.
 
 import React, { useEffect, useState } from 'react'
-import Grid from './Grid'
-import Hand from './Hand'
+import Grid from './grid/Grid'
+import Hand from './hand/Hand'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import Socket from '../../../utils/socket'
